@@ -48,7 +48,6 @@ class GrFNGenerator(object):
         self.function_defs = function_defs
         self.exclude_list = []
         self.mode_mapper = {}
-        self.alias_dict = {}
 
     def genPgm(self, node, state, fnNames, call_source):
         types = (list, ast.Module, ast.FunctionDef)
@@ -940,9 +939,6 @@ class GrFNGenerator(object):
                     )
                     target = {"var": {"variable": targets, "index": 1}}
 
-                # Check whether this is an alias assignment i.e. of the form y=x where y is now the alias of variable x
-                self.check_alias(target, sources)
-
                 name = getFnName(
                     fnNames,
                     f"{state.fnName}__assign__{target['var']['variable']}",
@@ -1057,37 +1053,7 @@ class GrFNGenerator(object):
 
         return []
 
-    # This function checks whether an assignment is an alias created. An alias
-    # is created when an assignment of the form y=x happens such that y is now
-    # an alias of x because it is an exact copy of x. If it is an alias
-    # assignment, the dictionary alias_dict will get populated.
-
-    def check_alias(self, target, sources):
-        target_index = (
-            target["var"]["variable"] + "_" + str(target["var"]["index"])
-        )
-        if len(sources) == 1 and sources[0].get("var") != None:
-            if self.alias_dict.get(target_index):
-                self.alias_dict[target_index].append(
-                    sources[0]["var"]["variable"]
-                    + "_"
-                    + str(sources[0]["var"]["index"])
-                )
-            else:
-                self.alias_dict[target_index] = [
-                    sources[0]["var"]["variable"]
-                    + "_"
-                    + str(sources[0]["var"]["index"])
-                ]
-
     def make_iden_dict(self, name, targets, scope_path, holder):
-        # Check for aliases
-        if isinstance(targets, dict):
-            aliases = self.alias_dict.get(
-                targets["variable"] + "_" + str(targets["index"]), "None"
-            )
-        elif isinstance(targets, str):
-            aliases = self.alias_dict.get(targets, "None")
 
         # First, check whether the information is from a variable or a holder(assign, loop, if, etc)
         # Assign the base_name accordingly
@@ -1138,7 +1104,6 @@ class GrFNGenerator(object):
             "base_name": base_name,
             "scope": scope_path,
             "namespace": name_space,
-            "aliases": aliases,
             "source_references": source_reference,
             "gensyms": generage_gensysm(gensyms_tag),
         }
