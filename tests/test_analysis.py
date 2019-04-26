@@ -193,6 +193,18 @@ def test_FIB_execution(petpt_grfn, petasce_grfn):
     petpt_fib = petpt_grfn.to_FIB(petasce_grfn)
     petasce_fib = petasce_grfn.to_FIB(petpt_grfn)
 
+    A = petpt_fib.to_agraph()
+    CAG = petpt_fib.to_CAG_agraph()
+
+    A.draw("PETPT_FIB.pdf", prog="dot")
+    CAG.draw("PETPT_FIB_CAG.pdf", prog="dot")
+
+    A = petasce_fib.to_agraph()
+    CAG = petasce_fib.to_CAG_agraph()
+
+    A.draw("PETASCE_FIB.pdf", prog="dot")
+    CAG.draw("PETASCE_FIB_CAG.pdf", prog="dot")
+
     pt_inputs = {name: 1 for name in petpt_grfn.inputs}
 
     asce_inputs = {

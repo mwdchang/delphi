@@ -867,3 +867,24 @@ class ForwardInfluenceBlanket(ComputationalGraph):
         A.node_attr.update({"shape": "rectangle", "style": "rounded"})
         A.edge_attr.update({"arrowsize": 0.5})
         return A
+
+    def to_CAG_agraph(self):
+        """Returns a variable-only view of the GrFN in the form of an AGraph.
+
+        Returns:
+            type: A CAG constructed via variable influence in the GrFN object.
+
+        """
+        CAG = self.to_CAG()
+        A = nx.nx_agraph.to_agraph(CAG)
+        A.graph_attr.update({"dpi": 227, "fontsize": 20, "fontname": "Menlo"})
+        A.node_attr.update(
+            {
+                "shape": "rectangle",
+                "color": "#650021",
+                "style": "rounded",
+                "fontname": "Gill Sans",
+            }
+        )
+        A.edge_attr.update({"color": "#650021", "arrowsize": 0.5})
+        return A

@@ -25,6 +25,14 @@ def petasce_grfn():
 
 
 def test_petpt_creation_and_execution(petpt_grfn):
+    A = petpt_grfn.to_agraph()
+    CAG = petpt_grfn.to_CAG_agraph()
+    CG = petpt_grfn.to_call_agraph()
+
+    # A.draw("PETPT_GrFN.pdf", prog="dot")
+    # CAG.draw("PETPT_GrFN_CAG.pdf", prog="dot")
+    # CG.draw("PETPT_GrFN_CG.pdf", prog="dot")
+
     assert isinstance(petpt_grfn, GroundedFunctionNetwork)
     assert len(petpt_grfn.inputs) == 5
     assert len(petpt_grfn.outputs) == 1
@@ -38,6 +46,10 @@ def test_petasce_creation(petasce_grfn):
     A = petasce_grfn.to_agraph()
     CAG = petasce_grfn.to_CAG_agraph()
     CG = petasce_grfn.to_call_agraph()
+
+    # A.draw("PETASCE_GrFN.pdf", prog="dot")
+    # CAG.draw("PETASCE_GrFN_CAG.pdf", prog="dot")
+    # CG.draw("PETASCE_GrFN_CG.pdf", prog="dot")
 
     values = {
         "petasce::doy_-1": 20,
@@ -61,6 +73,7 @@ def test_petasce_creation(petasce_grfn):
 
 def test_crop_yield_creation(crop_yield_grfn):
     A = crop_yield_grfn.to_agraph()
+    # A.draw("CROP_YIELD_GrFN.pdf", prog="dot")
     assert isinstance(crop_yield_grfn, GroundedFunctionNetwork)
 
 
