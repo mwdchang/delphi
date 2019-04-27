@@ -5,53 +5,55 @@ import numpy as np
 from delphi.GrFN.networks import GroundedFunctionNetwork
 
 
-def test_petpt_torch():
+def test_petpt_torch(N, use_gpu=False):
     lambdas = importlib.__import__("PETPT_torch_lambdas")
     json_filename = "../../tests/data/program_analysis/PETPT.json"
     G = GroundedFunctionNetwork.from_json_and_lambdas(json_filename, lambdas)
 
-    num_samples = int(1e7)
     inputs = {
-        "petpt::msalb_-1": torch.linspace(0, 1, num_samples),
-        "petpt::srad_-1": torch.linspace(1, 20, num_samples),
-        "petpt::tmax_-1": torch.linspace(-30, 60, num_samples),
-        "petpt::tmin_-1": torch.linspace(-30, 60, num_samples),
-        "petpt::xhlai_-1": torch.linspace(0, 20, num_samples),
+        "petpt::msalb_-1": torch.randint(0, 1, (N,), dtype=torch.double),
+        "petpt::srad_-1": torch.randint(1, 20, (N,), dtype=torch.double),
+        "petpt::tmax_-1": torch.randint(-30, 60, (N,), dtype=torch.double),
+        "petpt::tmin_-1": torch.randint(-30, 60, (N,), dtype=torch.double),
+        "petpt::xhlai_-1": torch.randint(0, 20, (N,), dtype=torch.double),
     }
-    print(f"Running PETPT with Torch for {num_samples} samples")
-    G.run(inputs, torch_size=num_samples)
+
+    if use_gpu:
+        inputs = {k: v.cuda() for k, v in inputs.items()}
+
+    print(f"Running PETPT with Torch for {N} samples {'w/ GPU' if use_gpu else 'w/ CPU'}")
+    G.run(inputs, torch_size=N)
 
 
-def test_petasce_torch_execution():
+def test_petasce_torch_execution(N, use_gpu=False):
     lambdas = importlib.__import__("PETASCE_torch_lambdas")
     json_filename = "../../tests/data/program_analysis/PETASCE_simple.json"
     G = GroundedFunctionNetwork.from_json_and_lambdas(json_filename, lambdas)
 
-    N = int(1e7)
-    samples = {
-        "petasce::doy_-1": np.random.randint(1, 100, N),
+    inputs = {
+        "petasce::doy_-1": torch.randint(1, 100, (N,), dtype=torch.double),
         "petasce::meevp_-1": np.where(np.random.rand(N) >= 0.5, 'A', 'W'),
-        "petasce::msalb_-1": np.random.uniform(0, 1, N),
-        "petasce::srad_-1": np.random.uniform(1, 30, N),
-        "petasce::tmax_-1": np.random.uniform(-30, 60, N),
-        "petasce::tmin_-1": np.random.uniform(-30, 60, N),
-        "petasce::xhlai_-1": np.random.uniform(0, 20, N),
-        "petasce::tdew_-1": np.random.uniform(-30, 60, N),
-        "petasce::windht_-1": np.random.uniform(0, 10, N),
-        "petasce::windrun_-1": np.random.uniform(0, 900, N),
-        "petasce::xlat_-1": np.random.uniform(0, 90, N),
-        "petasce::xelev_-1": np.random.uniform(0, 6000, N),
-        "petasce::canht_-1": np.random.uniform(0.001, 3, N),
+        "petasce::msalb_-1": torch.randint(0, 1, (N,), dtype=torch.double),
+        "petasce::srad_-1": torch.randint(1, 30, (N,), dtype=torch.double),
+        "petasce::tmax_-1": torch.randint(-30, 60, (N,), dtype=torch.double),
+        "petasce::tmin_-1": torch.randint(-30, 60, (N,), dtype=torch.double),
+        "petasce::xhlai_-1": torch.randint(0, 20, (N,), dtype=torch.double),
+        "petasce::tdew_-1": torch.randint(-30, 60, (N,), dtype=torch.double),
+        "petasce::windht_-1": torch.randint(0, 10, (N,), dtype=torch.double),
+        "petasce::windrun_-1": torch.randint(0, 900, (N,), dtype=torch.double),
+        "petasce::xlat_-1": torch.randint(0, 90, (N,), dtype=torch.double),
+        "petasce::xelev_-1": torch.randint(0, 6000, (N,), dtype=torch.double),
+        "petasce::canht_-1": torch.randint(1, 3, (N,), dtype=torch.double),
     }
 
-    values = {
-        k: torch.tensor(v, dtype=torch.double) if v.dtype != "<U1" else v
-        for k, v in samples.items()
-    }
+    if use_gpu:
+        inputs = {k: v.cuda() for k, v in inputs.items()}
 
-    print(f"Running PETASCE with Torch for {N} samples")
-    G.run(values, torch_size=N)
+    print(f"Running PETASCE with Torch for {N} samples {'w/ GPU' if use_gpu else 'w/ CPU'}")
+    G.run(inputs, torch_size=N)
 
 
-test_petpt_torch()
-test_petasce_torch_execution()
+test_petpt_torch(int(1e7))
+test_petasce_torch_execution(int(1e6))
+test_petpt_torch(int(1e7), use_gpu=True)
+test_petasce_torch_execution(int(1e6), use_gpu=True)

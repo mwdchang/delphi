@@ -84,6 +84,7 @@ class ComputationalGraph(nx.DiGraph):
         function_sets = [func_set for _, func_set in function_set_dists]
         return function_sets
 
+    @utils.timeit
     def run(
         self,
         inputs: Dict[str, Union[float, Iterable]],
