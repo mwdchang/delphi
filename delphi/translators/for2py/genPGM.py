@@ -17,7 +17,7 @@ import operator
 import os
 import uuid
 
-
+# The BINOPS dictionary holds operators for all the arithmetic and comparative functions
 BINOPS = {
     ast.Add: operator.add,
     ast.Sub: operator.sub,
@@ -28,7 +28,7 @@ BINOPS = {
     ast.LtE: operator.le,
 }
 
-
+# The UNNECESSARY_TYPES tuple holds the ast types to ignore
 UNNECESSARY_TYPES = (
     ast.Mult,
     ast.Add,
@@ -1637,21 +1637,21 @@ if __name__ == "__main__":
         "--files",
         nargs="+",
         required=True,
-        help="A list of python files to generate a PGM for",
+        help="A list of python files to generate PGMs for - one GrFN per python file/per module",
     )
     parser.add_argument(
         "-p",
         "--PGMFile",
         nargs=1,
         required=True,
-        help="Filename for the output PGM",
+        help="Suffix name for the output PGM files",
     )
     parser.add_argument(
         "-l",
         "--lambdaFile",
         nargs=1,
         required=True,
-        help="Filename for output lambda functions",
+        help="Suffix name for output lambda functions",
     )
     parser.add_argument(
         "-o",
