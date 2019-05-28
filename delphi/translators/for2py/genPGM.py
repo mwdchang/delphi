@@ -493,7 +493,6 @@ class GrFNGenerator(object):
                         {"variable": updatedDef, "index": versions[0]},
                     ]
                 )
-
                 output = {
                     "variable": updatedDef,
                     "index": getNextDef(
@@ -809,30 +808,33 @@ class GrFNGenerator(object):
                 raise For2PyError("can't handle arrays right now.")
 
             val = self.genPgm(node.value, state, fnNames, "subscript")
-            if val[0]["var"]["variable"] in self.annassigned_list:
-                if isinstance(node.ctx, ast.Store):
-                    val[0]["var"]["index"] = getNextDef(
-                        val[0]["var"]["variable"],
-                        state.lastDefs,
-                        state.nextDefs,
-                        state.lastDefDefault,
-                    )
-            elif val[0]["var"]["index"] == -1:
-                if isinstance(node.ctx, ast.Store):
-                    val[0]["var"]["index"] = getNextDef(
-                        val[0]["var"]["variable"],
-                        state.lastDefs,
-                        state.nextDefs,
-                        state.lastDefDefault,
-                    )
+            if len(val) > 0:
+                if val[0]["var"]["variable"] in self.annassigned_list:
+                    if isinstance(node.ctx, ast.Store):
+                        val[0]["var"]["index"] = getNextDef(
+                            val[0]["var"]["variable"],
+                            state.lastDefs,
+                            state.nextDefs,
+                            state.lastDefDefault,
+                        )
+                elif val[0]["var"]["index"] == -1:
+                    if isinstance(node.ctx, ast.Store):
+                        val[0]["var"]["index"] = getNextDef(
+                            val[0]["var"]["variable"],
+                            state.lastDefs,
+                            state.nextDefs,
+                            state.lastDefDefault,
+                        )
+                        self.annassigned_list.append(val[0]["var"]["variable"])
+                else:
                     self.annassigned_list.append(val[0]["var"]["variable"])
-            else:
-                self.annassigned_list.append(val[0]["var"]["variable"])
 
             return val
 
         # Name: ('id', 'ctx')
         elif isinstance(node, ast.Name):
+            if re.match(r'''i_g_n_o_r_e___m_e__.*''', node.id):
+                return []
             lastDef = getLastDef(node.id, state.lastDefs, state.lastDefDefault)
             if (
                 isinstance(node.ctx, ast.Store)
