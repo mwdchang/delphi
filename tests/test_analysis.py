@@ -31,6 +31,7 @@ def test_regular_PETPT(petpt_grfn):
 
     Ns = 1000 # TODO: Khan, experiment with this value
     Si = petpt_grfn.sobol_analysis(Ns, problem)
+    assert False
     assert len(Si.keys()) == 6
     assert len(Si["S1"]) == len(args)
 

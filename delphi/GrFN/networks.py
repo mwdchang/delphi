@@ -9,6 +9,7 @@ import os
 import ast
 import itertools
 
+import numpy as np
 import torch
 from SALib.analyze import sobol, fast, rbd_fast
 from SALib.sample import saltelli, fast_sampler, latin
@@ -26,8 +27,7 @@ from delphi.translators.for2py import (
     pyTranslate,
     genPGM,
 )
-import numpy as np
-import torch
+
 
 FONT = choose_font()
 
