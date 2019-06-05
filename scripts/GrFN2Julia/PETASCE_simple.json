@@ -1,0 +1,3906 @@
+{
+  "functions": [
+    {
+      "name": "petasce__assign__tavg_0",
+      "type": "assign",
+      "target": "tavg",
+      "sources": [
+        {
+          "name": "tmax",
+          "type": "variable"
+        },
+        {
+          "name": "tmin",
+          "type": "variable"
+        }
+      ],
+      "reference": 52
+    },
+    {
+      "name": "petasce__assign__patm_0",
+      "type": "assign",
+      "target": "patm",
+      "sources": [
+        {
+          "name": "xelev",
+          "type": "variable"
+        }
+      ],
+      "reference": 53
+    },
+    {
+      "name": "petasce__assign__psycon_0",
+      "type": "assign",
+      "target": "psycon",
+      "sources": [
+        {
+          "name": "patm",
+          "type": "variable"
+        }
+      ],
+      "reference": 54
+    },
+    {
+      "name": "petasce__assign__udelta_0",
+      "type": "assign",
+      "target": "udelta",
+      "sources": [
+        {
+          "name": "tavg",
+          "type": "variable"
+        }
+      ],
+      "reference": 55
+    },
+    {
+      "name": "petasce__assign__emax_0",
+      "type": "assign",
+      "target": "emax",
+      "sources": [
+        {
+          "name": "tmax",
+          "type": "variable"
+        }
+      ],
+      "reference": 56
+    },
+    {
+      "name": "petasce__assign__emin_0",
+      "type": "assign",
+      "target": "emin",
+      "sources": [
+        {
+          "name": "tmin",
+          "type": "variable"
+        }
+      ],
+      "reference": 57
+    },
+    {
+      "name": "petasce__assign__es_0",
+      "type": "assign",
+      "target": "es",
+      "sources": [
+        {
+          "name": "emax",
+          "type": "variable"
+        },
+        {
+          "name": "emin",
+          "type": "variable"
+        }
+      ],
+      "reference": 58
+    },
+    {
+      "name": "petasce__assign__ea_0",
+      "type": "assign",
+      "target": "ea",
+      "sources": [
+        {
+          "name": "tdew",
+          "type": "variable"
+        }
+      ],
+      "reference": 59
+    },
+    {
+      "name": "petasce__assign__rhmin_0",
+      "type": "assign",
+      "target": "rhmin",
+      "sources": [
+        {
+          "name": "ea",
+          "type": "variable"
+        },
+        {
+          "name": "emax",
+          "type": "variable"
+        }
+      ],
+      "reference": 60
+    },
+    {
+      "name": "petasce__condition__IF_1_0",
+      "type": "condition",
+      "target": "IF_1",
+      "reference": 61,
+      "sources": [
+        {
+          "name": "xhlai",
+          "type": "variable"
+        }
+      ]
+    },
+    {
+      "name": "petasce__assign__albedo_0",
+      "type": "assign",
+      "target": "albedo",
+      "sources": [
+        {
+          "name": "msalb",
+          "type": "variable"
+        }
+      ],
+      "reference": 62
+    },
+    {
+      "name": "petasce__assign__albedo_1",
+      "type": "assign",
+      "target": "albedo",
+      "sources": [],
+      "reference": 64,
+      "body": {
+        "type": "literal",
+        "dtype": "real",
+        "value": "0.23"
+      }
+    },
+    {
+      "name": "petasce__decision__albedo_2",
+      "type": "decision",
+      "target": "albedo",
+      "reference": 61,
+      "sources": [
+        {
+          "name": "IF_1_0",
+          "type": "variable"
+        },
+        {
+          "name": "albedo_1",
+          "type": "variable"
+        },
+        {
+          "name": "albedo_0",
+          "type": "variable"
+        }
+      ]
+    },
+    {
+      "name": "petasce__assign__rns_0",
+      "type": "assign",
+      "target": "rns",
+      "sources": [
+        {
+          "name": "albedo",
+          "type": "variable"
+        },
+        {
+          "name": "srad",
+          "type": "variable"
+        }
+      ],
+      "reference": 65
+    },
+    {
+      "name": "petasce__assign__pie_0",
+      "type": "assign",
+      "target": "pie",
+      "sources": [],
+      "reference": 66,
+      "body": {
+        "type": "literal",
+        "dtype": "real",
+        "value": "3.14159265359"
+      }
+    },
+    {
+      "name": "petasce__assign__dr_0",
+      "type": "assign",
+      "target": "dr",
+      "sources": [
+        {
+          "name": "pie",
+          "type": "variable"
+        },
+        {
+          "name": "doy",
+          "type": "variable"
+        }
+      ],
+      "reference": 67
+    },
+    {
+      "name": "petasce__assign__ldelta_0",
+      "type": "assign",
+      "target": "ldelta",
+      "sources": [
+        {
+          "name": "pie",
+          "type": "variable"
+        },
+        {
+          "name": "doy",
+          "type": "variable"
+        }
+      ],
+      "reference": 68
+    },
+    {
+      "name": "petasce__assign__ws_0",
+      "type": "assign",
+      "target": "ws",
+      "sources": [
+        {
+          "name": "xlat",
+          "type": "variable"
+        },
+        {
+          "name": "pie",
+          "type": "variable"
+        },
+        {
+          "name": "ldelta",
+          "type": "variable"
+        }
+      ],
+      "reference": 69
+    },
+    {
+      "name": "petasce__assign__ra1_0",
+      "type": "assign",
+      "target": "ra1",
+      "sources": [
+        {
+          "name": "ws",
+          "type": "variable"
+        },
+        {
+          "name": "xlat",
+          "type": "variable"
+        },
+        {
+          "name": "pie",
+          "type": "variable"
+        },
+        {
+          "name": "ldelta",
+          "type": "variable"
+        }
+      ],
+      "reference": 70
+    },
+    {
+      "name": "petasce__assign__ra2_0",
+      "type": "assign",
+      "target": "ra2",
+      "sources": [
+        {
+          "name": "xlat",
+          "type": "variable"
+        },
+        {
+          "name": "pie",
+          "type": "variable"
+        },
+        {
+          "name": "ldelta",
+          "type": "variable"
+        },
+        {
+          "name": "ws",
+          "type": "variable"
+        }
+      ],
+      "reference": 71
+    },
+    {
+      "name": "petasce__assign__ra_0",
+      "type": "assign",
+      "target": "ra",
+      "sources": [
+        {
+          "name": "pie",
+          "type": "variable"
+        },
+        {
+          "name": "dr",
+          "type": "variable"
+        },
+        {
+          "name": "ra1",
+          "type": "variable"
+        },
+        {
+          "name": "ra2",
+          "type": "variable"
+        }
+      ],
+      "reference": 72
+    },
+    {
+      "name": "petasce__assign__rso_0",
+      "type": "assign",
+      "target": "rso",
+      "sources": [
+        {
+          "name": "xelev",
+          "type": "variable"
+        },
+        {
+          "name": "ra",
+          "type": "variable"
+        }
+      ],
+      "reference": 73
+    },
+    {
+      "name": "petasce__assign__ratio_0",
+      "type": "assign",
+      "target": "ratio",
+      "sources": [
+        {
+          "name": "srad",
+          "type": "variable"
+        },
+        {
+          "name": "rso",
+          "type": "variable"
+        }
+      ],
+      "reference": 74
+    },
+    {
+      "name": "petasce__condition__IF_2_0",
+      "type": "condition",
+      "target": "IF_2",
+      "reference": 75,
+      "sources": [
+        {
+          "name": "ratio",
+          "type": "variable"
+        }
+      ]
+    },
+    {
+      "name": "petasce__assign__ratio_1",
+      "type": "assign",
+      "target": "ratio",
+      "sources": [],
+      "reference": 76,
+      "body": {
+        "type": "literal",
+        "dtype": "real",
+        "value": "0.3"
+      }
+    },
+    {
+      "name": "petasce__decision__ratio_3",
+      "type": "decision",
+      "target": "ratio",
+      "reference": 75,
+      "sources": [
+        {
+          "name": "IF_2_0",
+          "type": "variable"
+        },
+        {
+          "name": "ratio_0",
+          "type": "variable"
+        },
+        {
+          "name": "ratio_1",
+          "type": "variable"
+        }
+      ]
+    },
+    {
+      "name": "petasce__assign__ratio_2",
+      "type": "assign",
+      "target": "ratio",
+      "sources": [],
+      "reference": 79,
+      "body": {
+        "type": "literal",
+        "dtype": "real",
+        "value": "1.0"
+      }
+    },
+    {
+      "name": "petasce__condition__IF_2_1",
+      "type": "condition",
+      "target": "IF_2",
+      "reference": 78,
+      "sources": [
+        {
+          "name": "ratio",
+          "type": "variable"
+        }
+      ]
+    },
+    {
+      "name": "petasce__decision__ratio_4",
+      "type": "decision",
+      "target": "ratio",
+      "reference": 78,
+      "sources": [
+        {
+          "name": "IF_2_1",
+          "type": "variable"
+        },
+        {
+          "name": "ratio_3",
+          "type": "variable"
+        },
+        {
+          "name": "ratio_2",
+          "type": "variable"
+        }
+      ]
+    },
+    {
+      "name": "petasce__assign__fcd_0",
+      "type": "assign",
+      "target": "fcd",
+      "sources": [
+        {
+          "name": "ratio",
+          "type": "variable"
+        }
+      ],
+      "reference": 80
+    },
+    {
+      "name": "petasce__assign__tk4_0",
+      "type": "assign",
+      "target": "tk4",
+      "sources": [
+        {
+          "name": "tmax",
+          "type": "variable"
+        },
+        {
+          "name": "tmin",
+          "type": "variable"
+        }
+      ],
+      "reference": 81
+    },
+    {
+      "name": "petasce__assign__rnl_0",
+      "type": "assign",
+      "target": "rnl",
+      "sources": [
+        {
+          "name": "fcd",
+          "type": "variable"
+        },
+        {
+          "name": "ea",
+          "type": "variable"
+        },
+        {
+          "name": "tk4",
+          "type": "variable"
+        }
+      ],
+      "reference": 82
+    },
+    {
+      "name": "petasce__assign__rn_0",
+      "type": "assign",
+      "target": "rn",
+      "sources": [
+        {
+          "name": "rns",
+          "type": "variable"
+        },
+        {
+          "name": "rnl",
+          "type": "variable"
+        }
+      ],
+      "reference": 83
+    },
+    {
+      "name": "petasce__assign__g_0",
+      "type": "assign",
+      "target": "g",
+      "sources": [],
+      "reference": 84,
+      "body": {
+        "type": "literal",
+        "dtype": "real",
+        "value": "0.0"
+      }
+    },
+    {
+      "name": "petasce__assign__windsp_0",
+      "type": "assign",
+      "target": "windsp",
+      "sources": [
+        {
+          "name": "windrun",
+          "type": "variable"
+        }
+      ],
+      "reference": 85
+    },
+    {
+      "name": "petasce__assign__wind2m_0",
+      "type": "assign",
+      "target": "wind2m",
+      "sources": [
+        {
+          "name": "windsp",
+          "type": "variable"
+        },
+        {
+          "name": "windht",
+          "type": "variable"
+        }
+      ],
+      "reference": 86
+    },
+    {
+      "name": "petasce__assign__cn_0",
+      "type": "assign",
+      "target": "cn",
+      "sources": [],
+      "reference": 87,
+      "body": {
+        "type": "literal",
+        "dtype": "real",
+        "value": "0.0"
+      }
+    },
+    {
+      "name": "petasce__assign__cd_0",
+      "type": "assign",
+      "target": "cd",
+      "sources": [],
+      "reference": 88,
+      "body": {
+        "type": "literal",
+        "dtype": "real",
+        "value": "0.0"
+      }
+    },
+    {
+      "name": "petasce__condition__IF_3_0",
+      "type": "condition",
+      "target": "IF_3",
+      "reference": 89,
+      "sources": [
+        {
+          "name": "meevp",
+          "type": "variable"
+        }
+      ]
+    },
+    {
+      "name": "petasce__assign__cn_1",
+      "type": "assign",
+      "target": "cn",
+      "sources": [],
+      "reference": 90,
+      "body": {
+        "type": "literal",
+        "dtype": "real",
+        "value": "1600.0"
+      }
+    },
+    {
+      "name": "petasce__assign__cd_1",
+      "type": "assign",
+      "target": "cd",
+      "sources": [],
+      "reference": 91,
+      "body": {
+        "type": "literal",
+        "dtype": "real",
+        "value": "0.38"
+      }
+    },
+    {
+      "name": "petasce__decision__cn_3",
+      "type": "decision",
+      "target": "cn",
+      "reference": 89,
+      "sources": [
+        {
+          "name": "IF_3_0",
+          "type": "variable"
+        },
+        {
+          "name": "cn_0",
+          "type": "variable"
+        },
+        {
+          "name": "cn_1",
+          "type": "variable"
+        }
+      ]
+    },
+    {
+      "name": "petasce__decision__cd_3",
+      "type": "decision",
+      "target": "cd",
+      "reference": 89,
+      "sources": [
+        {
+          "name": "IF_3_0",
+          "type": "variable"
+        },
+        {
+          "name": "cd_0",
+          "type": "variable"
+        },
+        {
+          "name": "cd_1",
+          "type": "variable"
+        }
+      ]
+    },
+    {
+      "name": "petasce__assign__cn_2",
+      "type": "assign",
+      "target": "cn",
+      "sources": [],
+      "reference": 94,
+      "body": {
+        "type": "literal",
+        "dtype": "real",
+        "value": "900.0"
+      }
+    },
+    {
+      "name": "petasce__assign__cd_2",
+      "type": "assign",
+      "target": "cd",
+      "sources": [],
+      "reference": 95,
+      "body": {
+        "type": "literal",
+        "dtype": "real",
+        "value": "0.34"
+      }
+    },
+    {
+      "name": "petasce__condition__IF_3_1",
+      "type": "condition",
+      "target": "IF_3",
+      "reference": 93,
+      "sources": [
+        {
+          "name": "meevp",
+          "type": "variable"
+        }
+      ]
+    },
+    {
+      "name": "petasce__decision__cn_4",
+      "type": "decision",
+      "target": "cn",
+      "reference": 93,
+      "sources": [
+        {
+          "name": "IF_3_1",
+          "type": "variable"
+        },
+        {
+          "name": "cn_3",
+          "type": "variable"
+        },
+        {
+          "name": "cn_2",
+          "type": "variable"
+        }
+      ]
+    },
+    {
+      "name": "petasce__decision__cd_4",
+      "type": "decision",
+      "target": "cd",
+      "reference": 93,
+      "sources": [
+        {
+          "name": "IF_3_1",
+          "type": "variable"
+        },
+        {
+          "name": "cd_3",
+          "type": "variable"
+        },
+        {
+          "name": "cd_2",
+          "type": "variable"
+        }
+      ]
+    },
+    {
+      "name": "petasce__assign__refet_0",
+      "type": "assign",
+      "target": "refet",
+      "sources": [
+        {
+          "name": "udelta",
+          "type": "variable"
+        },
+        {
+          "name": "rn",
+          "type": "variable"
+        },
+        {
+          "name": "g",
+          "type": "variable"
+        },
+        {
+          "name": "psycon",
+          "type": "variable"
+        },
+        {
+          "name": "cn",
+          "type": "variable"
+        },
+        {
+          "name": "tavg",
+          "type": "variable"
+        },
+        {
+          "name": "wind2m",
+          "type": "variable"
+        },
+        {
+          "name": "es",
+          "type": "variable"
+        },
+        {
+          "name": "ea",
+          "type": "variable"
+        }
+      ],
+      "reference": 96
+    },
+    {
+      "name": "petasce__assign__refet_1",
+      "type": "assign",
+      "target": "refet",
+      "sources": [
+        {
+          "name": "refet",
+          "type": "variable"
+        },
+        {
+          "name": "udelta",
+          "type": "variable"
+        },
+        {
+          "name": "psycon",
+          "type": "variable"
+        },
+        {
+          "name": "cd",
+          "type": "variable"
+        },
+        {
+          "name": "wind2m",
+          "type": "variable"
+        }
+      ],
+      "reference": 97
+    },
+    {
+      "name": "petasce__assign__refet_2",
+      "type": "assign",
+      "target": "refet",
+      "sources": [
+        {
+          "name": "refet",
+          "type": "variable"
+        }
+      ],
+      "reference": 98
+    },
+    {
+      "name": "petasce__assign__skc_0",
+      "type": "assign",
+      "target": "skc",
+      "sources": [],
+      "reference": 99,
+      "body": {
+        "type": "literal",
+        "dtype": "real",
+        "value": "0.8"
+      }
+    },
+    {
+      "name": "petasce__assign__kcbmin_0",
+      "type": "assign",
+      "target": "kcbmin",
+      "sources": [],
+      "reference": 100,
+      "body": {
+        "type": "literal",
+        "dtype": "real",
+        "value": "0.3"
+      }
+    },
+    {
+      "name": "petasce__assign__kcbmax_0",
+      "type": "assign",
+      "target": "kcbmax",
+      "sources": [],
+      "reference": 101,
+      "body": {
+        "type": "literal",
+        "dtype": "real",
+        "value": "1.2"
+      }
+    },
+    {
+      "name": "petasce__condition__IF_4_0",
+      "type": "condition",
+      "target": "IF_4",
+      "reference": 102,
+      "sources": [
+        {
+          "name": "xhlai",
+          "type": "variable"
+        }
+      ]
+    },
+    {
+      "name": "petasce__assign__kcb_0",
+      "type": "assign",
+      "target": "kcb",
+      "sources": [],
+      "reference": 103,
+      "body": {
+        "type": "literal",
+        "dtype": "real",
+        "value": "0.0"
+      }
+    },
+    {
+      "name": "petasce__assign__kcb_1",
+      "type": "assign",
+      "target": "kcb",
+      "sources": [
+        {
+          "name": "kcbmin",
+          "type": "variable"
+        },
+        {
+          "name": "kcbmax",
+          "type": "variable"
+        },
+        {
+          "name": "skc",
+          "type": "variable"
+        },
+        {
+          "name": "xhlai",
+          "type": "variable"
+        }
+      ],
+      "reference": 105
+    },
+    {
+      "name": "petasce__decision__kcb_2",
+      "type": "decision",
+      "target": "kcb",
+      "reference": 102,
+      "sources": [
+        {
+          "name": "IF_4_0",
+          "type": "variable"
+        },
+        {
+          "name": "kcb_1",
+          "type": "variable"
+        },
+        {
+          "name": "kcb_0",
+          "type": "variable"
+        }
+      ]
+    },
+    {
+      "name": "petasce__assign__wnd_0",
+      "type": "assign",
+      "target": "wnd",
+      "sources": [
+        {
+          "name": "wind2m",
+          "type": "variable"
+        }
+      ],
+      "reference": 106
+    },
+    {
+      "name": "petasce__assign__cht_0",
+      "type": "assign",
+      "target": "cht",
+      "sources": [
+        {
+          "name": "canht",
+          "type": "variable"
+        }
+      ],
+      "reference": 107
+    },
+    {
+      "name": "petasce__assign__kcmax_0",
+      "type": "assign",
+      "target": "kcmax",
+      "sources": [],
+      "reference": 108,
+      "body": {
+        "type": "literal",
+        "dtype": "real",
+        "value": "0.5"
+      }
+    },
+    {
+      "name": "petasce__condition__IF_5_0",
+      "type": "condition",
+      "target": "IF_5",
+      "reference": 109,
+      "sources": [
+        {
+          "name": "meevp",
+          "type": "variable"
+        }
+      ]
+    },
+    {
+      "name": "petasce__assign__kcmax_1",
+      "type": "assign",
+      "target": "kcmax",
+      "sources": [
+        {
+          "name": "kcb",
+          "type": "variable"
+        }
+      ],
+      "reference": 110
+    },
+    {
+      "name": "petasce__decision__kcmax_3",
+      "type": "decision",
+      "target": "kcmax",
+      "reference": 109,
+      "sources": [
+        {
+          "name": "IF_5_0",
+          "type": "variable"
+        },
+        {
+          "name": "kcmax_0",
+          "type": "variable"
+        },
+        {
+          "name": "kcmax_1",
+          "type": "variable"
+        }
+      ]
+    },
+    {
+      "name": "petasce__assign__kcmax_2",
+      "type": "assign",
+      "target": "kcmax",
+      "sources": [
+        {
+          "name": "wnd",
+          "type": "variable"
+        },
+        {
+          "name": "rhmin",
+          "type": "variable"
+        },
+        {
+          "name": "cht",
+          "type": "variable"
+        },
+        {
+          "name": "kcb",
+          "type": "variable"
+        }
+      ],
+      "reference": 113
+    },
+    {
+      "name": "petasce__condition__IF_5_1",
+      "type": "condition",
+      "target": "IF_5",
+      "reference": 112,
+      "sources": [
+        {
+          "name": "meevp",
+          "type": "variable"
+        }
+      ]
+    },
+    {
+      "name": "petasce__decision__kcmax_4",
+      "type": "decision",
+      "target": "kcmax",
+      "reference": 112,
+      "sources": [
+        {
+          "name": "IF_5_1",
+          "type": "variable"
+        },
+        {
+          "name": "kcmax_3",
+          "type": "variable"
+        },
+        {
+          "name": "kcmax_2",
+          "type": "variable"
+        }
+      ]
+    },
+    {
+      "name": "petasce__condition__IF_6_0",
+      "type": "condition",
+      "target": "IF_6",
+      "reference": 114,
+      "sources": [
+        {
+          "name": "kcb",
+          "type": "variable"
+        },
+        {
+          "name": "kcbmin",
+          "type": "variable"
+        }
+      ]
+    },
+    {
+      "name": "petasce__assign__fc_0",
+      "type": "assign",
+      "target": "fc",
+      "sources": [],
+      "reference": 115,
+      "body": {
+        "type": "literal",
+        "dtype": "real",
+        "value": "0.0"
+      }
+    },
+    {
+      "name": "petasce__assign__fc_1",
+      "type": "assign",
+      "target": "fc",
+      "sources": [
+        {
+          "name": "kcb",
+          "type": "variable"
+        },
+        {
+          "name": "kcbmin",
+          "type": "variable"
+        },
+        {
+          "name": "kcmax",
+          "type": "variable"
+        },
+        {
+          "name": "canht",
+          "type": "variable"
+        }
+      ],
+      "reference": 117
+    },
+    {
+      "name": "petasce__decision__fc_2",
+      "type": "decision",
+      "target": "fc",
+      "reference": 114,
+      "sources": [
+        {
+          "name": "IF_6_0",
+          "type": "variable"
+        },
+        {
+          "name": "fc_1",
+          "type": "variable"
+        },
+        {
+          "name": "fc_0",
+          "type": "variable"
+        }
+      ]
+    },
+    {
+      "name": "petasce__assign__fw_0",
+      "type": "assign",
+      "target": "fw",
+      "sources": [],
+      "reference": 118,
+      "body": {
+        "type": "literal",
+        "dtype": "real",
+        "value": "1.0"
+      }
+    },
+    {
+      "name": "petasce__assign__few_0",
+      "type": "assign",
+      "target": "few",
+      "sources": [
+        {
+          "name": "fc",
+          "type": "variable"
+        },
+        {
+          "name": "fw",
+          "type": "variable"
+        }
+      ],
+      "reference": 119
+    },
+    {
+      "name": "petasce__assign__ke_0",
+      "type": "assign",
+      "target": "ke",
+      "sources": [
+        {
+          "name": "kcmax",
+          "type": "variable"
+        },
+        {
+          "name": "kcb",
+          "type": "variable"
+        },
+        {
+          "name": "few",
+          "type": "variable"
+        }
+      ],
+      "reference": 120
+    },
+    {
+      "name": "petasce__assign__eo_0",
+      "type": "assign",
+      "target": "eo",
+      "sources": [
+        {
+          "name": "kcb",
+          "type": "variable"
+        },
+        {
+          "name": "ke",
+          "type": "variable"
+        },
+        {
+          "name": "refet",
+          "type": "variable"
+        }
+      ],
+      "reference": 121
+    },
+    {
+      "name": "petasce__assign__eo_1",
+      "type": "assign",
+      "target": "eo",
+      "sources": [
+        {
+          "name": "eo",
+          "type": "variable"
+        }
+      ],
+      "reference": 122
+    },
+    {
+      "name": "petasce",
+      "type": "container",
+      "input": [
+        {
+          "name": "canht",
+          "domain": "real"
+        },
+        {
+          "name": "doy",
+          "domain": "integer"
+        },
+        {
+          "name": "msalb",
+          "domain": "real"
+        },
+        {
+          "name": "meevp",
+          "domain": "string"
+        },
+        {
+          "name": "srad",
+          "domain": "real"
+        },
+        {
+          "name": "tdew",
+          "domain": "real"
+        },
+        {
+          "name": "tmax",
+          "domain": "real"
+        },
+        {
+          "name": "tmin",
+          "domain": "real"
+        },
+        {
+          "name": "windht",
+          "domain": "real"
+        },
+        {
+          "name": "windrun",
+          "domain": "real"
+        },
+        {
+          "name": "xhlai",
+          "domain": "real"
+        },
+        {
+          "name": "xlat",
+          "domain": "real"
+        },
+        {
+          "name": "xelev",
+          "domain": "real"
+        },
+        {
+          "name": "eo",
+          "domain": "real"
+        }
+      ],
+      "variables": [],
+      "body": [
+        {
+          "name": "petasce__assign__tavg_0",
+          "output": {
+            "variable": "tavg",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "tmax",
+              "index": -1
+            },
+            {
+              "variable": "tmin",
+              "index": -1
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__patm_0",
+          "output": {
+            "variable": "patm",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "xelev",
+              "index": -1
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__psycon_0",
+          "output": {
+            "variable": "psycon",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "patm",
+              "index": 0
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__udelta_0",
+          "output": {
+            "variable": "udelta",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "tavg",
+              "index": 0
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__emax_0",
+          "output": {
+            "variable": "emax",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "tmax",
+              "index": -1
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__emin_0",
+          "output": {
+            "variable": "emin",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "tmin",
+              "index": -1
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__es_0",
+          "output": {
+            "variable": "es",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "emax",
+              "index": 0
+            },
+            {
+              "variable": "emin",
+              "index": 0
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__ea_0",
+          "output": {
+            "variable": "ea",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "tdew",
+              "index": -1
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__rhmin_0",
+          "output": {
+            "variable": "rhmin",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "ea",
+              "index": 0
+            },
+            {
+              "variable": "emax",
+              "index": 0
+            }
+          ]
+        },
+        {
+          "name": "petasce__condition__IF_1_0",
+          "output": {
+            "variable": "IF_1",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "xhlai",
+              "index": -1
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__albedo_0",
+          "output": {
+            "variable": "albedo",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "msalb",
+              "index": -1
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__albedo_1",
+          "output": {
+            "variable": "albedo",
+            "index": 1
+          },
+          "input": []
+        },
+        {
+          "name": "petasce__decision__albedo_2",
+          "output": {
+            "variable": "albedo",
+            "index": 2
+          },
+          "input": [
+            {
+              "variable": "IF_1",
+              "index": 0
+            },
+            {
+              "variable": "albedo",
+              "index": 1
+            },
+            {
+              "variable": "albedo",
+              "index": 0
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__rns_0",
+          "output": {
+            "variable": "rns",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "albedo",
+              "index": 2
+            },
+            {
+              "variable": "srad",
+              "index": -1
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__pie_0",
+          "output": {
+            "variable": "pie",
+            "index": 0
+          },
+          "input": []
+        },
+        {
+          "name": "petasce__assign__dr_0",
+          "output": {
+            "variable": "dr",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "pie",
+              "index": 0
+            },
+            {
+              "variable": "doy",
+              "index": -1
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__ldelta_0",
+          "output": {
+            "variable": "ldelta",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "pie",
+              "index": 0
+            },
+            {
+              "variable": "doy",
+              "index": -1
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__ws_0",
+          "output": {
+            "variable": "ws",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "xlat",
+              "index": -1
+            },
+            {
+              "variable": "pie",
+              "index": 0
+            },
+            {
+              "variable": "ldelta",
+              "index": 0
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__ra1_0",
+          "output": {
+            "variable": "ra1",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "ws",
+              "index": 0
+            },
+            {
+              "variable": "xlat",
+              "index": -1
+            },
+            {
+              "variable": "pie",
+              "index": 0
+            },
+            {
+              "variable": "ldelta",
+              "index": 0
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__ra2_0",
+          "output": {
+            "variable": "ra2",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "xlat",
+              "index": -1
+            },
+            {
+              "variable": "pie",
+              "index": 0
+            },
+            {
+              "variable": "ldelta",
+              "index": 0
+            },
+            {
+              "variable": "ws",
+              "index": 0
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__ra_0",
+          "output": {
+            "variable": "ra",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "pie",
+              "index": 0
+            },
+            {
+              "variable": "dr",
+              "index": 0
+            },
+            {
+              "variable": "ra1",
+              "index": 0
+            },
+            {
+              "variable": "ra2",
+              "index": 0
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__rso_0",
+          "output": {
+            "variable": "rso",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "xelev",
+              "index": -1
+            },
+            {
+              "variable": "ra",
+              "index": 0
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__ratio_0",
+          "output": {
+            "variable": "ratio",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "srad",
+              "index": -1
+            },
+            {
+              "variable": "rso",
+              "index": 0
+            }
+          ]
+        },
+        {
+          "name": "petasce__condition__IF_2_0",
+          "output": {
+            "variable": "IF_2",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "ratio",
+              "index": 0
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__ratio_1",
+          "output": {
+            "variable": "ratio",
+            "index": 1
+          },
+          "input": []
+        },
+        {
+          "name": "petasce__decision__ratio_3",
+          "output": {
+            "variable": "ratio",
+            "index": 3
+          },
+          "input": [
+            {
+              "variable": "IF_2",
+              "index": 0
+            },
+            {
+              "variable": "ratio",
+              "index": 0
+            },
+            {
+              "variable": "ratio",
+              "index": 1
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__ratio_2",
+          "output": {
+            "variable": "ratio",
+            "index": 2
+          },
+          "input": []
+        },
+        {
+          "name": "petasce__condition__IF_2_1",
+          "output": {
+            "variable": "IF_2",
+            "index": 1
+          },
+          "input": [
+            {
+              "variable": "ratio",
+              "index": 0
+            }
+          ]
+        },
+        {
+          "name": "petasce__decision__ratio_4",
+          "output": {
+            "variable": "ratio",
+            "index": 4
+          },
+          "input": [
+            {
+              "variable": "IF_2",
+              "index": 1
+            },
+            {
+              "variable": "ratio",
+              "index": 3
+            },
+            {
+              "variable": "ratio",
+              "index": 2
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__fcd_0",
+          "output": {
+            "variable": "fcd",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "ratio",
+              "index": 4
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__tk4_0",
+          "output": {
+            "variable": "tk4",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "tmax",
+              "index": -1
+            },
+            {
+              "variable": "tmin",
+              "index": -1
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__rnl_0",
+          "output": {
+            "variable": "rnl",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "fcd",
+              "index": 0
+            },
+            {
+              "variable": "ea",
+              "index": 0
+            },
+            {
+              "variable": "tk4",
+              "index": 0
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__rn_0",
+          "output": {
+            "variable": "rn",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "rns",
+              "index": 0
+            },
+            {
+              "variable": "rnl",
+              "index": 0
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__g_0",
+          "output": {
+            "variable": "g",
+            "index": 0
+          },
+          "input": []
+        },
+        {
+          "name": "petasce__assign__windsp_0",
+          "output": {
+            "variable": "windsp",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "windrun",
+              "index": -1
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__wind2m_0",
+          "output": {
+            "variable": "wind2m",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "windsp",
+              "index": 0
+            },
+            {
+              "variable": "windht",
+              "index": -1
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__cn_0",
+          "output": {
+            "variable": "cn",
+            "index": 0
+          },
+          "input": []
+        },
+        {
+          "name": "petasce__assign__cd_0",
+          "output": {
+            "variable": "cd",
+            "index": 0
+          },
+          "input": []
+        },
+        {
+          "name": "petasce__condition__IF_3_0",
+          "output": {
+            "variable": "IF_3",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "meevp",
+              "index": -1
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__cn_1",
+          "output": {
+            "variable": "cn",
+            "index": 1
+          },
+          "input": []
+        },
+        {
+          "name": "petasce__assign__cd_1",
+          "output": {
+            "variable": "cd",
+            "index": 1
+          },
+          "input": []
+        },
+        {
+          "name": "petasce__decision__cn_3",
+          "output": {
+            "variable": "cn",
+            "index": 3
+          },
+          "input": [
+            {
+              "variable": "IF_3",
+              "index": 0
+            },
+            {
+              "variable": "cn",
+              "index": 0
+            },
+            {
+              "variable": "cn",
+              "index": 1
+            }
+          ]
+        },
+        {
+          "name": "petasce__decision__cd_3",
+          "output": {
+            "variable": "cd",
+            "index": 3
+          },
+          "input": [
+            {
+              "variable": "IF_3",
+              "index": 0
+            },
+            {
+              "variable": "cd",
+              "index": 0
+            },
+            {
+              "variable": "cd",
+              "index": 1
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__cn_2",
+          "output": {
+            "variable": "cn",
+            "index": 2
+          },
+          "input": []
+        },
+        {
+          "name": "petasce__assign__cd_2",
+          "output": {
+            "variable": "cd",
+            "index": 2
+          },
+          "input": []
+        },
+        {
+          "name": "petasce__condition__IF_3_1",
+          "output": {
+            "variable": "IF_3",
+            "index": 1
+          },
+          "input": [
+            {
+              "variable": "meevp",
+              "index": -1
+            }
+          ]
+        },
+        {
+          "name": "petasce__decision__cn_4",
+          "output": {
+            "variable": "cn",
+            "index": 4
+          },
+          "input": [
+            {
+              "variable": "IF_3",
+              "index": 1
+            },
+            {
+              "variable": "cn",
+              "index": 3
+            },
+            {
+              "variable": "cn",
+              "index": 2
+            }
+          ]
+        },
+        {
+          "name": "petasce__decision__cd_4",
+          "output": {
+            "variable": "cd",
+            "index": 4
+          },
+          "input": [
+            {
+              "variable": "IF_3",
+              "index": 1
+            },
+            {
+              "variable": "cd",
+              "index": 3
+            },
+            {
+              "variable": "cd",
+              "index": 2
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__refet_0",
+          "output": {
+            "variable": "refet",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "udelta",
+              "index": 0
+            },
+            {
+              "variable": "rn",
+              "index": 0
+            },
+            {
+              "variable": "g",
+              "index": 0
+            },
+            {
+              "variable": "psycon",
+              "index": 0
+            },
+            {
+              "variable": "cn",
+              "index": 4
+            },
+            {
+              "variable": "tavg",
+              "index": 0
+            },
+            {
+              "variable": "wind2m",
+              "index": 0
+            },
+            {
+              "variable": "es",
+              "index": 0
+            },
+            {
+              "variable": "ea",
+              "index": 0
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__refet_1",
+          "output": {
+            "variable": "refet",
+            "index": 1
+          },
+          "input": [
+            {
+              "variable": "refet",
+              "index": 0
+            },
+            {
+              "variable": "udelta",
+              "index": 0
+            },
+            {
+              "variable": "psycon",
+              "index": 0
+            },
+            {
+              "variable": "cd",
+              "index": 4
+            },
+            {
+              "variable": "wind2m",
+              "index": 0
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__refet_2",
+          "output": {
+            "variable": "refet",
+            "index": 2
+          },
+          "input": [
+            {
+              "variable": "refet",
+              "index": 1
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__skc_0",
+          "output": {
+            "variable": "skc",
+            "index": 0
+          },
+          "input": []
+        },
+        {
+          "name": "petasce__assign__kcbmin_0",
+          "output": {
+            "variable": "kcbmin",
+            "index": 0
+          },
+          "input": []
+        },
+        {
+          "name": "petasce__assign__kcbmax_0",
+          "output": {
+            "variable": "kcbmax",
+            "index": 0
+          },
+          "input": []
+        },
+        {
+          "name": "petasce__condition__IF_4_0",
+          "output": {
+            "variable": "IF_4",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "xhlai",
+              "index": -1
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__kcb_0",
+          "output": {
+            "variable": "kcb",
+            "index": 0
+          },
+          "input": []
+        },
+        {
+          "name": "petasce__assign__kcb_1",
+          "output": {
+            "variable": "kcb",
+            "index": 1
+          },
+          "input": [
+            {
+              "variable": "kcbmin",
+              "index": 0
+            },
+            {
+              "variable": "kcbmax",
+              "index": 0
+            },
+            {
+              "variable": "skc",
+              "index": 0
+            },
+            {
+              "variable": "xhlai",
+              "index": -1
+            }
+          ]
+        },
+        {
+          "name": "petasce__decision__kcb_2",
+          "output": {
+            "variable": "kcb",
+            "index": 2
+          },
+          "input": [
+            {
+              "variable": "IF_4",
+              "index": 0
+            },
+            {
+              "variable": "kcb",
+              "index": 1
+            },
+            {
+              "variable": "kcb",
+              "index": 0
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__wnd_0",
+          "output": {
+            "variable": "wnd",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "wind2m",
+              "index": 0
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__cht_0",
+          "output": {
+            "variable": "cht",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "canht",
+              "index": -1
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__kcmax_0",
+          "output": {
+            "variable": "kcmax",
+            "index": 0
+          },
+          "input": []
+        },
+        {
+          "name": "petasce__condition__IF_5_0",
+          "output": {
+            "variable": "IF_5",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "meevp",
+              "index": -1
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__kcmax_1",
+          "output": {
+            "variable": "kcmax",
+            "index": 1
+          },
+          "input": [
+            {
+              "variable": "kcb",
+              "index": 2
+            }
+          ]
+        },
+        {
+          "name": "petasce__decision__kcmax_3",
+          "output": {
+            "variable": "kcmax",
+            "index": 3
+          },
+          "input": [
+            {
+              "variable": "IF_5",
+              "index": 0
+            },
+            {
+              "variable": "kcmax",
+              "index": 0
+            },
+            {
+              "variable": "kcmax",
+              "index": 1
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__kcmax_2",
+          "output": {
+            "variable": "kcmax",
+            "index": 2
+          },
+          "input": [
+            {
+              "variable": "wnd",
+              "index": 0
+            },
+            {
+              "variable": "rhmin",
+              "index": 0
+            },
+            {
+              "variable": "cht",
+              "index": 0
+            },
+            {
+              "variable": "kcb",
+              "index": 2
+            }
+          ]
+        },
+        {
+          "name": "petasce__condition__IF_5_1",
+          "output": {
+            "variable": "IF_5",
+            "index": 1
+          },
+          "input": [
+            {
+              "variable": "meevp",
+              "index": -1
+            }
+          ]
+        },
+        {
+          "name": "petasce__decision__kcmax_4",
+          "output": {
+            "variable": "kcmax",
+            "index": 4
+          },
+          "input": [
+            {
+              "variable": "IF_5",
+              "index": 1
+            },
+            {
+              "variable": "kcmax",
+              "index": 3
+            },
+            {
+              "variable": "kcmax",
+              "index": 2
+            }
+          ]
+        },
+        {
+          "name": "petasce__condition__IF_6_0",
+          "output": {
+            "variable": "IF_6",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "kcb",
+              "index": 2
+            },
+            {
+              "variable": "kcbmin",
+              "index": 0
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__fc_0",
+          "output": {
+            "variable": "fc",
+            "index": 0
+          },
+          "input": []
+        },
+        {
+          "name": "petasce__assign__fc_1",
+          "output": {
+            "variable": "fc",
+            "index": 1
+          },
+          "input": [
+            {
+              "variable": "kcb",
+              "index": 2
+            },
+            {
+              "variable": "kcbmin",
+              "index": 0
+            },
+            {
+              "variable": "kcmax",
+              "index": 4
+            },
+            {
+              "variable": "canht",
+              "index": -1
+            }
+          ]
+        },
+        {
+          "name": "petasce__decision__fc_2",
+          "output": {
+            "variable": "fc",
+            "index": 2
+          },
+          "input": [
+            {
+              "variable": "IF_6",
+              "index": 0
+            },
+            {
+              "variable": "fc",
+              "index": 1
+            },
+            {
+              "variable": "fc",
+              "index": 0
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__fw_0",
+          "output": {
+            "variable": "fw",
+            "index": 0
+          },
+          "input": []
+        },
+        {
+          "name": "petasce__assign__few_0",
+          "output": {
+            "variable": "few",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "fc",
+              "index": 2
+            },
+            {
+              "variable": "fw",
+              "index": 0
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__ke_0",
+          "output": {
+            "variable": "ke",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "kcmax",
+              "index": 4
+            },
+            {
+              "variable": "kcb",
+              "index": 2
+            },
+            {
+              "variable": "few",
+              "index": 0
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__eo_0",
+          "output": {
+            "variable": "eo",
+            "index": 0
+          },
+          "input": [
+            {
+              "variable": "kcb",
+              "index": 2
+            },
+            {
+              "variable": "ke",
+              "index": 0
+            },
+            {
+              "variable": "refet",
+              "index": 2
+            }
+          ]
+        },
+        {
+          "name": "petasce__assign__eo_1",
+          "output": {
+            "variable": "eo",
+            "index": 1
+          },
+          "input": [
+            {
+              "variable": "eo",
+              "index": 0
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "identifiers": [
+    {
+      "base_name": "assign$tavg_0",
+      "scope": "_TOP",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "54dc223a26d9_h"
+    },
+    {
+      "base_name": "tmax_-1",
+      "scope": "_TOP",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "5cb0543a0ec3_v"
+    },
+    {
+      "base_name": "tmin_-1",
+      "scope": "_TOP",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "251ceb75760d_v"
+    },
+    {
+      "base_name": "assign$patm_0",
+      "scope": "_TOP",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "be0bc6455cc0_h"
+    },
+    {
+      "base_name": "xelev_-1",
+      "scope": "_TOP",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "0a0e01b6371a_v"
+    },
+    {
+      "base_name": "assign$psycon_0",
+      "scope": "_TOP",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "45bfdeaacf8d_h"
+    },
+    {
+      "base_name": "patm_0",
+      "scope": "_TOP",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "de608cf8d5c4_v"
+    },
+    {
+      "base_name": "assign$udelta_0",
+      "scope": "_TOP",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "dd5763246fc3_h"
+    },
+    {
+      "base_name": "tavg_0",
+      "scope": "_TOP",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "d749e0ea3d7b_v"
+    },
+    {
+      "base_name": "assign$emax_0",
+      "scope": "_TOP",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "7f91d2b1b835_h"
+    },
+    {
+      "base_name": "tmax_-1",
+      "scope": "_TOP",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "0e3ccd346cb5_v"
+    },
+    {
+      "base_name": "assign$emin_0",
+      "scope": "_TOP",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "9b7014f98c7e_h"
+    },
+    {
+      "base_name": "tmin_-1",
+      "scope": "_TOP",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "c929db5076be_v"
+    },
+    {
+      "base_name": "assign$es_0",
+      "scope": "_TOP",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "5a1e81869037_h"
+    },
+    {
+      "base_name": "emax_0",
+      "scope": "_TOP",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "6d330cd8ff9e_v"
+    },
+    {
+      "base_name": "emin_0",
+      "scope": "_TOP",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "6ea9b6ede8ae_v"
+    },
+    {
+      "base_name": "assign$ea_0",
+      "scope": "_TOP",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "a85ab52ff3c5_h"
+    },
+    {
+      "base_name": "tdew_-1",
+      "scope": "_TOP",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "13527037c675_v"
+    },
+    {
+      "base_name": "assign$rhmin_0",
+      "scope": "_TOP",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "f4c2d9832444_h"
+    },
+    {
+      "base_name": "ea_0",
+      "scope": "_TOP",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "040146efb861_v"
+    },
+    {
+      "base_name": "emax_0",
+      "scope": "_TOP",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "5520eda7673a_v"
+    },
+    {
+      "base_name": "condition$IF_1_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "f5d45b37d600_h"
+    },
+    {
+      "base_name": "xhlai_-1",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "1ec9fa5c6366_v"
+    },
+    {
+      "base_name": "decision$albedo_2",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "83a4cff9fff6_h"
+    },
+    {
+      "base_name": "IF_1_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "aa0915d22aed_v"
+    },
+    {
+      "base_name": "albedo_1",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "0c3ec9fe6cb9_v"
+    },
+    {
+      "base_name": "albedo_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": [
+        "msalb_-1"
+      ],
+      "source_references": "E",
+      "gensyms": "19081a3b4e41_v"
+    },
+    {
+      "base_name": "assign$rns_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "615ed0bd377d_h"
+    },
+    {
+      "base_name": "albedo_2",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "a7926d792483_v"
+    },
+    {
+      "base_name": "srad_-1",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "3e7e64bea62a_v"
+    },
+    {
+      "base_name": "assign$pie_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "a8435169ee41_h"
+    },
+    {
+      "base_name": "assign$dr_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "6f2c6b7029c3_h"
+    },
+    {
+      "base_name": "pie_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "8bdfc0cf188d_v"
+    },
+    {
+      "base_name": "doy_-1",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "c60ed7e2c1a7_v"
+    },
+    {
+      "base_name": "assign$ldelta_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "5fe77c96a545_h"
+    },
+    {
+      "base_name": "pie_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "da39b3323855_v"
+    },
+    {
+      "base_name": "doy_-1",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "f6f875a20a27_v"
+    },
+    {
+      "base_name": "assign$ws_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "26122dd7eac8_h"
+    },
+    {
+      "base_name": "xlat_-1",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "cae12ff7d03f_v"
+    },
+    {
+      "base_name": "pie_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "b81e385fdd4f_v"
+    },
+    {
+      "base_name": "ldelta_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "17fd598e1629_v"
+    },
+    {
+      "base_name": "assign$ra1_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "82e145043626_h"
+    },
+    {
+      "base_name": "ws_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "004a7f77d3e7_v"
+    },
+    {
+      "base_name": "xlat_-1",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "971b008f48a0_v"
+    },
+    {
+      "base_name": "pie_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "13241806ea0f_v"
+    },
+    {
+      "base_name": "ldelta_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "0c6ac3bac92d_v"
+    },
+    {
+      "base_name": "assign$ra2_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "a48e36a0f988_h"
+    },
+    {
+      "base_name": "xlat_-1",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "4986d0a84530_v"
+    },
+    {
+      "base_name": "pie_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "7dbcc6d7e694_v"
+    },
+    {
+      "base_name": "ldelta_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "acc46f18b33e_v"
+    },
+    {
+      "base_name": "ws_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "468bcd6bca95_v"
+    },
+    {
+      "base_name": "assign$ra_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "11588d71d546_h"
+    },
+    {
+      "base_name": "pie_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "3af16deaf917_v"
+    },
+    {
+      "base_name": "dr_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "7d667f0dec74_v"
+    },
+    {
+      "base_name": "ra1_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "14f58c8076ff_v"
+    },
+    {
+      "base_name": "ra2_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "7a16ef685fb1_v"
+    },
+    {
+      "base_name": "assign$rso_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "61f3deb28c00_h"
+    },
+    {
+      "base_name": "xelev_-1",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "8a656e20cea5_v"
+    },
+    {
+      "base_name": "ra_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "55d01a747d77_v"
+    },
+    {
+      "base_name": "assign$ratio_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "26ec8d0a13db_h"
+    },
+    {
+      "base_name": "srad_-1",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "9223dcb2e0f6_v"
+    },
+    {
+      "base_name": "rso_0",
+      "scope": "if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "300a35a053d2_v"
+    },
+    {
+      "base_name": "condition$IF_2_0",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "c98053b6d722_h"
+    },
+    {
+      "base_name": "ratio_0",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "65bd042cd94a_v"
+    },
+    {
+      "base_name": "decision$ratio_3",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "d6bc27c52f82_h"
+    },
+    {
+      "base_name": "IF_2_0",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "f8f4239734c0_v"
+    },
+    {
+      "base_name": "ratio_0",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "2f6bcb598542_v"
+    },
+    {
+      "base_name": "ratio_1",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "29f81225368f_v"
+    },
+    {
+      "base_name": "condition$IF_2_1",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "5553b113198d_h"
+    },
+    {
+      "base_name": "ratio_0",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "3631ec26ef96_v"
+    },
+    {
+      "base_name": "decision$ratio_4",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "39893263f8f4_h"
+    },
+    {
+      "base_name": "IF_2_1",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "b1ff7ddc8488_v"
+    },
+    {
+      "base_name": "ratio_3",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "22bf45ab15b3_v"
+    },
+    {
+      "base_name": "ratio_2",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "259bf83fc6e7_v"
+    },
+    {
+      "base_name": "assign$fcd_0",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "446233ad943e_h"
+    },
+    {
+      "base_name": "ratio_4",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "237da8579527_v"
+    },
+    {
+      "base_name": "assign$tk4_0",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "96c9a6d5d4dd_h"
+    },
+    {
+      "base_name": "tmax_-1",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "e6a32f43033c_v"
+    },
+    {
+      "base_name": "tmin_-1",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "10947a01ff3f_v"
+    },
+    {
+      "base_name": "assign$rnl_0",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "b90e97b4361a_h"
+    },
+    {
+      "base_name": "fcd_0",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "d07507f0e907_v"
+    },
+    {
+      "base_name": "ea_0",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "f134774a330b_v"
+    },
+    {
+      "base_name": "tk4_0",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "7eccc92038f1_v"
+    },
+    {
+      "base_name": "assign$rn_0",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "05a59cc3a41c_h"
+    },
+    {
+      "base_name": "rns_0",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "b8851e30a022_v"
+    },
+    {
+      "base_name": "rnl_0",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "0f79d70415e7_v"
+    },
+    {
+      "base_name": "assign$g_0",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "f3bb7633f670_h"
+    },
+    {
+      "base_name": "assign$windsp_0",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "7baa48470189_h"
+    },
+    {
+      "base_name": "windrun_-1",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "7e95d2626350_v"
+    },
+    {
+      "base_name": "assign$wind2m_0",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "3a511b3ec922_h"
+    },
+    {
+      "base_name": "windsp_0",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "81f92a674494_v"
+    },
+    {
+      "base_name": "windht_-1",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "a878d2c62f08_v"
+    },
+    {
+      "base_name": "assign$cn_0",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "4f558e5209bd_h"
+    },
+    {
+      "base_name": "assign$cd_0",
+      "scope": "if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "16f6909cc418_h"
+    },
+    {
+      "base_name": "condition$IF_3_0",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "4f061602fd92_h"
+    },
+    {
+      "base_name": "meevp_-1",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "8e09987277a4_v"
+    },
+    {
+      "base_name": "decision$cn_3",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "94492aed2b38_h"
+    },
+    {
+      "base_name": "IF_3_0",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "7c347a52c2d3_v"
+    },
+    {
+      "base_name": "cn_0",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "a12e9dadc317_v"
+    },
+    {
+      "base_name": "cn_1",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "94fde1683891_v"
+    },
+    {
+      "base_name": "decision$cd_3",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "fc2cf5ca0a43_h"
+    },
+    {
+      "base_name": "IF_3_0",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "a244d923f3d4_v"
+    },
+    {
+      "base_name": "cd_0",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "d7ace7e57740_v"
+    },
+    {
+      "base_name": "cd_1",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "8e6463248ceb_v"
+    },
+    {
+      "base_name": "condition$IF_3_1",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "d6fb95968b32_h"
+    },
+    {
+      "base_name": "meevp_-1",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "ebb4ff4c016c_v"
+    },
+    {
+      "base_name": "decision$cn_4",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "66da15a5f6ac_h"
+    },
+    {
+      "base_name": "IF_3_1",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "5b57249c3dda_v"
+    },
+    {
+      "base_name": "cn_3",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "c4338d3fb367_v"
+    },
+    {
+      "base_name": "cn_2",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "54a03cdc9506_v"
+    },
+    {
+      "base_name": "decision$cd_4",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "7280677a7645_h"
+    },
+    {
+      "base_name": "IF_3_1",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "194b32273bef_v"
+    },
+    {
+      "base_name": "cd_3",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "fe55ecaeff19_v"
+    },
+    {
+      "base_name": "cd_2",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "9647055b09dd_v"
+    },
+    {
+      "base_name": "assign$refet_0",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "8bf10800ac39_h"
+    },
+    {
+      "base_name": "udelta_0",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "9066401d87d4_v"
+    },
+    {
+      "base_name": "rn_0",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "06aeb630a7e0_v"
+    },
+    {
+      "base_name": "g_0",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "9501a93bc896_v"
+    },
+    {
+      "base_name": "psycon_0",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "d8b94cdfb34b_v"
+    },
+    {
+      "base_name": "cn_4",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "cef2e8e0d45b_v"
+    },
+    {
+      "base_name": "tavg_0",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "1447ab39140e_v"
+    },
+    {
+      "base_name": "wind2m_0",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "5d71082a5532_v"
+    },
+    {
+      "base_name": "es_0",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "b141c993102d_v"
+    },
+    {
+      "base_name": "ea_0",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "7346ba6ba583_v"
+    },
+    {
+      "base_name": "assign$refet_1",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "b69fdb2f4c00_h"
+    },
+    {
+      "base_name": "refet_0",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "2545a8cc33f4_v"
+    },
+    {
+      "base_name": "udelta_0",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "175ecd78b656_v"
+    },
+    {
+      "base_name": "psycon_0",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "57a56a292bbe_v"
+    },
+    {
+      "base_name": "cd_4",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "29f7e1babeab_v"
+    },
+    {
+      "base_name": "wind2m_0",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "815fd5dc01ea_v"
+    },
+    {
+      "base_name": "assign$refet_2",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "3d152bae8c18_h"
+    },
+    {
+      "base_name": "refet_1",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "7967bb767aae_v"
+    },
+    {
+      "base_name": "assign$skc_0",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "cf9497a10325_h"
+    },
+    {
+      "base_name": "assign$kcbmin_0",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "6981566d61b3_h"
+    },
+    {
+      "base_name": "assign$kcbmax_0",
+      "scope": "if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "52396c9739ea_h"
+    },
+    {
+      "base_name": "condition$IF_4_0",
+      "scope": "if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "45710ad4797f_h"
+    },
+    {
+      "base_name": "xhlai_-1",
+      "scope": "if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "5121d482c0b7_v"
+    },
+    {
+      "base_name": "decision$kcb_2",
+      "scope": "if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "4f182aabfc22_h"
+    },
+    {
+      "base_name": "IF_4_0",
+      "scope": "if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "8d19a8692c57_v"
+    },
+    {
+      "base_name": "kcb_1",
+      "scope": "if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "7f7d57307f85_v"
+    },
+    {
+      "base_name": "kcb_0",
+      "scope": "if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "46e0153cac29_v"
+    },
+    {
+      "base_name": "assign$wnd_0",
+      "scope": "if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "7ff2bcf82546_h"
+    },
+    {
+      "base_name": "wind2m_0",
+      "scope": "if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "d2aa6c9ffa88_v"
+    },
+    {
+      "base_name": "assign$cht_0",
+      "scope": "if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "2ea4723206e0_h"
+    },
+    {
+      "base_name": "canht_-1",
+      "scope": "if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "464194085dfd_v"
+    },
+    {
+      "base_name": "assign$kcmax_0",
+      "scope": "if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "e783b4266151_h"
+    },
+    {
+      "base_name": "condition$IF_5_0",
+      "scope": "if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "ec8367400bc8_h"
+    },
+    {
+      "base_name": "meevp_-1",
+      "scope": "if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "2da5911e7752_v"
+    },
+    {
+      "base_name": "decision$kcmax_3",
+      "scope": "if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "3d46d019226a_h"
+    },
+    {
+      "base_name": "IF_5_0",
+      "scope": "if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "4626e25cd199_v"
+    },
+    {
+      "base_name": "kcmax_0",
+      "scope": "if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "25bc8211126b_v"
+    },
+    {
+      "base_name": "kcmax_1",
+      "scope": "if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "30c8e1f99f67_v"
+    },
+    {
+      "base_name": "condition$IF_5_1",
+      "scope": "if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "1afe62744d49_h"
+    },
+    {
+      "base_name": "meevp_-1",
+      "scope": "if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "9fed1f1f84f5_v"
+    },
+    {
+      "base_name": "decision$kcmax_4",
+      "scope": "if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "f4be5952e6d9_h"
+    },
+    {
+      "base_name": "IF_5_1",
+      "scope": "if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "2a07f0597aaa_v"
+    },
+    {
+      "base_name": "kcmax_3",
+      "scope": "if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "a966340d808e_v"
+    },
+    {
+      "base_name": "kcmax_2",
+      "scope": "if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "fb5a948e8915_v"
+    },
+    {
+      "base_name": "condition$IF_6_0",
+      "scope": "if$1.if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "524526f4e696_h"
+    },
+    {
+      "base_name": "kcb_2",
+      "scope": "if$1.if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "177d474c82b1_v"
+    },
+    {
+      "base_name": "kcbmin_0",
+      "scope": "if$1.if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "28d8a4f22c30_v"
+    },
+    {
+      "base_name": "decision$fc_2",
+      "scope": "if$1.if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "7e4ecb6e199d_h"
+    },
+    {
+      "base_name": "IF_6_0",
+      "scope": "if$1.if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "96b5b2567877_v"
+    },
+    {
+      "base_name": "fc_1",
+      "scope": "if$1.if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "b110bea633e0_v"
+    },
+    {
+      "base_name": "fc_0",
+      "scope": "if$1.if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "99307ab212b7_v"
+    },
+    {
+      "base_name": "assign$fw_0",
+      "scope": "if$1.if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "dfa12b8d2f27_h"
+    },
+    {
+      "base_name": "assign$few_0",
+      "scope": "if$1.if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "3d5049fb6a7b_h"
+    },
+    {
+      "base_name": "fc_2",
+      "scope": "if$1.if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "386abb0c3169_v"
+    },
+    {
+      "base_name": "fw_0",
+      "scope": "if$1.if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "7d6bffb3d65b_v"
+    },
+    {
+      "base_name": "assign$ke_0",
+      "scope": "if$1.if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "dc9822f4b2d1_h"
+    },
+    {
+      "base_name": "kcmax_4",
+      "scope": "if$1.if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "5ebadf40a036_v"
+    },
+    {
+      "base_name": "kcb_2",
+      "scope": "if$1.if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "be2f2eba395c_v"
+    },
+    {
+      "base_name": "few_0",
+      "scope": "if$1.if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "55ff0390afc7_v"
+    },
+    {
+      "base_name": "assign$eo_0",
+      "scope": "if$1.if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "4d61428f77ac_h"
+    },
+    {
+      "base_name": "kcb_2",
+      "scope": "if$1.if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "92d1bf33a41b_v"
+    },
+    {
+      "base_name": "ke_0",
+      "scope": "if$1.if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "c149f9dc1908_v"
+    },
+    {
+      "base_name": "refet_2",
+      "scope": "if$1.if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "0119b766578c_v"
+    },
+    {
+      "base_name": "assign$eo_1",
+      "scope": "if$1.if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "a4bbbedeef03_h"
+    },
+    {
+      "base_name": "eo_0",
+      "scope": "if$1.if$1.if$1.if$1.if$1.if$1",
+      "namespace": "E",
+      "aliases": "None",
+      "source_references": "E",
+      "gensyms": "4414ebd1c820_v"
+    }
+  ],
+  "start": "petasce",
+  "source": [
+    [
+      "PETASCE_simple.json"
+    ]
+  ],
+  "dateCreated": "20190426"
+}
