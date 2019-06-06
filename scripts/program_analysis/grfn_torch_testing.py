@@ -47,7 +47,7 @@ def test_petasce_torch_execution(N, use_gpu=False):
     }
 
     if use_gpu:
-        inputs = {k: v.cuda() for k, v in inputs.items()}
+        inputs = {k: v if isinstance(v, np.ndarray) else v.cuda() for k, v in inputs.items()}
 
     print(f"Running PETASCE with Torch for {N} samples {'w/ GPU' if use_gpu else 'w/ CPU'}")
     G.run(inputs, torch_size=N)

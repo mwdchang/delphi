@@ -85,6 +85,50 @@ class ComputationalGraph(nx.DiGraph):
         return function_sets
 
     @utils.timeit
+    def run_recursive(
+        self,
+        inputs: Dict[str, Union[float, Iterable]],
+        torch_size: Optional[int] = None,
+    ) -> Union[float, Iterable]:
+        """Executes the GrFN over a particular set of inputs and returns the
+        result.
+
+        Args:
+            inputs: Input set where keys are the names of input nodes in the
+              GrFN and each key points to a set of input values (or just one).
+
+        Returns:
+            A set of outputs from executing the GrFN, one for every set of
+            inputs.
+        """
+        # Set input values
+        for i in self.inputs:
+            self.nodes[i]["value"] = inputs[i]
+
+        def propagate(cur_node):
+            if self.nodes[cur_node]["value"] is not None:
+                return
+
+        for func_set in self.function_sets:
+            for func_name in func_set:
+                lambda_fn = self.nodes[func_name]["lambda_fn"]
+                output_node = list(self.successors(func_name))[0]
+
+                signature = self.nodes[func_name]["func_inputs"]
+                input_values = [self.nodes[n]["value"] for n in signature]
+                res = lambda_fn(*input_values)
+
+                if torch_size is not None and len(signature) == 0:
+                    self.nodes[output_node]["value"] = torch.tensor(
+                        [res] * torch_size, dtype=torch.double
+                    )
+                else:
+                    self.nodes[output_node]["value"] = res
+
+        # Return the output
+        return self.nodes[self.output_node]["value"]
+
+    @utils.timeit
     def run(
         self,
         inputs: Dict[str, Union[float, Iterable]],
