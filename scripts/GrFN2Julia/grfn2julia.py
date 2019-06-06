@@ -40,17 +40,18 @@ def get_julia_statements(stmt_stack):
                     if new_stmt.target == stmt.target:
                         if stmt.sat == new_stmt.output:
                             sat = new_stmt.relation
+                            stmt_stack.pop(i)
+                            continue
                         else:
-                            nonsat = new_stmt.relation
-                        stmt_stack.pop(i)
-                        continue
+                            nonsat = new_stmt.target
+
                 elif isinstance(new_stmt, DecisionStmt):
                     if new_stmt.target == stmt.target:
                         nonsat = stmt.nonsat[:-2]
 
                 i += 1
 
-            stmt_list.append(f"\t{stmt.target} = ({cond}) ? {sat} : {nonsat}")
+            stmt_list.append(f"\t{stmt.target} = ifelse({cond}, {sat}, {nonsat})")
 
         elif isinstance(stmt, CondStmt):
             pass
