@@ -81,8 +81,7 @@ class ComputationalGraph(nx.DiGraph):
         function_set_dists = sorted(
             call_sets.items(), key=lambda t: (t[0], len(t[1]))
         )
-        function_sets = [func_set for _, func_set in function_set_dists]
-        return function_sets
+        return [func for _, func_set in function_set_dists for func in func_set]
 
     @utils.timeit
     def run_recursive(
@@ -106,24 +105,33 @@ class ComputationalGraph(nx.DiGraph):
             self.nodes[i]["value"] = inputs[i]
 
         def propagate(cur_node):
-            if self.nodes[cur_node]["value"] is not None:
-                return
+            if self.nodes[cur_node]["type"] == "variable":
+                if self.nodes[cur_node]["value"] is None:
+                    for func_node in self.predecessors(cur_node):
+                        propagate(func_node)
+            else:
+                if not self.nodes[cur_node]["visited"]:
+                    for var_node in self.predecessors(cur_node):
+                        if self.nodes[var_node]["value"] is None:
+                            propagate(var_node)
 
-        for func_set in self.function_sets:
-            for func_name in func_set:
-                lambda_fn = self.nodes[func_name]["lambda_fn"]
-                output_node = list(self.successors(func_name))[0]
+                    # Do the real work here
+                    lambda_fn = self.nodes[cur_node]["lambda_fn"]
+                    output_node = list(self.successors(cur_node))[0]
 
-                signature = self.nodes[func_name]["func_inputs"]
-                input_values = [self.nodes[n]["value"] for n in signature]
-                res = lambda_fn(*input_values)
+                    signature = self.nodes[cur_node]["func_inputs"]
+                    input_values = [self.nodes[n]["value"] for n in signature]
+                    res = lambda_fn(*input_values)
 
-                if torch_size is not None and len(signature) == 0:
-                    self.nodes[output_node]["value"] = torch.tensor(
-                        [res] * torch_size, dtype=torch.double
-                    )
-                else:
-                    self.nodes[output_node]["value"] = res
+                    if torch_size is not None and len(signature) == 0:
+                        self.nodes[output_node]["value"] = torch.tensor(
+                            [res] * torch_size, dtype=torch.double
+                        )
+                    else:
+                        self.nodes[output_node]["value"] = res
+
+        # Start the recursive search
+        propagate(self.output_node)
 
         # Return the output
         return self.nodes[self.output_node]["value"]
@@ -149,21 +157,20 @@ class ComputationalGraph(nx.DiGraph):
         for i in self.inputs:
             self.nodes[i]["value"] = inputs[i]
 
-        for func_set in self.function_sets:
-            for func_name in func_set:
-                lambda_fn = self.nodes[func_name]["lambda_fn"]
-                output_node = list(self.successors(func_name))[0]
+        for func_name in self.function_sets:
+            lambda_fn = self.nodes[func_name]["lambda_fn"]
+            output_node = list(self.successors(func_name))[0]
 
-                signature = self.nodes[func_name]["func_inputs"]
-                input_values = [self.nodes[n]["value"] for n in signature]
-                res = lambda_fn(*input_values)
+            signature = self.nodes[func_name]["func_inputs"]
+            input_values = [self.nodes[n]["value"] for n in signature]
+            res = lambda_fn(*input_values)
 
-                if torch_size is not None and len(signature) == 0:
-                    self.nodes[output_node]["value"] = torch.tensor(
-                        [res] * torch_size, dtype=torch.double
-                    )
-                else:
-                    self.nodes[output_node]["value"] = res
+            if torch_size is not None and len(signature) == 0:
+                self.nodes[output_node]["value"] = torch.tensor(
+                    [res] * torch_size, dtype=torch.double
+                )
+            else:
+                self.nodes[output_node]["value"] = res
 
         # Return the output
         return self.nodes[self.output_node]["value"]
@@ -221,12 +228,20 @@ class GroundedFunctionNetwork(ComputationalGraph):
         self.output_node = self.outputs[-1]
         self.call_graph = self.build_call_graph()
         self.function_sets = self.build_function_sets()
+        self.assign_func_nodes()
 
     def __repr__(self):
         return self.__str__()
 
     def __str__(self):
         return "\n".join(self.traverse_nodes(self.inputs))
+
+    def assign_func_nodes(self):
+        for (name, attrs) in self.nodes(data=True):
+            if attrs["type"] == "variable":
+                preds = list(self.predecessors(name))
+                if len(preds) == 1:
+                    self.nodes[name]["func_node"] = preds[0]
 
     def traverse_nodes(self, node_set, depth=0):
         """BFS traversal of nodes that returns name traversal as large string.
@@ -299,6 +314,7 @@ class GroundedFunctionNetwork(ComputationalGraph):
                 type="variable",
                 color="maroon",
                 parent=parent,
+                func_node=None,
                 label=f"{basename}_{index}",
                 basename=basename,
                 is_loop_index=is_loop_index,
@@ -366,6 +382,7 @@ class GroundedFunctionNetwork(ComputationalGraph):
                             type="function",
                             lambda_fn=getattr(lambdas, stmt["name"]),
                             func_inputs=ordered_inputs,
+                            visited=False,
                             shape="rectangle",
                             parent=scope.name,
                             label=stmt_type[0].upper(),
@@ -496,7 +513,7 @@ class GroundedFunctionNetwork(ComputationalGraph):
             if self.nodes[n]["type"] == "variable":
                 self.nodes[n]["value"] = None
             elif self.nodes[n]["type"] == "function":
-                self.nodes[n]["func_visited"] = False
+                self.nodes[n]["visited"] = False
 
     def sobol_analysis(
         self, num_samples, prob_def, use_torch=False, var_types=None
