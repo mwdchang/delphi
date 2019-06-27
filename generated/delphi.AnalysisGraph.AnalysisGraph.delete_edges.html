@@ -1,0 +1,247 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>delphi.AnalysisGraph.AnalysisGraph.delete_edges &mdash; delphi  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="delphi.AnalysisGraph.AnalysisGraph.prune" href="delphi.AnalysisGraph.AnalysisGraph.prune.html" />
+    <link rel="prev" title="delphi.AnalysisGraph.AnalysisGraph.delete_nodes" href="delphi.AnalysisGraph.AnalysisGraph.delete_nodes.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> delphi
+          
+
+          
+            
+            <img src="../_static/delphi_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">The Delphi model</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../AnalysisGraph_API.html">AnalysisGraph API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../AnalysisGraph_API.html#constructors">Constructors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AnalysisGraph_API.html#subgraphs">Subgraphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AnalysisGraph_API.html#inspection">Inspection</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../AnalysisGraph_API.html#manipulation">Manipulation</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="delphi.AnalysisGraph.AnalysisGraph.merge_nodes.html">delphi.AnalysisGraph.AnalysisGraph.merge_nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="delphi.AnalysisGraph.AnalysisGraph.delete_node.html">delphi.AnalysisGraph.AnalysisGraph.delete_node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="delphi.AnalysisGraph.AnalysisGraph.delete_edge.html">delphi.AnalysisGraph.AnalysisGraph.delete_edge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="delphi.AnalysisGraph.AnalysisGraph.delete_nodes.html">delphi.AnalysisGraph.AnalysisGraph.delete_nodes</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">delphi.AnalysisGraph.AnalysisGraph.delete_edges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="delphi.AnalysisGraph.AnalysisGraph.prune.html">delphi.AnalysisGraph.AnalysisGraph.prune</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../AnalysisGraph_API.html#parameterization">Parameterization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AnalysisGraph_API.html#sampling-and-inference">Sampling and Inference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AnalysisGraph_API.html#export">Export</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../AnalysisGraph_API.html#basic-model-interface">Basic Model Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../GrFN_API.html">GroundedFunctionNetwork API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grfn_spec.html">Grounded Function Network (GrFN) JSON Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grfn_spec.html#change-log">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api/library_root.html">C++ API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">delphi</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../AnalysisGraph_API.html">AnalysisGraph API</a> &raquo;</li>
+        
+      <li>delphi.AnalysisGraph.AnalysisGraph.delete_edges</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/generated/delphi.AnalysisGraph.AnalysisGraph.delete_edges.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="delphi-analysisgraph-analysisgraph-delete-edges">
+<h1>delphi.AnalysisGraph.AnalysisGraph.delete_edges<a class="headerlink" href="#delphi-analysisgraph-analysisgraph-delete-edges" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="delphi.AnalysisGraph.AnalysisGraph.delete_edges">
+<code class="sig-prename descclassname">AnalysisGraph.</code><code class="sig-name descname">delete_edges</code><span class="sig-paren">(</span><em class="sig-param">edges</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/delphi/AnalysisGraph.html#AnalysisGraph.delete_edges"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.AnalysisGraph.AnalysisGraph.delete_edges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterate over a set of edges and remove the ones that are present in
+the graph.</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="delphi.AnalysisGraph.AnalysisGraph.prune.html" class="btn btn-neutral float-right" title="delphi.AnalysisGraph.AnalysisGraph.prune" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="delphi.AnalysisGraph.AnalysisGraph.delete_nodes.html" class="btn btn-neutral float-left" title="delphi.AnalysisGraph.AnalysisGraph.delete_nodes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Adarsh
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,696 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>delphi.apps.rest_api.api &mdash; delphi  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../../../../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> delphi
+          
+
+          
+            
+            <img src="../../../../_static/delphi_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../model.html">The Delphi model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../AnalysisGraph_API.html">AnalysisGraph API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../GrFN_API.html">GroundedFunctionNetwork API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../grfn_spec.html">Grounded Function Network (GrFN) JSON Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../grfn_spec.html#change-log">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cpp_api/library_root.html">C++ API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">delphi</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../rest_api.html">delphi.apps.rest_api</a> &raquo;</li>
+        
+      <li>delphi.apps.rest_api.api</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for delphi.apps.rest_api.api</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="k">import</span> <span class="n">exp</span>
+<span class="kn">from</span> <span class="nn">uuid</span> <span class="k">import</span> <span class="n">uuid4</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">date</span><span class="p">,</span> <span class="n">timedelta</span><span class="p">,</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">dateutil</span>
+<span class="kn">from</span> <span class="nn">dateutil.relativedelta</span> <span class="k">import</span> <span class="n">relativedelta</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">product</span>
+<span class="kn">from</span> <span class="nn">delphi.AnalysisGraph</span> <span class="k">import</span> <span class="n">AnalysisGraph</span>
+<span class="kn">from</span> <span class="nn">delphi.random_variables</span> <span class="k">import</span> <span class="n">LatentVar</span>
+<span class="kn">from</span> <span class="nn">delphi.utils</span> <span class="k">import</span> <span class="n">flatten</span><span class="p">,</span> <span class="n">lmap</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="k">import</span> <span class="n">jsonify</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">Blueprint</span>
+<span class="kn">from</span> <span class="nn">delphi.db</span> <span class="k">import</span> <span class="n">engine</span>
+<span class="kn">from</span> <span class="nn">delphi.apps.rest_api</span> <span class="k">import</span> <span class="n">db</span>
+<span class="kn">from</span> <span class="nn">delphi.apps.rest_api.models</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">delphi.random_variables</span> <span class="k">import</span> <span class="n">Indicator</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="k">import</span> <span class="n">current_app</span>
+
+<span class="n">bp</span> <span class="o">=</span> <span class="n">Blueprint</span><span class="p">(</span><span class="s2">&quot;rest_api&quot;</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># ============</span>
+<span class="c1"># CauseMos API</span>
+<span class="c1"># ============</span>
+
+
+<span class="n">PLACEHOLDER_UNIT</span> <span class="o">=</span> <span class="s2">&quot;No units specified.&quot;</span>
+<div class="viewcode-block" id="listAllModels"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.listAllModels">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/delphi/models&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">listAllModels</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; Return UUIDs for all the models in the database. &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="p">(</span>
+        <span class="nb">list</span><span class="p">(</span>
+            <span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+                <span class="s2">&quot;SELECT name FROM sqlite_master WHERE type=&#39;table&#39; &quot;</span>
+                <span class="s2">&quot;AND name=&#39;icmmetadata&#39;&quot;</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="o">==</span> <span class="p">[]</span>
+    <span class="p">):</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">([])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">([</span><span class="n">metadata</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">metadata</span> <span class="ow">in</span> <span class="n">ICMMetadata</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">all</span><span class="p">()])</span></div>
+
+
+<div class="viewcode-block" id="createNewModel"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.createNewModel">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/delphi/models&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">createNewModel</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; Create a new Delphi model. &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">AnalysisGraph</span><span class="o">.</span><span class="n">from_uncharted_json_serialized_dict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">sample_from_prior</span><span class="p">()</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;model_id&quot;</span><span class="p">]</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="n">app</span><span class="o">=</span><span class="n">current_app</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;success&quot;</span><span class="p">})</span></div>
+
+
+<div class="viewcode-block" id="getIndicators"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.getIndicators">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/delphi/models/&lt;string:model_id&gt;/indicators&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">getIndicators</span><span class="p">(</span><span class="n">model_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Search for indicator candidates pertaining to :model_id.</span>
+
+<span class="sd">    The search options include:</span>
+<span class="sd">        - start/end: To specify search criteria in years (YYYY)</span>
+<span class="sd">        - geolocation: To match indicators with matching geolocation</span>
+<span class="sd">        - func: To apply a transform function onto the raw indicator values</span>
+<span class="sd">        - concept: To search for specific concept, if omitted search across all concepts within the model</span>
+
+<span class="sd">    The search will return a listing of matching indicators, sorted by</span>
+<span class="sd">    similarity score. For each concept a maximum of 10 indicator matches will</span>
+<span class="sd">    be returned. If there are no matches for a given concept an empty array is</span>
+<span class="sd">    returned.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">concept</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;concept&quot;</span><span class="p">)</span>
+    <span class="n">func_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;mean&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span>
+        <span class="s2">&quot;median&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">,</span>
+        <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="nb">max</span><span class="p">,</span>
+        <span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="nb">min</span><span class="p">,</span>
+        <span class="s2">&quot;raw&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">concept</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">concepts</span> <span class="o">=</span> <span class="p">[</span><span class="n">concept</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">concepts</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">v</span><span class="o">.</span><span class="n">deserialize</span><span class="p">()[</span><span class="s2">&quot;description&quot;</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">CausalVariable</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">model_id</span><span class="o">=</span><span class="n">model_id</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+        <span class="p">]</span>
+
+    <span class="n">output_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">concept</span> <span class="ow">in</span> <span class="n">concepts</span><span class="p">:</span>
+        <span class="n">output_dict</span><span class="p">[</span><span class="n">concept</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">query_parts</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;select `Concept`, `Source`, `Indicator`, `Score`&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;from concept_to_indicator_mapping&quot;</span><span class="p">,</span>
+            <span class="n">f</span><span class="s2">&quot;where `Concept` like &#39;</span><span class="si">{concept}</span><span class="s2">&#39;&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="k">for</span> <span class="n">indicator_mapping</span> <span class="ow">in</span> <span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">query_parts</span><span class="p">)):</span>
+            <span class="n">variable_name</span> <span class="o">=</span> <span class="n">indicator_mapping</span><span class="p">[</span><span class="s1">&#39;Indicator&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s2">&quot;&#39;&#39;&quot;</span><span class="p">)</span>
+            <span class="n">query</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">f</span><span class="s2">&quot;select * from indicator&quot;</span>
+                <span class="n">f</span><span class="s2">&quot; where `Variable` like &#39;</span><span class="si">{variable_name}</span><span class="s2">&#39;&quot;</span>
+            <span class="p">)</span>
+            <span class="n">records</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">))</span>
+            <span class="n">func</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;func&quot;</span><span class="p">,</span> <span class="s2">&quot;raw&quot;</span><span class="p">)</span>
+            <span class="n">value_dict</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">if</span> <span class="n">func</span> <span class="o">==</span> <span class="s2">&quot;raw&quot;</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
+                    <span class="n">unit</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">source</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;Unit&quot;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;Value&quot;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;Source&quot;</span><span class="p">]</span>
+                    <span class="c1"># Sort of a hack - some of the variables in the tables we</span>
+                    <span class="c1"># process don&#39;t have units specified, so we put a</span>
+                    <span class="c1"># placeholder string to get it to work with CauseMos.</span>
+                    <span class="k">if</span> <span class="n">unit</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">unit</span> <span class="o">=</span> <span class="n">PLACEHOLDER_UNIT</span>
+                    <span class="k">if</span> <span class="n">unit</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">value_dict</span><span class="p">:</span>
+                        <span class="n">value_dict</span><span class="p">[</span><span class="n">unit</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+                            <span class="p">{</span><span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="n">year</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="n">source</span><span class="p">}</span>
+                        <span class="p">]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">value_dict</span><span class="p">[</span><span class="n">unit</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                            <span class="p">{</span><span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="n">year</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="n">source</span><span class="p">}</span>
+                        <span class="p">)</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">value_dict</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
+                    <span class="n">unit</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">source</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;Unit&quot;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;Value&quot;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;Source&quot;</span><span class="p">]</span>
+
+                    <span class="c1"># Sort of a hack - some of the variables in the tables we</span>
+                    <span class="c1"># process don&#39;t have units specified, so we put a</span>
+                    <span class="c1"># placeholder string to get it to work with CauseMos.</span>
+                    <span class="k">if</span> <span class="n">unit</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">unit</span> <span class="o">=</span> <span class="n">PLACEHOLDER_UNIT</span>
+
+                    <span class="c1"># HACK! if the variables have the same names but different</span>
+                    <span class="c1"># sources, this will only give the most recent source</span>
+                    <span class="k">if</span> <span class="n">unit</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">value_dict</span><span class="p">:</span>
+                        <span class="n">value_dict</span><span class="p">[</span><span class="n">unit</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">value</span><span class="p">]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">value_dict</span><span class="p">[</span><span class="n">unit</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+                <span class="n">value</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="n">unit</span><span class="p">:</span> <span class="n">func_dict</span><span class="p">[</span><span class="n">func</span><span class="p">](</span><span class="n">lmap</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">values</span><span class="p">))</span>
+                    <span class="k">for</span> <span class="n">unit</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">value_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="p">}</span>
+
+            <span class="n">output_dict</span><span class="p">[</span><span class="n">concept</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">indicator_mapping</span><span class="p">[</span><span class="s2">&quot;Indicator&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="n">indicator_mapping</span><span class="p">[</span><span class="s2">&quot;Score&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span>
+                    <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="n">source</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">output_dict</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="exportModel"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.exportModel">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/delphi/models/&lt;string:model_id&gt;/export&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">exportModel</span><span class="p">(</span><span class="n">model_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Sends quantification information to be attached to an existing model.</span>
+<span class="sd">    Sends concept-to-indicator mappings.</span>
+
+<span class="sd">    Input: A map object of concepts and their associated</span>
+<span class="sd">           indicator/indicator-values</span>
+<span class="sd">    Output: Request status</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">DelphiModel</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">model_id</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">model</span>
+    <span class="c1"># Tag this model for display in the CauseWorks interface</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">tag_for_CX</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">for</span> <span class="n">concept</span><span class="p">,</span> <span class="n">indicator</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;concept_indicator_map&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">concept</span><span class="p">][</span><span class="s2">&quot;indicators&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">concept</span><span class="p">:</span> <span class="n">Indicator</span><span class="p">(</span>
+                <span class="n">concept</span><span class="p">,</span> <span class="n">indicator</span><span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="n">indicator</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
+            <span class="p">)</span>
+        <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;success&quot;</span><span class="p">})</span></div>
+
+
+<span class="c1"># ============</span>
+<span class="c1"># ICM API</span>
+<span class="c1"># ============</span>
+
+
+<div class="viewcode-block" id="createNewICM"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.createNewICM">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/icm&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">createNewICM</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; Create a new ICM&quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">AnalysisGraph</span><span class="o">.</span><span class="n">from_uncharted_json_serialized_dict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">assemble_transition_model_from_gradable_adjectives</span><span class="p">()</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">sample_from_prior</span><span class="p">()</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="n">app</span><span class="o">=</span><span class="n">current_app</span><span class="p">)</span>
+    <span class="n">_metadata</span> <span class="o">=</span> <span class="n">ICMMetadata</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">id</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">deserialize</span><span class="p">()</span>
+    <span class="k">del</span> <span class="n">_metadata</span><span class="p">[</span><span class="s2">&quot;model_id&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">_metadata</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="listAllICMs"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.listAllICMs">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/icm&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">listAllICMs</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; List all ICMs&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="p">(</span>
+        <span class="nb">list</span><span class="p">(</span>
+            <span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+                <span class="s2">&quot;SELECT name FROM sqlite_master WHERE type=&#39;table&#39; &quot;</span>
+                <span class="s2">&quot;AND name=&#39;icmmetadata&#39;&quot;</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="o">==</span> <span class="p">[]</span>
+    <span class="p">):</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">([])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">metadata</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">metadata</span> <span class="ow">in</span> <span class="n">ICMMetadata</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">all</span><span class="p">()]</span>
+        <span class="n">ids</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">ids</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="getICMByUUID"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.getICMByUUID">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/icm/&lt;string:uuid&gt;&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">getICMByUUID</span><span class="p">(</span><span class="n">uuid</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Fetch an ICM by UUID&quot;&quot;&quot;</span>
+    <span class="n">_metadata</span> <span class="o">=</span> <span class="n">ICMMetadata</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">uuid</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">deserialize</span><span class="p">()</span>
+    <span class="k">del</span> <span class="n">_metadata</span><span class="p">[</span><span class="s2">&quot;model_id&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">_metadata</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="deleteICM"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.deleteICM">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/icm/&lt;string:uuid&gt;&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;DELETE&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">deleteICM</span><span class="p">(</span><span class="n">uuid</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Deletes an ICM&quot;&quot;&quot;</span>
+    <span class="n">_metadata</span> <span class="o">=</span> <span class="n">ICMMetadata</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">uuid</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">DelphiModel</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">uuid</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">primitive</span> <span class="ow">in</span> <span class="n">CausalPrimitive</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">model_id</span><span class="o">=</span><span class="n">uuid</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">primitive</span><span class="p">)</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">_metadata</span><span class="p">)</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">204</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="updateICMMetadata"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.updateICMMetadata">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/icm/&lt;string:uuid&gt;&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;PATCH&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">updateICMMetadata</span><span class="p">(</span><span class="n">uuid</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Update the metadata for an existing ICM&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">415</span></div>
+
+
+<div class="viewcode-block" id="getICMPrimitives"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.getICMPrimitives">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/icm/&lt;string:uuid&gt;/primitive&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">getICMPrimitives</span><span class="p">(</span><span class="n">uuid</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; returns all ICM primitives (TODO - needs filter support)&quot;&quot;&quot;</span>
+    <span class="n">primitives</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">deserialize</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">CausalPrimitive</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">model_id</span><span class="o">=</span><span class="n">uuid</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="p">]</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">primitives</span><span class="p">:</span>
+        <span class="k">del</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;model_id&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">primitives</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="createICMPrimitive"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.createICMPrimitive">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/icm/&lt;string:uuid&gt;/primitive&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">createICMPrimitive</span><span class="p">(</span><span class="n">uuid</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; create a new causal primitive&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">415</span></div>
+
+
+<div class="viewcode-block" id="getICMPrimitive"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.getICMPrimitive">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/icm/&lt;string:uuid&gt;/primitive/&lt;string:prim_id&gt;&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">getICMPrimitive</span><span class="p">(</span><span class="n">uuid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">prim_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; returns a specific causal primitive&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">415</span></div>
+
+
+<div class="viewcode-block" id="updateICMPrimitive"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.updateICMPrimitive">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/icm/&lt;string:uuid&gt;/primitive/&lt;string:prim_id&gt;&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;PATCH&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">updateICMPrimitive</span><span class="p">(</span><span class="n">uuid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">prim_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; update an existing ICM primitive (can use this for disable?)&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">415</span></div>
+
+
+<div class="viewcode-block" id="deleteICMPrimitive"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.deleteICMPrimitive">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/icm/&lt;string:uuid&gt;/primitive/&lt;string:prim_id&gt;&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;DELETE&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">deleteICMPrimitive</span><span class="p">(</span><span class="n">uuid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">prim_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; delete (disable) this ICM primitive&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">415</span></div>
+
+
+<div class="viewcode-block" id="getEvidenceForID"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.getEvidenceForID">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span>
+    <span class="s2">&quot;/icm/&lt;string:uuid&gt;/primitive/&lt;string:prim_id&gt;/evidence&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">getEvidenceForID</span><span class="p">(</span><span class="n">uuid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">prim_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; returns evidence for a causal primitive (needs pagination support)&quot;&quot;&quot;</span>
+    <span class="n">evidences</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">evidence</span><span class="o">.</span><span class="n">deserialize</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">evidence</span> <span class="ow">in</span> <span class="n">Evidence</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span>
+            <span class="n">causalrelationship_id</span><span class="o">=</span><span class="n">prim_id</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="p">]</span>
+    <span class="k">for</span> <span class="n">evidence</span> <span class="ow">in</span> <span class="n">evidences</span><span class="p">:</span>
+        <span class="k">del</span> <span class="n">evidence</span><span class="p">[</span><span class="s2">&quot;causalrelationship_id&quot;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">evidences</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="attachEvidence"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.attachEvidence">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span>
+    <span class="s2">&quot;/icm/&lt;string:uuid&gt;/primitive/&lt;string:prim_id&gt;/evidence&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">attachEvidence</span><span class="p">(</span><span class="n">uuid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">prim_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; attach evidence to a primitive&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">415</span></div>
+
+
+<div class="viewcode-block" id="getEvidenceByID"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.getEvidenceByID">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/icm/&lt;string:uuid&gt;/evidence/&lt;string:evid_id&gt;&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">getEvidenceByID</span><span class="p">(</span><span class="n">uuid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">evid_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; returns an individual piece of evidence&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">415</span></div>
+
+
+<div class="viewcode-block" id="updateEvidence"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.updateEvidence">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/icm/&lt;string:uuid&gt;/evidence/&lt;string:evid_id&gt;&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;PATCH&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">updateEvidence</span><span class="p">(</span><span class="n">uuid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">evid_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; update evidence item&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">415</span></div>
+
+
+<div class="viewcode-block" id="deleteEvidence"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.deleteEvidence">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/icm/&lt;string:uuid&gt;/evidence/&lt;string:evid_id&gt;&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;DELETE&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">deleteEvidence</span><span class="p">(</span><span class="n">uuid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">evid_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; delete evidence item&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">415</span></div>
+
+
+<div class="viewcode-block" id="recalculateICM"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.recalculateICM">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/icm/&lt;string:uuid&gt;/recalculate&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">recalculateICM</span><span class="p">(</span><span class="n">uuid</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; indication that it is safe to recalculate/recompose model after performing some number of CRUD operations&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">415</span></div>
+
+
+<div class="viewcode-block" id="archiveICM"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.archiveICM">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/icm/&lt;string:uuid&gt;/archive&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">archiveICM</span><span class="p">(</span><span class="n">uuid</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; archive an ICM&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">415</span></div>
+
+
+<div class="viewcode-block" id="branchICM"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.branchICM">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/icm/&lt;string:uuid&gt;/branch&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">branchICM</span><span class="p">(</span><span class="n">uuid</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; branch an ICM&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">415</span></div>
+
+
+<div class="viewcode-block" id="fuseICMs"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.fuseICMs">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/icm/fuse&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">fuseICMs</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; fuse two ICMs&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">415</span></div>
+
+
+<div class="viewcode-block" id="query"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.query">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/icm/&lt;string:uuid&gt;/sparql&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="n">uuid</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Query the ICM using SPARQL&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">415</span></div>
+
+
+<div class="viewcode-block" id="createExperiment"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.createExperiment">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/icm/&lt;string:uuid&gt;/experiment&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">createExperiment</span><span class="p">(</span><span class="n">uuid</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Execute an experiment over the model&quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get_json</span><span class="p">()</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">DelphiModel</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">uuid</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">model</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TRAVIS&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">config_file</span> <span class="o">=</span> <span class="s2">&quot;bmi_config.txt&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;/tmp/delphi&quot;</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s2">&quot;/tmp/delphi&quot;</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">config_file</span> <span class="o">=</span> <span class="s2">&quot;/tmp/delphi/bmi_config.txt&quot;</span>
+
+    <span class="n">G</span><span class="o">.</span><span class="n">create_bmi_config_file</span><span class="p">(</span><span class="n">config_file</span><span class="p">)</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">initialize_indicators</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">config_file</span><span class="o">=</span><span class="n">config_file</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">rv</span> <span class="o">=</span> <span class="n">n</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;rv&quot;</span><span class="p">]</span>
+        <span class="n">rv</span><span class="o">.</span><span class="n">partial_t</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;interventions&quot;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">n</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">variable</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]:</span>
+                <span class="c1"># TODO : Right now, we are only taking the first value in the</span>
+                <span class="c1"># &quot;values&quot; list. Need to generalize this so that you can have</span>
+                <span class="c1"># multiple interventions at different times.</span>
+
+                <span class="c1"># TODO : The subtraction of 1 is a TEMPORARY PATCH to address</span>
+                <span class="c1"># the mismatch in semantics between the ICM API and the Delphi</span>
+                <span class="c1"># model. MUST FIX ASAP.</span>
+                <span class="n">rv</span><span class="o">.</span><span class="n">partial_t</span> <span class="o">=</span> <span class="n">variable</span><span class="p">[</span><span class="s2">&quot;values&quot;</span><span class="p">][</span><span class="s2">&quot;value&quot;</span><span class="p">][</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+                <span class="k">for</span> <span class="n">s0</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">s0</span><span class="p">:</span>
+                    <span class="n">s0</span><span class="p">[</span><span class="n">f</span><span class="s2">&quot;∂(</span><span class="si">{n[0]}</span><span class="s2">)/∂t&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rv</span><span class="o">.</span><span class="n">partial_t</span>
+                <span class="k">break</span>
+
+    <span class="nb">id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid4</span><span class="p">())</span>
+    <span class="n">experiment</span> <span class="o">=</span> <span class="n">ForwardProjection</span><span class="p">(</span><span class="n">baseType</span><span class="o">=</span><span class="s2">&quot;ForwardProjection&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">experiment</span><span class="p">)</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">ForwardProjectionResult</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">baseType</span><span class="o">=</span><span class="s2">&quot;ForwardProjectionResult&quot;</span><span class="p">)</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+    <span class="n">d</span> <span class="o">=</span> <span class="n">dateutil</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;projection&quot;</span><span class="p">][</span><span class="s2">&quot;startTime&quot;</span><span class="p">])</span>
+
+    <span class="n">n_timesteps</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;projection&quot;</span><span class="p">][</span><span class="s2">&quot;numSteps&quot;</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_timesteps</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;projection&quot;</span><span class="p">][</span><span class="s2">&quot;stepSize&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;MONTH&quot;</span><span class="p">:</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">d</span> <span class="o">+</span> <span class="n">relativedelta</span><span class="p">(</span><span class="n">months</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;projection&quot;</span><span class="p">][</span><span class="s2">&quot;stepSize&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;YEAR&quot;</span><span class="p">:</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">d</span> <span class="o">+</span> <span class="n">relativedelta</span><span class="p">(</span><span class="n">years</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+            <span class="n">CausalVariable</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span>
+                <span class="nb">id</span><span class="o">=</span><span class="n">n</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">lastUpdated</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">n</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;baseline&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;active&quot;</span><span class="p">:</span> <span class="s2">&quot;ACTIVE&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">d</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+                        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;baseType&quot;</span><span class="p">:</span> <span class="s2">&quot;FloatValue&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+                    <span class="p">},</span>
+                    <span class="s2">&quot;intervened&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;active&quot;</span><span class="p">:</span> <span class="s2">&quot;ACTIVE&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">d</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+                        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s2">&quot;baseType&quot;</span><span class="p">:</span> <span class="s2">&quot;FloatValue&quot;</span><span class="p">,</span>
+                            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">([</span><span class="n">s</span><span class="p">[</span><span class="n">n</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">s0</span><span class="p">]),</span>
+                        <span class="p">},</span>
+                    <span class="p">},</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+
+        <span class="n">G</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">update_indicators</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># Hack for 12-month evaluation - have the partial derivative decay over</span>
+        <span class="c1"># time to restore equilibrium</span>
+
+        <span class="n">tau</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># Time constant to control the rate of the decay</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;interventions&quot;</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">n</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">variable</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]:</span>
+                    <span class="n">rv</span> <span class="o">=</span> <span class="n">n</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;rv&quot;</span><span class="p">]</span>
+                    <span class="k">for</span> <span class="n">s0</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">s0</span><span class="p">:</span>
+                        <span class="n">s0</span><span class="p">[</span><span class="n">f</span><span class="s2">&quot;∂(</span><span class="si">{n[0]}</span><span class="s2">)/∂t&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rv</span><span class="o">.</span><span class="n">partial_t</span> <span class="o">*</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">tau</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span>
+
+    <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">experiment</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Forward projection sent successfully&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="getExperiments"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.getExperiments">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/icm/&lt;string:uuid&gt;/experiment&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">getExperiments</span><span class="p">(</span><span class="n">uuid</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; list active (running or completed) experiments&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">deserialize</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">Experiment</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">all</span><span class="p">()])</span></div>
+
+
+<div class="viewcode-block" id="getExperiment"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.getExperiment">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/icm/&lt;string:uuid&gt;/experiment/&lt;string:exp_id&gt;&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">getExperiment</span><span class="p">(</span><span class="n">uuid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">exp_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Fetch experiment results&quot;&quot;&quot;</span>
+    <span class="n">experimentResult</span> <span class="o">=</span> <span class="n">ForwardProjectionResult</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span>
+        <span class="nb">id</span><span class="o">=</span><span class="n">exp_id</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">experimentResult</span><span class="o">.</span><span class="n">deserialize</span><span class="p">())</span></div>
+
+
+<div class="viewcode-block" id="deleteExperiment"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.deleteExperiment">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/icm/&lt;string:uuid&gt;/experiment/&lt;string:exp_id&gt;&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;DELETE&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">deleteExperiment</span><span class="p">(</span><span class="n">uuid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">exp_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Delete experiment&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">415</span></div>
+
+
+<div class="viewcode-block" id="traverse"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.traverse">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/icm/&lt;string:uuid&gt;/traverse/&lt;string:prim_id&gt;&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">traverse</span><span class="p">(</span><span class="n">uuid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">prim_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; traverse through the ICM using a breadth-first search&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">415</span></div>
+
+
+<div class="viewcode-block" id="getVersion"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.getVersion">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/version&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">getVersion</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; Get the version of the ICM API supported&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">415</span></div>
+
+
+<div class="viewcode-block" id="ping"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.api.ping">[docs]</a><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/ping&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">ping</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; Get the health status of the ICM server&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">415</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Adarsh
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

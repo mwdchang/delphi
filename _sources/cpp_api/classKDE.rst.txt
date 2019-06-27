@@ -1,0 +1,16 @@
+.. _exhale_class_classKDE:
+
+Class KDE
+=========
+
+- Defined in :ref:`file_delphi_cpp_AnalysisGraph.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: KDE
+   :members:
+   :protected-members:
+   :undoc-members:

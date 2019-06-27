@@ -1,0 +1,6 @@
+delphi.GrFN.networks.GroundedFunctionNetwork.to\_agraph
+=======================================================
+
+.. currentmodule:: delphi.GrFN.networks
+
+.. automethod:: GroundedFunctionNetwork.to_agraph

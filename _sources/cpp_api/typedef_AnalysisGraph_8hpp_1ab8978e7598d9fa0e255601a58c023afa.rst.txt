@@ -1,0 +1,13 @@
+.. _exhale_typedef_AnalysisGraph_8hpp_1ab8978e7598d9fa0e255601a58c023afa:
+
+Typedef Edge
+============
+
+- Defined in :ref:`file_delphi_cpp_AnalysisGraph.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: Edge

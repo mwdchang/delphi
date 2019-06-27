@@ -1,0 +1,16 @@
+.. _exhale_struct_structNode:
+
+Struct Node
+===========
+
+- Defined in :ref:`file_delphi_cpp_AnalysisGraph.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: Node
+   :members:
+   :protected-members:
+   :undoc-members:

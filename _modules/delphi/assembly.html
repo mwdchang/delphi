@@ -1,0 +1,427 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>delphi.assembly &mdash; delphi  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> delphi
+          
+
+          
+            
+            <img src="../../_static/delphi_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../model.html">The Delphi model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../AnalysisGraph_API.html">AnalysisGraph API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GrFN_API.html">GroundedFunctionNetwork API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grfn_spec.html">Grounded Function Network (GrFN) JSON Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grfn_spec.html#change-log">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cpp_api/library_root.html">C++ API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">delphi</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>delphi.assembly</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for delphi.assembly</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">.utils</span> <span class="k">import</span> <span class="n">exists</span><span class="p">,</span> <span class="n">take</span>
+<span class="kn">from</span> <span class="nn">.utils.indra</span> <span class="k">import</span> <span class="n">is_well_grounded</span>
+<span class="kn">from</span> <span class="nn">.random_variables</span> <span class="k">import</span> <span class="n">Delta</span><span class="p">,</span> <span class="n">Indicator</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Callable</span>
+<span class="kn">from</span> <span class="nn">indra.statements</span> <span class="k">import</span> <span class="n">Influence</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="k">import</span> <span class="n">gaussian_kde</span>
+<span class="kn">from</span> <span class="nn">.cpp.extension</span> <span class="k">import</span> <span class="n">KDE</span>
+<span class="kn">from</span> <span class="nn">.db</span> <span class="k">import</span> <span class="n">engine</span>
+
+
+<div class="viewcode-block" id="deltas"><a class="viewcode-back" href="../../delphi.html#delphi.assembly.deltas">[docs]</a><span class="k">def</span> <span class="nf">deltas</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="n">Influence</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Delta</span><span class="p">,</span> <span class="n">Delta</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">subj</span><span class="o">.</span><span class="n">delta</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">subj</span><span class="o">.</span><span class="n">delta</span></div>
+
+
+<div class="viewcode-block" id="get_respdevs"><a class="viewcode-back" href="../../delphi.html#delphi.assembly.get_respdevs">[docs]</a><span class="k">def</span> <span class="nf">get_respdevs</span><span class="p">(</span><span class="n">gb</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">gb</span><span class="p">[</span><span class="s2">&quot;respdev&quot;</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="filter_statements"><a class="viewcode-back" href="../../delphi.html#delphi.assembly.filter_statements">[docs]</a><span class="k">def</span> <span class="nf">filter_statements</span><span class="p">(</span><span class="n">sts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Influence</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Influence</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sts</span> <span class="k">if</span> <span class="n">is_well_grounded</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">and</span> <span class="n">is_simulable</span><span class="p">(</span><span class="n">s</span><span class="p">)]</span></div>
+
+
+<div class="viewcode-block" id="constructConditionalPDF"><a class="viewcode-back" href="../../delphi.html#delphi.assembly.constructConditionalPDF">[docs]</a><span class="k">def</span> <span class="nf">constructConditionalPDF</span><span class="p">(</span>
+    <span class="n">gb</span><span class="p">,</span> <span class="n">rs</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">gaussian_kde</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Construct a conditional probability density function for a particular</span>
+<span class="sd">    AnalysisGraph edge. &quot;&quot;&quot;</span>
+
+    <span class="n">adjective_response_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">all_θs</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Setting σ_X and σ_Y that are in Eq. 1.21 of the model document.</span>
+    <span class="c1"># This assumes that the real-valued variables representing the abstract</span>
+    <span class="c1"># concepts are on the order of 1.0.</span>
+    <span class="c1"># TODO Make this more general.</span>
+
+    <span class="n">σ_X</span> <span class="o">=</span> <span class="n">σ_Y</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+    <span class="k">for</span> <span class="n">stmt</span> <span class="ow">in</span> <span class="n">e</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s2">&quot;InfluenceStatements&quot;</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">ev</span> <span class="ow">in</span> <span class="n">stmt</span><span class="o">.</span><span class="n">evidence</span><span class="p">:</span>
+            <span class="c1"># To account for discrepancy between Hume and Eidos extractions</span>
+            <span class="k">if</span> <span class="n">ev</span><span class="o">.</span><span class="n">annotations</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;subj_adjectives&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">subj_adjective</span> <span class="ow">in</span> <span class="n">ev</span><span class="o">.</span><span class="n">annotations</span><span class="p">[</span><span class="s2">&quot;subj_adjectives&quot;</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="p">(</span>
+                        <span class="n">subj_adjective</span> <span class="ow">in</span> <span class="n">gb</span><span class="o">.</span><span class="n">groups</span>
+                        <span class="ow">and</span> <span class="n">subj_adjective</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">adjective_response_dict</span>
+                    <span class="p">):</span>
+                        <span class="n">adjective_response_dict</span><span class="p">[</span><span class="n">subj_adjective</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_respdevs</span><span class="p">(</span>
+                            <span class="n">gb</span><span class="o">.</span><span class="n">get_group</span><span class="p">(</span><span class="n">subj_adjective</span><span class="p">)</span>
+                        <span class="p">)</span>
+                    <span class="n">rs_subj</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="n">stmt</span><span class="o">.</span><span class="n">subj</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">polarity</span>
+                        <span class="o">*</span> <span class="n">adjective_response_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">subj_adjective</span><span class="p">,</span> <span class="n">rs</span><span class="p">)</span>
+                    <span class="p">)</span>
+
+                    <span class="k">for</span> <span class="n">obj_adjective</span> <span class="ow">in</span> <span class="n">ev</span><span class="o">.</span><span class="n">annotations</span><span class="p">[</span><span class="s2">&quot;obj_adjectives&quot;</span><span class="p">]:</span>
+                        <span class="k">if</span> <span class="p">(</span>
+                            <span class="n">obj_adjective</span> <span class="ow">in</span> <span class="n">gb</span><span class="o">.</span><span class="n">groups</span>
+                            <span class="ow">and</span> <span class="n">obj_adjective</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">adjective_response_dict</span>
+                        <span class="p">):</span>
+                            <span class="n">adjective_response_dict</span><span class="p">[</span>
+                                <span class="n">obj_adjective</span>
+                            <span class="p">]</span> <span class="o">=</span> <span class="n">get_respdevs</span><span class="p">(</span><span class="n">gb</span><span class="o">.</span><span class="n">get_group</span><span class="p">(</span><span class="n">obj_adjective</span><span class="p">))</span>
+
+                        <span class="n">rs_obj</span> <span class="o">=</span> <span class="p">(</span>
+                            <span class="n">stmt</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">polarity</span>
+                            <span class="o">*</span> <span class="n">adjective_response_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">obj_adjective</span><span class="p">,</span> <span class="n">rs</span><span class="p">)</span>
+                        <span class="p">)</span>
+
+                        <span class="n">xs1</span><span class="p">,</span> <span class="n">ys1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">rs_subj</span><span class="p">,</span> <span class="n">rs_obj</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s2">&quot;xy&quot;</span><span class="p">)</span>
+                        <span class="n">θs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">σ_Y</span> <span class="o">*</span> <span class="n">ys1</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">xs1</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
+                        <span class="n">all_θs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">θs</span><span class="p">)</span>
+
+            <span class="c1"># Prior</span>
+            <span class="n">xs1</span><span class="p">,</span> <span class="n">ys1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span>
+                <span class="n">stmt</span><span class="o">.</span><span class="n">subj</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">polarity</span> <span class="o">*</span> <span class="n">rs</span><span class="p">,</span>
+                <span class="n">stmt</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">polarity</span> <span class="o">*</span> <span class="n">rs</span><span class="p">,</span>
+                <span class="n">indexing</span><span class="o">=</span><span class="s2">&quot;xy&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="c1"># TODO - make the setting of σ_X and σ_Y more automated</span>
+            <span class="n">θs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">σ_Y</span> <span class="o">*</span> <span class="n">ys1</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">σ_X</span> <span class="o">*</span> <span class="n">xs1</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_θs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">all_θs</span> <span class="o">=</span> <span class="n">θs</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">all_θs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">all_θs</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">KDE</span><span class="p">(</span><span class="n">all_θs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="is_simulable"><a class="viewcode-back" href="../../delphi.html#delphi.assembly.is_simulable">[docs]</a><span class="k">def</span> <span class="nf">is_simulable</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="n">Influence</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">exists</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;polarity&quot;</span><span class="p">],</span> <span class="n">deltas</span><span class="p">(</span><span class="n">s</span><span class="p">))))</span></div>
+
+
+<div class="viewcode-block" id="get_variable_and_source"><a class="viewcode-back" href="../../delphi.html#delphi.assembly.get_variable_and_source">[docs]</a><span class="k">def</span> <span class="nf">get_variable_and_source</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Process the variable name to make it more human-readable. &quot;&quot;&quot;</span>
+    <span class="n">xs</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;\/&quot;</span><span class="p">,</span> <span class="s2">&quot;|&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+    <span class="n">xs</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;|&quot;</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">xs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;FAO&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="mi">2</span><span class="p">:]),</span> <span class="n">xs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">xs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">xs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="construct_concept_to_indicator_mapping"><a class="viewcode-back" href="../../delphi.html#delphi.assembly.construct_concept_to_indicator_mapping">[docs]</a><span class="k">def</span> <span class="nf">construct_concept_to_indicator_mapping</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+    <span class="sd">&quot;&quot;&quot; Create a dictionary mapping high-level concepts to low-level indicators</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        n: Number of indicators to return</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Dictionary that maps concept names to lists of indicator names.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_table</span><span class="p">(</span><span class="s2">&quot;concept_to_indicator_mapping&quot;</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+    <span class="n">gb</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Concept&quot;</span><span class="p">)</span>
+
+    <span class="n">_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">k</span><span class="p">:</span> <span class="p">[</span><span class="n">get_variable_and_source</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">take</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="s2">&quot;Indicator&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)]</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">gb</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">_dict</span></div>
+
+
+<div class="viewcode-block" id="get_indicator_value"><a class="viewcode-back" href="../../delphi.html#delphi.assembly.get_indicator_value">[docs]</a><span class="k">def</span> <span class="nf">get_indicator_value</span><span class="p">(</span>
+    <span class="n">indicator</span><span class="p">:</span> <span class="n">Indicator</span><span class="p">,</span>
+    <span class="n">country</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;South Sudan&quot;</span><span class="p">,</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">year</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">month</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">unit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">fallback_aggaxes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;month&quot;</span><span class="p">],</span>
+    <span class="n">aggfunc</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+    <span class="n">query_base</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">f</span><span class="s2">&quot;select * from indicator&quot;</span><span class="p">,</span>
+            <span class="n">f</span><span class="s2">&quot;where `Variable` like &#39;</span><span class="si">{indicator.name}</span><span class="s2">&#39;&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">query_parts</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;base&quot;</span><span class="p">:</span> <span class="n">query_base</span><span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">aggfunc</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">:</span>
+        <span class="n">indicator</span><span class="o">.</span><span class="n">aggregation_method</span> <span class="o">=</span> <span class="s2">&quot;mean&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">indicator</span><span class="o">.</span><span class="n">aggregation_method</span> <span class="o">=</span> <span class="s2">&quot;Unknown&quot;</span>
+    <span class="k">if</span> <span class="n">country</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">query_parts</span><span class="p">[</span><span class="s2">&quot;country&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;and `Country` is &#39;</span><span class="si">{country}</span><span class="s2">&#39;&quot;</span>
+    <span class="k">if</span> <span class="n">state</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">query_parts</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;and `State` is &#39;</span><span class="si">{state}</span><span class="s2">&#39;&quot;</span>
+    <span class="k">if</span> <span class="n">year</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">query_parts</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;and `Year` is &#39;</span><span class="si">{year}</span><span class="s2">&#39;&quot;</span>
+    <span class="k">if</span> <span class="n">month</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">query_parts</span><span class="p">[</span><span class="s2">&quot;month&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;and `Month` is &#39;</span><span class="si">{month}</span><span class="s2">&#39;&quot;</span>
+    <span class="k">if</span> <span class="n">unit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">check_q</span> <span class="o">=</span> <span class="n">query_parts</span><span class="p">[</span><span class="s2">&quot;base&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">f</span><span class="s2">&quot; and `Unit` is &#39;</span><span class="si">{unit}</span><span class="s2">&#39;&quot;</span>
+        <span class="n">check_r</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">check_q</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">check_r</span> <span class="o">==</span> <span class="p">[]:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="n">f</span><span class="s2">&quot;Selected units not found for </span><span class="si">{indicator.name}</span><span class="s2">! Falling back to default units!&quot;</span>
+            <span class="p">)</span>
+            <span class="n">query_parts</span><span class="p">[</span><span class="s2">&quot;unit&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">query_parts</span><span class="p">[</span><span class="s2">&quot;unit&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;and `Unit` is &#39;</span><span class="si">{unit}</span><span class="s2">&#39;&quot;</span>
+
+    <span class="n">indicator</span><span class="o">.</span><span class="n">aggaxes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">constraint</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;country&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;month&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">constraint</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">query_parts</span><span class="p">:</span>
+            <span class="n">indicator</span><span class="o">.</span><span class="n">aggaxes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">constraint</span><span class="p">)</span>
+
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">query_parts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">results</span> <span class="o">!=</span> <span class="p">[]:</span>
+        <span class="n">unit</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">({</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;Unit&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">}))[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;Value&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span> <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;Unit&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">unit</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">aggfunc</span><span class="p">(</span><span class="n">results</span><span class="p">),</span> <span class="n">unit</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">aggregation_axis</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fallback_aggaxes</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">indicator</span><span class="o">.</span><span class="n">aggaxes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">aggregation_axis</span><span class="p">)</span>
+                <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">query_parts</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+                        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">query_parts</span>
+                        <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fallback_aggaxes</span><span class="p">[:</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+                    <span class="p">]</span>
+                <span class="p">)</span>
+
+                <span class="n">results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">))</span>
+
+                <span class="k">if</span> <span class="n">results</span> <span class="o">==</span> <span class="p">[]:</span>
+                    <span class="k">continue</span>
+
+                <span class="c1"># Handling the case where the same indicator name is present</span>
+                <span class="c1"># with different units - we must not aggregate these values!</span>
+
+                <span class="c1"># If there are multiple possible units, use the first in the</span>
+                <span class="c1"># (alphabetically sorted) set of possible units as a default.</span>
+
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">r</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;Unit&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">,</span> <span class="n">results</span><span class="p">)):</span>
+                    <span class="n">unit</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
+                        <span class="nb">list</span><span class="p">(</span>
+                            <span class="p">{</span>
+                                <span class="n">r</span><span class="p">[</span><span class="s2">&quot;Unit&quot;</span><span class="p">]</span>
+                                <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span>
+                                <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;Unit&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                            <span class="p">}</span>
+                        <span class="p">)</span>
+                    <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">agg</span> <span class="o">=</span> <span class="n">aggfunc</span><span class="p">(</span>
+                    <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;Value&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span> <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;Unit&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">unit</span><span class="p">]</span>
+                <span class="p">)</span>
+                <span class="k">return</span> <span class="n">agg</span><span class="p">,</span> <span class="n">unit</span>
+
+            <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="n">f</span><span class="s2">&quot;No data found for the indicator </span><span class="si">{indicator.name}</span><span class="s2">!&quot;</span>
+                    <span class="s2">&quot;Try using additional aggregation axes.&quot;</span>
+                <span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Adarsh
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

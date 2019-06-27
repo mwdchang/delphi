@@ -1,0 +1,6 @@
+delphi.AnalysisGraph.AnalysisGraph.prune
+========================================
+
+.. currentmodule:: delphi.AnalysisGraph
+
+.. automethod:: AnalysisGraph.prune

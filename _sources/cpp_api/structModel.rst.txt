@@ -1,0 +1,16 @@
+.. _exhale_struct_structModel:
+
+Struct Model
+============
+
+- Defined in :ref:`file_delphi_cpp_AnalysisGraph.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: Model
+   :members:
+   :protected-members:
+   :undoc-members:

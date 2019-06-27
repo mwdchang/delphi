@@ -1,0 +1,729 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>delphi.utils package &mdash; delphi  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> delphi
+          
+
+          
+            
+            <img src="_static/delphi_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">The Delphi model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AnalysisGraph_API.html">AnalysisGraph API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GrFN_API.html">GroundedFunctionNetwork API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grfn_spec.html">Grounded Function Network (GrFN) JSON Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grfn_spec.html#change-log">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpp_api/library_root.html">C++ API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">delphi</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>delphi.utils package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/delphi.utils.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="delphi-utils-package">
+<h1>delphi.utils package<a class="headerlink" href="#delphi-utils-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-delphi.utils.fp">
+<span id="delphi-utils-fp-module"></span><h2>delphi.utils.fp module<a class="headerlink" href="#module-delphi.utils.fp" title="Permalink to this headline">¶</a></h2>
+<p>Helper functions for functional programming.</p>
+<dl class="function">
+<dt id="delphi.utils.fp.prepend">
+<code class="sig-name descname">prepend</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">xs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/fp.html#prepend"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.fp.prepend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepend a value to an iterable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>~T</em>) – An element of type T.</p></li>
+<li><p><strong>xs</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[~T]) – An iterable of elements of type T.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterator" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterator</span></code></a>[~T]</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><em>Iterator</em> – An iterator that yields <em>x</em> followed by elements of <em>xs</em>.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">delphi.utils.fp</span> <span class="k">import</span> <span class="n">prepend</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">prepend</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
+<span class="go">[1, 2, 3]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.fp.append">
+<code class="sig-name descname">append</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">xs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/fp.html#append"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.fp.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append a value to an iterable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>~T</em>) – An element of type T.</p></li>
+<li><p><strong>xs</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[~T]) – An iterable of elements of type T.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterator" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterator</span></code></a>[~T]</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><em>Iterator</em> – An iterator that yields elements of <em>xs</em>, then yields <em>x</em>.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">delphi.utils.fp</span> <span class="k">import</span> <span class="n">append</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
+<span class="go">[2, 3, 1]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.fp.scanl">
+<code class="sig-name descname">scanl</code><span class="sig-paren">(</span><em class="sig-param">f</em>, <em class="sig-param">x</em>, <em class="sig-param">xs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/fp.html#scanl"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.fp.scanl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make an iterator that returns accumulated results of a binary function
+applied to elements of an iterable.</p>
+<div class="math notranslate nohighlight">
+\[scanl(f, x_0, [x_1, x_2, ...]) = [x_0, f(x_0, x_1), f(f(x_0, x_1), x_2), ...]\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.7)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>[[~T, ~U], ~T]) – A binary function of two arguments of type T.</p></li>
+<li><p><strong>x</strong> (<em>~T</em>) – An initializer element of type T.</p></li>
+<li><p><strong>xs</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[~U]) – An iterable of elements of type T.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterator" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterator</span></code></a>[~T]</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><em>Iterator</em> – The iterator of accumulated results.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">delphi.utils.fp</span> <span class="k">import</span> <span class="n">scanl</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">scanl</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)))</span>
+<span class="go">[10, 10, 11, 13, 16, 20]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.fp.scanl1">
+<code class="sig-name descname">scanl1</code><span class="sig-paren">(</span><em class="sig-param">f</em>, <em class="sig-param">xs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/fp.html#scanl1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.fp.scanl1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make an iterator that returns accumulated results of a binary function
+applied to elements of an iterable.</p>
+<div class="math notranslate nohighlight">
+\[scanl1(f, [x_0, x_1, x_2, ...]) = [x_0, f(x_0, x_1), f(f(x_0, x_1), x_2), ...]\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.7)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>[[~T, ~T], ~T]) – A binary function of two arguments of type T.</p></li>
+<li><p><strong>xs</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[~T]) – An iterable of elements of type T.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterator" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterator</span></code></a>[~T]</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><em>Iterator</em> – The iterator of accumulated results.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">delphi.utils.fp</span> <span class="k">import</span> <span class="n">scanl1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">scanl1</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)))</span>
+<span class="go">[0, 1, 3, 6, 10]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.fp.foldl">
+<code class="sig-name descname">foldl</code><span class="sig-paren">(</span><em class="sig-param">f</em>, <em class="sig-param">x</em>, <em class="sig-param">xs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/fp.html#foldl"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.fp.foldl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the accumulated result of a binary function applied to elements
+of an iterable.</p>
+<div class="math notranslate nohighlight">
+\[foldl(f, x_0, [x_1, x_2, x_3]) = f(f(f(f(x_0, x_1), x_2), x_3)\]</div>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">delphi.utils.fp</span> <span class="k">import</span> <span class="n">foldl</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">foldl</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="go">20</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>~T</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.fp.foldl1">
+<code class="sig-name descname">foldl1</code><span class="sig-paren">(</span><em class="sig-param">f</em>, <em class="sig-param">xs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/fp.html#foldl1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.fp.foldl1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the accumulated result of a binary function applied to elements
+of an iterable.</p>
+<div class="math notranslate nohighlight">
+\[foldl1(f, [x_0, x_1, x_2, x_3]) = f(f(f(f(x_0, x_1), x_2), x_3)\]</div>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">delphi.utils.fp</span> <span class="k">import</span> <span class="n">foldl1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">foldl1</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="go">10</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>~T</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.fp.flatten">
+<code class="sig-name descname">flatten</code><span class="sig-paren">(</span><em class="sig-param">xs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/fp.html#flatten"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.fp.flatten" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flatten a nested list or tuple.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[~T]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.fp.iterate">
+<code class="sig-name descname">iterate</code><span class="sig-paren">(</span><em class="sig-param">f</em>, <em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/fp.html#iterate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.fp.iterate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes infinite iterator that returns the result of successive
+applications of a function to an element</p>
+<div class="math notranslate nohighlight">
+\[iterate(f, x) = [x, f(x), f(f(x)), f(f(f(x))), ...]\]</div>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">delphi.utils.fp</span> <span class="k">import</span> <span class="n">iterate</span><span class="p">,</span> <span class="n">take</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">take</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">iterate</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
+<span class="go">[1, 2, 4, 8, 16]</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterator" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterator</span></code></a>[~T]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.fp.take">
+<code class="sig-name descname">take</code><span class="sig-paren">(</span><em class="sig-param">n</em>, <em class="sig-param">xs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/fp.html#take"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.fp.take" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[~T]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.fp.ptake">
+<code class="sig-name descname">ptake</code><span class="sig-paren">(</span><em class="sig-param">n</em>, <em class="sig-param">xs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/fp.html#ptake"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.fp.ptake" title="Permalink to this definition">¶</a></dt>
+<dd><p>take with a tqdm progress bar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[~T]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.fp.ltake">
+<code class="sig-name descname">ltake</code><span class="sig-paren">(</span><em class="sig-param">n</em>, <em class="sig-param">xs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/fp.html#ltake"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.fp.ltake" title="Permalink to this definition">¶</a></dt>
+<dd><p>A non-lazy version of take.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[~T]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.fp.compose">
+<code class="sig-name descname">compose</code><span class="sig-paren">(</span><em class="sig-param">*fs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/fp.html#compose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.fp.compose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compose functions from left to right.</p>
+<p>e.g. compose(f, g)(x) = f(g(x))</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.7)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.fp.rcompose">
+<code class="sig-name descname">rcompose</code><span class="sig-paren">(</span><em class="sig-param">*fs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/fp.html#rcompose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.fp.rcompose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compose functions from right to left.</p>
+<p>e.g. rcompose(f, g)(x) = g(f(x))</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.7)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.fp.flatMap">
+<code class="sig-name descname">flatMap</code><span class="sig-paren">(</span><em class="sig-param">f</em>, <em class="sig-param">xs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/fp.html#flatMap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.fp.flatMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Map a function onto an iterable and flatten the result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[~T]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.fp.exists">
+<code class="sig-name descname">exists</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/fp.html#exists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.fp.exists" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.fp.repeatfunc">
+<code class="sig-name descname">repeatfunc</code><span class="sig-paren">(</span><em class="sig-param">func</em>, <em class="sig-param">*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/fp.html#repeatfunc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.fp.repeatfunc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Repeat calls to func with specified arguments.</p>
+<p>Example:  repeatfunc(random.random)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.fp.grouper">
+<code class="sig-name descname">grouper</code><span class="sig-paren">(</span><em class="sig-param">xs</em>, <em class="sig-param">n</em>, <em class="sig-param">fillvalue=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/fp.html#grouper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.fp.grouper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Collect data into fixed-length chunks or blocks.
+&gt;&gt;&gt; from delphi.utils.fp import grouper
+&gt;&gt;&gt; list(grouper(‘ABCDEFG’, 3, ‘x’))
+[(‘A’, ‘B’, ‘C’), (‘D’, ‘E’, ‘F’), (‘G’, ‘x’, ‘x’)]</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.fp.pairwise">
+<code class="sig-name descname">pairwise</code><span class="sig-paren">(</span><em class="sig-param">iterable</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/fp.html#pairwise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.fp.pairwise" title="Permalink to this definition">¶</a></dt>
+<dd><p>s -&gt; (s0,s1), (s1,s2), (s2, s3), …</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-delphi.utils.indra">
+<span id="delphi-utils-indra-module"></span><h2>delphi.utils.indra module<a class="headerlink" href="#module-delphi.utils.indra" title="Permalink to this headline">¶</a></h2>
+<p>Helper functions for working with INDRA statements.</p>
+<dl class="function">
+<dt id="delphi.utils.indra.get_concepts">
+<code class="sig-name descname">get_concepts</code><span class="sig-paren">(</span><em class="sig-param">sts</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/indra.html#get_concepts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.indra.get_concepts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a set of all unique concepts in the list of INDRA statements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Set" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Set</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.indra.get_valid_statements_for_modeling">
+<code class="sig-name descname">get_valid_statements_for_modeling</code><span class="sig-paren">(</span><em class="sig-param">sts</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/indra.html#get_valid_statements_for_modeling"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.indra.get_valid_statements_for_modeling" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select INDRA statements that can be used to construct a Delphi model
+from a given list of statements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://indra.readthedocs.io/en/latest/modules/statements.html#indra.statements.statements.Influence" title="(in INDRA v1.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Influence</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.indra.influence_stmt_from_dict">
+<code class="sig-name descname">influence_stmt_from_dict</code><span class="sig-paren">(</span><em class="sig-param">d</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/indra.html#influence_stmt_from_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.indra.influence_stmt_from_dict" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://indra.readthedocs.io/en/latest/modules/statements.html#indra.statements.statements.Influence" title="(in INDRA v1.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Influence</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.indra.get_statements_from_json_list">
+<code class="sig-name descname">get_statements_from_json_list</code><span class="sig-paren">(</span><em class="sig-param">_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/indra.html#get_statements_from_json_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.indra.get_statements_from_json_list" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://indra.readthedocs.io/en/latest/modules/statements.html#indra.statements.statements.Influence" title="(in INDRA v1.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Influence</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.indra.get_statements_from_json_file">
+<code class="sig-name descname">get_statements_from_json_file</code><span class="sig-paren">(</span><em class="sig-param">json_file</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/indra.html#get_statements_from_json_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.indra.get_statements_from_json_file" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://indra.readthedocs.io/en/latest/modules/statements.html#indra.statements.statements.Influence" title="(in INDRA v1.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Influence</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.indra.is_grounded">
+<code class="sig-name descname">is_grounded</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/indra.html#is_grounded"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.indra.is_grounded" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.indra.is_grounded_concept">
+<code class="sig-name descname">is_grounded_concept</code><span class="sig-paren">(</span><em class="sig-param">c</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/indra.html#is_grounded_concept"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.indra.is_grounded_concept" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if a concept is grounded</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.indra.is_grounded_statement">
+<code class="sig-name descname">is_grounded_statement</code><span class="sig-paren">(</span><em class="sig-param">s</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/indra.html#is_grounded_statement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.indra.is_grounded_statement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if an Influence statement is grounded</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.indra.is_well_grounded">
+<code class="sig-name descname">is_well_grounded</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/indra.html#is_well_grounded"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.indra.is_well_grounded" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.indra.is_well_grounded_concept">
+<code class="sig-name descname">is_well_grounded_concept</code><span class="sig-paren">(</span><em class="sig-param">c</em>, <em class="sig-param">cutoff=0.7</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/indra.html#is_well_grounded_concept"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.indra.is_well_grounded_concept" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if a concept has a high grounding score.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.indra.is_well_grounded_statement">
+<code class="sig-name descname">is_well_grounded_statement</code><span class="sig-paren">(</span><em class="sig-param">s</em>, <em class="sig-param">cutoff=0.7</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/indra.html#is_well_grounded_statement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.indra.is_well_grounded_statement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if both subj and obj are grounded to the UN ontology.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.indra.is_grounded_to_name">
+<code class="sig-name descname">is_grounded_to_name</code><span class="sig-paren">(</span><em class="sig-param">c</em>, <em class="sig-param">name</em>, <em class="sig-param">cutoff=0.7</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/indra.html#is_grounded_to_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.indra.is_grounded_to_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if a concept is grounded to a given name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.indra.contains_concept">
+<code class="sig-name descname">contains_concept</code><span class="sig-paren">(</span><em class="sig-param">s</em>, <em class="sig-param">concept_name</em>, <em class="sig-param">cutoff=0.7</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/indra.html#contains_concept"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.indra.contains_concept" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.indra.contains_relevant_concept">
+<code class="sig-name descname">contains_relevant_concept</code><span class="sig-paren">(</span><em class="sig-param">s</em>, <em class="sig-param">relevant_concepts</em>, <em class="sig-param">cutoff=0.7</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/indra.html#contains_relevant_concept"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.indra.contains_relevant_concept" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if a given Influence statement has a relevant concept, and
+false otherwise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.indra.top_grounding">
+<code class="sig-name descname">top_grounding</code><span class="sig-paren">(</span><em class="sig-param">c</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/indra.html#top_grounding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.indra.top_grounding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the top-scoring grounding from the UN ontology.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.indra.top_grounding_score">
+<code class="sig-name descname">top_grounding_score</code><span class="sig-paren">(</span><em class="sig-param">c</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/indra.html#top_grounding_score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.indra.top_grounding_score" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.indra.nameTuple">
+<code class="sig-name descname">nameTuple</code><span class="sig-paren">(</span><em class="sig-param">s</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/indra.html#nameTuple"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.indra.nameTuple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a 2-tuple consisting of the top groundings of the subj and obj
+of an Influence statement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-delphi.utils.misc">
+<span id="delphi-utils-misc-module"></span><h2>delphi.utils.misc module<a class="headerlink" href="#module-delphi.utils.misc" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="delphi.utils.misc.choose_font">
+<code class="sig-name descname">choose_font</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/misc.html#choose_font"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.misc.choose_font" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.misc.multiple_replace">
+<code class="sig-name descname">multiple_replace</code><span class="sig-paren">(</span><em class="sig-param">d</em>, <em class="sig-param">text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/misc.html#multiple_replace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.misc.multiple_replace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs string replacement from dict in a single pass. Taken from
+<a class="reference external" href="https://www.oreilly.com/library/view/python-cookbook/0596001673/ch03s15.html">https://www.oreilly.com/library/view/python-cookbook/0596001673/ch03s15.html</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-delphi.utils.shell">
+<span id="delphi-utils-shell-module"></span><h2>delphi.utils.shell module<a class="headerlink" href="#module-delphi.utils.shell" title="Permalink to this headline">¶</a></h2>
+<p>Helper functions for shell operations.</p>
+<dl class="function">
+<dt id="delphi.utils.shell.cd">
+<code class="sig-name descname">cd</code><span class="sig-paren">(</span><em class="sig-param">destination_directory</em><span class="sig-paren">)</span><a class="headerlink" href="#delphi.utils.shell.cd" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-delphi.utils.web">
+<span id="delphi-utils-web-module"></span><h2>delphi.utils.web module<a class="headerlink" href="#module-delphi.utils.web" title="Permalink to this headline">¶</a></h2>
+<p>Helper functions for web activity.</p>
+<dl class="function">
+<dt id="delphi.utils.web.tqdm_reporthook">
+<code class="sig-name descname">tqdm_reporthook</code><span class="sig-paren">(</span><em class="sig-param">t</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/web.html#tqdm_reporthook"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.web.tqdm_reporthook" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wraps tqdm instance.
+Don’t forget to close() or __exit__()
+the tqdm instance once you’re done with it (easiest using <cite>with</cite> syntax).
+.. rubric:: Example</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.web.get_data_from_url">
+<code class="sig-name descname">get_data_from_url</code><span class="sig-paren">(</span><em class="sig-param">url</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/web.html#get_data_from_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.web.get_data_from_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="delphi.utils.web.download_file">
+<code class="sig-name descname">download_file</code><span class="sig-paren">(</span><em class="sig-param">url</em>, <em class="sig-param">filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/delphi/utils/web.html#download_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#delphi.utils.web.download_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-delphi.utils">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-delphi.utils" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Adarsh
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

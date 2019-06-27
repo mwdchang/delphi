@@ -1,0 +1,6 @@
+delphi.inspection.inspect\_edge
+===============================
+
+.. currentmodule:: delphi.inspection
+
+.. autofunction:: inspect_edge

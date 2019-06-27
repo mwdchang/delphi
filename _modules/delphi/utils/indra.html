@@ -1,0 +1,372 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>delphi.utils.indra &mdash; delphi  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../../../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> delphi
+          
+
+          
+            
+            <img src="../../../_static/delphi_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../model.html">The Delphi model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../AnalysisGraph_API.html">AnalysisGraph API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../GrFN_API.html">GroundedFunctionNetwork API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grfn_spec.html">Grounded Function Network (GrFN) JSON Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grfn_spec.html#change-log">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cpp_api/library_root.html">C++ API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">delphi</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>delphi.utils.indra</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for delphi.utils.indra</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot; Helper functions for working with INDRA statements. &quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">indra.statements.concept</span> <span class="k">import</span> <span class="n">Concept</span>
+<span class="kn">from</span> <span class="nn">indra.statements.statements</span> <span class="k">import</span> <span class="n">Influence</span><span class="p">,</span> <span class="n">Event</span>
+<span class="kn">from</span> <span class="nn">indra.statements.evidence</span> <span class="k">import</span> <span class="n">Evidence</span>
+<span class="kn">from</span> <span class="nn">delphi.utils.fp</span> <span class="k">import</span> <span class="n">flatMap</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">singledispatch</span>
+
+
+<div class="viewcode-block" id="get_concepts"><a class="viewcode-back" href="../../../delphi.utils.html#delphi.utils.indra.get_concepts">[docs]</a><span class="k">def</span> <span class="nf">get_concepts</span><span class="p">(</span><span class="n">sts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Influence</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot; Get a set of all unique concepts in the list of INDRA statements. &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="n">flatMap</span><span class="p">(</span><span class="n">nameTuple</span><span class="p">,</span> <span class="n">sts</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="get_valid_statements_for_modeling"><a class="viewcode-back" href="../../../delphi.utils.html#delphi.utils.indra.get_valid_statements_for_modeling">[docs]</a><span class="k">def</span> <span class="nf">get_valid_statements_for_modeling</span><span class="p">(</span><span class="n">sts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Influence</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Influence</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot; Select INDRA statements that can be used to construct a Delphi model</span>
+<span class="sd">    from a given list of statements. &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="n">s</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sts</span>
+        <span class="k">if</span> <span class="n">is_grounded_statement</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="ow">and</span> <span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">subj</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">polarity</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="ow">and</span> <span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">polarity</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="influence_stmt_from_dict"><a class="viewcode-back" href="../../../delphi.utils.html#delphi.utils.indra.influence_stmt_from_dict">[docs]</a><span class="k">def</span> <span class="nf">influence_stmt_from_dict</span><span class="p">(</span><span class="n">d</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Influence</span><span class="p">:</span>
+    <span class="n">st</span> <span class="o">=</span> <span class="n">Influence</span><span class="p">(</span>
+        <span class="n">Event</span><span class="p">(</span><span class="n">Concept</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;subj&quot;</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">db_refs</span><span class="o">=</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;subj&quot;</span><span class="p">][</span><span class="s2">&quot;db_refs&quot;</span><span class="p">])),</span>
+        <span class="n">Event</span><span class="p">(</span><span class="n">Concept</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;obj&quot;</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">db_refs</span><span class="o">=</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;obj&quot;</span><span class="p">][</span><span class="s2">&quot;db_refs&quot;</span><span class="p">])),</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;delta&quot;</span><span class="p">),</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;delta&quot;</span><span class="p">),</span>
+        <span class="p">[</span>
+            <span class="n">Evidence</span><span class="p">(</span>
+                <span class="n">e</span><span class="p">[</span><span class="s2">&quot;source_api&quot;</span><span class="p">],</span> <span class="n">text</span><span class="o">=</span><span class="n">e</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">],</span> <span class="n">annotations</span><span class="o">=</span><span class="n">e</span><span class="p">[</span><span class="s2">&quot;annotations&quot;</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;evidence&quot;</span><span class="p">]</span>
+        <span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">belief</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;belief&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">st</span></div>
+
+
+<div class="viewcode-block" id="get_statements_from_json_list"><a class="viewcode-back" href="../../../delphi.utils.html#delphi.utils.indra.get_statements_from_json_list">[docs]</a><span class="k">def</span> <span class="nf">get_statements_from_json_list</span><span class="p">(</span><span class="n">_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Influence</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="n">influence_stmt_from_dict</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">_list</span>
+        <span class="k">if</span> <span class="n">elem</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Influence&quot;</span>
+        <span class="ow">and</span> <span class="n">elem</span><span class="p">[</span><span class="s2">&quot;subj&quot;</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="ow">and</span> <span class="n">elem</span><span class="p">[</span><span class="s2">&quot;obj&quot;</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+    <span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="get_statements_from_json_file"><a class="viewcode-back" href="../../../delphi.utils.html#delphi.utils.indra.get_statements_from_json_file">[docs]</a><span class="k">def</span> <span class="nf">get_statements_from_json_file</span><span class="p">(</span><span class="n">json_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Influence</span><span class="p">]:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">json_file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+       <span class="n">_list</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">indra.statements.io</span> <span class="k">import</span> <span class="n">stmts_from_json</span>
+    <span class="k">return</span> <span class="n">stmts_from_json</span><span class="p">([</span><span class="n">stmt</span> <span class="k">for</span> <span class="n">stmt</span> <span class="ow">in</span> <span class="n">_list</span> <span class="k">if</span> <span class="n">stmt</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;Influence&quot;</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="is_grounded"><a class="viewcode-back" href="../../../delphi.utils.html#delphi.utils.indra.is_grounded">[docs]</a><span class="nd">@singledispatch</span>
+<span class="k">def</span> <span class="nf">is_grounded</span><span class="p">():</span>
+    <span class="k">pass</span></div>
+
+
+<span class="nd">@is_grounded</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Concept</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">_</span><span class="p">(</span><span class="n">c</span><span class="p">:</span> <span class="n">Concept</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Check if a concept is grounded &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="s2">&quot;UN&quot;</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">db_refs</span>
+        <span class="ow">and</span> <span class="n">c</span><span class="o">.</span><span class="n">db_refs</span><span class="p">[</span><span class="s2">&quot;UN&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;properties&quot;</span>
+    <span class="p">)</span>
+
+
+<span class="nd">@is_grounded</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Influence</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">_</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="n">Influence</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Check if an Influence statement is grounded &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">is_grounded</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">subj</span><span class="p">)</span> <span class="ow">and</span> <span class="n">is_grounded</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">obj</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="is_grounded_concept"><a class="viewcode-back" href="../../../delphi.utils.html#delphi.utils.indra.is_grounded_concept">[docs]</a><span class="k">def</span> <span class="nf">is_grounded_concept</span><span class="p">(</span><span class="n">c</span><span class="p">:</span> <span class="n">Concept</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Check if a concept is grounded &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="s2">&quot;UN&quot;</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">db_refs</span>
+        <span class="ow">and</span> <span class="n">c</span><span class="o">.</span><span class="n">db_refs</span><span class="p">[</span><span class="s2">&quot;UN&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;properties&quot;</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="is_grounded_statement"><a class="viewcode-back" href="../../../delphi.utils.html#delphi.utils.indra.is_grounded_statement">[docs]</a><span class="k">def</span> <span class="nf">is_grounded_statement</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="n">Influence</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Check if an Influence statement is grounded &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">is_grounded_concept</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">subj</span><span class="o">.</span><span class="n">concept</span><span class="p">)</span> <span class="ow">and</span> <span class="n">is_grounded_concept</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">concept</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="is_well_grounded"><a class="viewcode-back" href="../../../delphi.utils.html#delphi.utils.indra.is_well_grounded">[docs]</a><span class="nd">@singledispatch</span>
+<span class="k">def</span> <span class="nf">is_well_grounded</span><span class="p">():</span>
+    <span class="k">pass</span></div>
+
+
+<span class="nd">@is_well_grounded</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Concept</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">_</span><span class="p">(</span><span class="n">c</span><span class="p">:</span> <span class="n">Concept</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Check if a concept has a high grounding score. &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">is_grounded</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">top_grounding_score</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">cutoff</span><span class="p">)</span>
+
+
+<span class="nd">@is_well_grounded</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Influence</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">_</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="n">Influence</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Returns true if both subj and obj are grounded to the UN ontology. &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">is_well_grounded</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">),</span> <span class="n">s</span><span class="o">.</span><span class="n">agent_list</span><span class="p">()))</span>
+
+
+<div class="viewcode-block" id="is_well_grounded_concept"><a class="viewcode-back" href="../../../delphi.utils.html#delphi.utils.indra.is_well_grounded_concept">[docs]</a><span class="k">def</span> <span class="nf">is_well_grounded_concept</span><span class="p">(</span><span class="n">c</span><span class="p">:</span> <span class="n">Concept</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Check if a concept has a high grounding score. &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">is_grounded</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">top_grounding_score</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">cutoff</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="is_well_grounded_statement"><a class="viewcode-back" href="../../../delphi.utils.html#delphi.utils.indra.is_well_grounded_statement">[docs]</a><span class="k">def</span> <span class="nf">is_well_grounded_statement</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="n">Influence</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Returns true if both subj and obj are grounded to the UN ontology. &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="nb">all</span><span class="p">(</span>
+        <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">is_well_grounded_concept</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">),</span> <span class="n">s</span><span class="o">.</span><span class="n">agent_list</span><span class="p">())</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="is_grounded_to_name"><a class="viewcode-back" href="../../../delphi.utils.html#delphi.utils.indra.is_grounded_to_name">[docs]</a><span class="k">def</span> <span class="nf">is_grounded_to_name</span><span class="p">(</span><span class="n">c</span><span class="p">:</span> <span class="n">Concept</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Check if a concept is grounded to a given name. &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">top_grounding</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">==</span> <span class="n">name</span><span class="p">)</span> <span class="k">if</span> <span class="n">is_well_grounded</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">)</span> <span class="k">else</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="contains_concept"><a class="viewcode-back" href="../../../delphi.utils.html#delphi.utils.indra.contains_concept">[docs]</a><span class="k">def</span> <span class="nf">contains_concept</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="n">Influence</span><span class="p">,</span> <span class="n">concept_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">return</span> <span class="nb">any</span><span class="p">(</span>
+        <span class="nb">map</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">is_grounded_to_name</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">concept_name</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">),</span>
+            <span class="n">s</span><span class="o">.</span><span class="n">agent_list</span><span class="p">(),</span>
+        <span class="p">)</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="contains_relevant_concept"><a class="viewcode-back" href="../../../delphi.utils.html#delphi.utils.indra.contains_relevant_concept">[docs]</a><span class="k">def</span> <span class="nf">contains_relevant_concept</span><span class="p">(</span>
+    <span class="n">s</span><span class="p">:</span> <span class="n">Influence</span><span class="p">,</span> <span class="n">relevant_concepts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">cutoff</span><span class="o">=</span><span class="mf">0.7</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Returns true if a given Influence statement has a relevant concept, and</span>
+<span class="sd">    false otherwise. &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="nb">any</span><span class="p">(</span>
+        <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">contains_concept</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="n">cutoff</span><span class="p">),</span> <span class="n">relevant_concepts</span><span class="p">)</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="top_grounding"><a class="viewcode-back" href="../../../delphi.utils.html#delphi.utils.indra.top_grounding">[docs]</a><span class="k">def</span> <span class="nf">top_grounding</span><span class="p">(</span><span class="n">c</span><span class="p">:</span> <span class="n">Concept</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Return the top-scoring grounding from the UN ontology. &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">c</span><span class="o">.</span><span class="n">db_refs</span><span class="p">[</span><span class="s2">&quot;UN&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;UN&quot;</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">db_refs</span> <span class="k">else</span> <span class="n">c</span><span class="o">.</span><span class="n">name</span></div>
+
+
+<div class="viewcode-block" id="top_grounding_score"><a class="viewcode-back" href="../../../delphi.utils.html#delphi.utils.indra.top_grounding_score">[docs]</a><span class="k">def</span> <span class="nf">top_grounding_score</span><span class="p">(</span><span class="n">c</span><span class="p">:</span> <span class="n">Concept</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">c</span><span class="o">.</span><span class="n">db_refs</span><span class="p">[</span><span class="s2">&quot;UN&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="nameTuple"><a class="viewcode-back" href="../../../delphi.utils.html#delphi.utils.indra.nameTuple">[docs]</a><span class="k">def</span> <span class="nf">nameTuple</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="n">Influence</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot; Returns a 2-tuple consisting of the top groundings of the subj and obj</span>
+<span class="sd">    of an Influence statement. &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">top_grounding</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">subj</span><span class="o">.</span><span class="n">concept</span><span class="p">),</span> <span class="n">top_grounding</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">concept</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Adarsh
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

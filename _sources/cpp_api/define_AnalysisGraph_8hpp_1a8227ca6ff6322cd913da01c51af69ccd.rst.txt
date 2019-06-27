@@ -1,0 +1,13 @@
+.. _exhale_define_AnalysisGraph_8hpp_1a8227ca6ff6322cd913da01c51af69ccd:
+
+Define CERR
+===========
+
+- Defined in :ref:`file_delphi_cpp_AnalysisGraph.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: CERR

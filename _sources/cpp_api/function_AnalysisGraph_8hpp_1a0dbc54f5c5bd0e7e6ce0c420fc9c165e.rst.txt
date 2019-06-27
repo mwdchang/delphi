@@ -1,0 +1,13 @@
+.. _exhale_function_AnalysisGraph_8hpp_1a0dbc54f5c5bd0e7e6ce0c420fc9c165e:
+
+Function mean
+=============
+
+- Defined in :ref:`file_delphi_cpp_AnalysisGraph.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: mean(vector<double>)

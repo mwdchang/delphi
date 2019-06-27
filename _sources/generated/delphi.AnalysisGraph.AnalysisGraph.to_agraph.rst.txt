@@ -1,0 +1,6 @@
+delphi.AnalysisGraph.AnalysisGraph.to\_agraph
+=============================================
+
+.. currentmodule:: delphi.AnalysisGraph
+
+.. automethod:: AnalysisGraph.to_agraph

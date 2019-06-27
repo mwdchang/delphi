@@ -1,0 +1,6 @@
+delphi.AnalysisGraph.AnalysisGraph.from\_json\_serialized\_statements\_list
+===========================================================================
+
+.. currentmodule:: delphi.AnalysisGraph
+
+.. automethod:: AnalysisGraph.from_json_serialized_statements_list

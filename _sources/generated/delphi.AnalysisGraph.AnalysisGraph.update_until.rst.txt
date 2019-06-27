@@ -1,0 +1,6 @@
+delphi.AnalysisGraph.AnalysisGraph.update\_until
+================================================
+
+.. currentmodule:: delphi.AnalysisGraph
+
+.. automethod:: AnalysisGraph.update_until

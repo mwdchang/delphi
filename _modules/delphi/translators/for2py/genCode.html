@@ -1,0 +1,460 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>delphi.translators.for2py.genCode &mdash; delphi  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../../../../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> delphi
+          
+
+          
+            
+            <img src="../../../../_static/delphi_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../model.html">The Delphi model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../AnalysisGraph_API.html">AnalysisGraph API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../GrFN_API.html">GroundedFunctionNetwork API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../grfn_spec.html">Grounded Function Network (GrFN) JSON Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../grfn_spec.html#change-log">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cpp_api/library_root.html">C++ API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">delphi</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../for2py.html">delphi.translators.for2py</a> &raquo;</li>
+        
+      <li>delphi.translators.for2py.genCode</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for delphi.translators.for2py.genCode</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">ast</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">For2PyError</span>
+
+
+<div class="viewcode-block" id="PrintState"><a class="viewcode-back" href="../../../../delphi.translators.for2py.html#delphi.translators.for2py.genCode.PrintState">[docs]</a><span class="k">class</span> <span class="nc">PrintState</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">add</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sep</span> <span class="o">=</span> <span class="n">sep</span> <span class="k">if</span> <span class="n">sep</span> <span class="o">!=</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span> <span class="o">=</span> <span class="n">add</span> <span class="k">if</span> <span class="n">add</span> <span class="o">!=</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;    &quot;</span>
+
+<div class="viewcode-block" id="PrintState.copy"><a class="viewcode-back" href="../../../../delphi.translators.for2py.html#delphi.translators.for2py.genCode.PrintState.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">add</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">PrintState</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sep</span> <span class="k">if</span> <span class="n">sep</span> <span class="o">==</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">sep</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">add</span> <span class="k">if</span> <span class="n">add</span> <span class="o">==</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">add</span>
+        <span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="genCode"><a class="viewcode-back" href="../../../../delphi.translators.for2py.html#delphi.translators.for2py.genCode.genCode">[docs]</a><span class="k">def</span> <span class="nf">genCode</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+    <span class="n">codeStr</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">cur</span> <span class="ow">in</span> <span class="n">node</span><span class="p">:</span>
+            <span class="n">codeStr</span> <span class="o">+=</span> <span class="n">f</span><span class="s2">&quot;{genCode(cur, state)}</span><span class="si">{state.sep}</span><span class="s2">&quot;</span>
+
+    <span class="c1"># Function: name, args, body, decorator_list, returns</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">FunctionDef</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="s2">&quot;def </span><span class="si">{0}</span><span class="s2">(</span><span class="si">{1}</span><span class="s2">):</span><span class="si">{2}{3}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">genCode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="n">state</span><span class="p">),</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">sep</span> <span class="o">+</span> <span class="n">state</span><span class="o">.</span><span class="n">add</span><span class="p">,</span>
+            <span class="n">genCode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">body</span><span class="p">,</span> <span class="n">state</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">sep</span> <span class="o">+</span> <span class="n">state</span><span class="o">.</span><span class="n">add</span><span class="p">)),</span>
+        <span class="p">)</span>
+
+    <span class="c1"># arguments: (&#39;args&#39;, &#39;vararg&#39;, &#39;kwonlyargs&#39;, &#39;kw_defaults&#39;, &#39;kwarg&#39;, &#39;defaults&#39;)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">arguments</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">genCode</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">args</span><span class="p">])</span>
+
+    <span class="c1"># arg: (&#39;arg&#39;, &#39;annotation&#39;)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">arg</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">arg</span>
+
+    <span class="c1"># Load: ()</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Load</span><span class="p">):</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;genCode found ast.Load, is there a bug?</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Store: ()</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Store</span><span class="p">):</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;genCode found ast.Store, is there a bug?</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Index: (&#39;value&#39;,)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Index</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="s2">&quot;[</span><span class="si">{0}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">genCode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">state</span><span class="p">))</span>
+
+    <span class="c1"># Num: (&#39;n&#39;,)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Num</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>
+
+    <span class="c1"># List: (&#39;elts&#39;, &#39;ctx&#39;)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">List</span><span class="p">):</span>
+        <span class="n">elements</span> <span class="o">=</span> <span class="p">[</span><span class="n">genCode</span><span class="p">(</span><span class="n">elmt</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span> <span class="k">for</span> <span class="n">elmt</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">elts</span><span class="p">]</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="nb">str</span><span class="p">(</span><span class="n">elements</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+            <span class="k">else</span> <span class="s2">&quot;[</span><span class="si">{0}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">elements</span><span class="p">))</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Str: (&#39;s&#39;,)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Str</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="s1">&#39;&quot;</span><span class="si">{0}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">s</span><span class="p">)</span>
+
+    <span class="c1"># For: (&#39;target&#39;, &#39;iter&#39;, &#39;body&#39;, &#39;orelse&#39;)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">For</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="s2">&quot;for </span><span class="si">{0}</span><span class="s2"> in </span><span class="si">{1}</span><span class="s2">:</span><span class="si">{2}{3}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">genCode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">state</span><span class="p">),</span>
+            <span class="n">genCode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">iter</span><span class="p">,</span> <span class="n">state</span><span class="p">),</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">sep</span> <span class="o">+</span> <span class="n">state</span><span class="o">.</span><span class="n">add</span><span class="p">,</span>
+            <span class="n">genCode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">body</span><span class="p">,</span> <span class="n">state</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">sep</span> <span class="o">+</span> <span class="n">state</span><span class="o">.</span><span class="n">add</span><span class="p">)),</span>
+        <span class="p">)</span>
+
+    <span class="c1"># If: (&#39;test&#39;, &#39;body&#39;, &#39;orelse&#39;)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">If</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="s2">&quot;if (</span><span class="si">{0}</span><span class="s2">):</span><span class="si">{1}{2}{3}</span><span class="s2">else:</span><span class="si">{4}{5}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">genCode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">test</span><span class="p">,</span> <span class="n">state</span><span class="p">),</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">sep</span> <span class="o">+</span> <span class="n">state</span><span class="o">.</span><span class="n">add</span><span class="p">,</span>
+            <span class="n">genCode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">body</span><span class="p">,</span> <span class="n">state</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">sep</span> <span class="o">+</span> <span class="n">state</span><span class="o">.</span><span class="n">add</span><span class="p">)),</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">sep</span><span class="p">,</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">sep</span> <span class="o">+</span> <span class="n">state</span><span class="o">.</span><span class="n">add</span><span class="p">,</span>
+            <span class="n">genCode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">orelse</span><span class="p">,</span> <span class="n">state</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">sep</span> <span class="o">+</span> <span class="n">state</span><span class="o">.</span><span class="n">add</span><span class="p">)),</span>
+        <span class="p">)</span>
+
+    <span class="c1"># UnaryOp: (&#39;op&#39;, &#39;operand&#39;)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">UnaryOp</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">(</span><span class="si">{1}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">genCode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">op</span><span class="p">,</span> <span class="n">state</span><span class="p">),</span> <span class="n">genCode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">operand</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="c1"># BinOp: (&#39;left&#39;, &#39;op&#39;, &#39;right&#39;)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">BinOp</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="s2">&quot;(</span><span class="si">{0}{1}{2}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">genCode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">state</span><span class="p">),</span>
+            <span class="n">genCode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">op</span><span class="p">,</span> <span class="n">state</span><span class="p">),</span>
+            <span class="n">genCode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">state</span><span class="p">),</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Add: ()</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Add</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="s2">&quot;+&quot;</span>
+
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Sub</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span>
+
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Mult</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="s2">&quot;*&quot;</span>
+
+    <span class="c1"># Pow: ()</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Pow</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="s2">&quot;**&quot;</span>
+
+    <span class="c1"># Div: ()</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Div</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span>
+
+    <span class="c1"># USub: ()</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">USub</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span>
+
+    <span class="c1"># Eq: ()</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Eq</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="s2">&quot;==&quot;</span>
+
+    <span class="c1"># LtE: ()</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">LtE</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="s2">&quot;&lt;=&quot;</span>
+
+    <span class="c1"># Lt: ()</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Lt</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="s2">&quot;&lt;&quot;</span>
+
+    <span class="c1"># Gt: ()</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Gt</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="s2">&quot;&gt;&quot;</span>
+    
+    <span class="c1"># GtE: ()</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">GtE</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="s2">&quot;&gt;=&quot;</span>
+
+    <span class="c1"># And: ()</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">And</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="s2">&quot;and&quot;</span>
+
+    <span class="c1"># Or: ()</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Or</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="s2">&quot;or&quot;</span>
+
+    <span class="c1"># Expr: (&#39;value&#39;,)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Expr</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="n">genCode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+
+    <span class="c1"># Compare: (&#39;left&#39;, &#39;ops&#39;, &#39;comparators&#39;)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Compare</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">ops</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+                <span class="s2">&quot;Fix Compare in genCode! Don&#39;t have an example of what this will look like</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">codeStr</span> <span class="o">=</span> <span class="s2">&quot;(</span><span class="si">{0}</span><span class="s2"> </span><span class="si">{1}</span><span class="s2"> </span><span class="si">{2}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">genCode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">state</span><span class="p">),</span>
+                <span class="n">genCode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">ops</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">state</span><span class="p">),</span>
+                <span class="n">genCode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">comparators</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">state</span><span class="p">),</span>
+            <span class="p">)</span>
+
+    <span class="c1"># Subscript: (&#39;value&#39;, &#39;slice&#39;, &#39;ctx&#39;)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Subscript</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">slice</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Num</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">For2PyError</span><span class="p">(</span><span class="s2">&quot;can&#39;t handle arrays in genCode right now.&quot;</span><span class="p">)</span>
+        <span class="c1"># typical:</span>
+        <span class="c1"># codeStr = &#39;{0}{1}&#39;.format(genCode(node.value, state), genCode(node.slice, state))</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="n">genCode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+
+    <span class="c1"># Name: (&#39;id&#39;, &#39;ctx&#39;)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Name</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">id</span>
+
+    <span class="c1"># AnnAssign: (&#39;target&#39;, &#39;annotation&#39;, &#39;value&#39;, &#39;simple&#39;)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">AnnAssign</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="n">genCode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+
+    <span class="c1"># Assign: (&#39;targets&#39;, &#39;value&#39;)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Assign</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">+=</span> <span class="n">genCode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+
+    <span class="c1"># Call: (&#39;func&#39;, &#39;args&#39;, &#39;keywords&#39;)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Call</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">func</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Attribute</span><span class="p">):</span>
+            <span class="n">fnNode</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">func</span>
+            <span class="n">module</span> <span class="o">=</span> <span class="n">fnNode</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">id</span>
+            <span class="n">fnName</span> <span class="o">=</span> <span class="n">fnNode</span><span class="o">.</span><span class="n">attr</span>
+            <span class="n">fnName</span> <span class="o">=</span> <span class="n">module</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="n">fnName</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fnName</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="n">id</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{fnName}</span><span class="s2">(&quot;</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">codeStr</span> <span class="o">+=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">genCode</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">args</span><span class="p">])</span>
+
+        <span class="n">codeStr</span> <span class="o">+=</span> <span class="s2">&quot;)&quot;</span>
+
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Import</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="s2">&quot;import </span><span class="si">{0}{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">genCode</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">names</span><span class="p">]),</span> <span class="n">state</span><span class="o">.</span><span class="n">sep</span>
+        <span class="p">)</span>
+
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">alias</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">asname</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">codeStr</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">codeStr</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> as </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">asname</span><span class="p">)</span>
+
+    <span class="c1"># Module: body</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="n">genCode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">body</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+
+    <span class="c1"># BoolOp: body</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">BoolOp</span><span class="p">):</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="s2">&quot;(</span><span class="si">{0}</span><span class="s2"> </span><span class="si">{1}</span><span class="s2"> </span><span class="si">{2}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                          <span class="n">genCode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">state</span><span class="p">),</span>
+                          <span class="n">genCode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">op</span><span class="p">,</span> <span class="n">state</span><span class="p">),</span>
+                          <span class="n">genCode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">state</span><span class="p">))</span>  
+
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Attribute</span><span class="p">):</span>
+        <span class="c1"># Code below will be kept until all tests pass and removed if they do</span>
+        <span class="c1"># codeStr = genCode(node.value, state)</span>
+
+        <span class="c1"># This is a fix on `feature_save` branch to bypass the SAVE statement</span>
+        <span class="c1"># feature where a SAVEd variable is referenced as</span>
+        <span class="c1"># &lt;function_name&gt;.&lt;variable_name&gt;. So the code below only returns the</span>
+        <span class="c1"># &lt;variable_name&gt; which is stored under `node.attr`.</span>
+        <span class="n">codeStr</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">attr</span>
+
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">AST</span><span class="p">):</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+            <span class="s2">&quot;No handler for AST.</span><span class="si">{0}</span><span class="s2"> in genCode, fields: </span><span class="si">{1}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">node</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">_fields</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+            <span class="s2">&quot;No handler for </span><span class="si">{0}</span><span class="s2"> in genCode, value: </span><span class="si">{1}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">node</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">codeStr</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Adarsh
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

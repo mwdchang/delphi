@@ -1,0 +1,333 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>delphi.apps.rest_api.utils &mdash; delphi  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../../../../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> delphi
+          
+
+          
+            
+            <img src="../../../../_static/delphi_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../model.html">The Delphi model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../AnalysisGraph_API.html">AnalysisGraph API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../GrFN_API.html">GroundedFunctionNetwork API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../grfn_spec.html">Grounded Function Network (GrFN) JSON Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../grfn_spec.html#change-log">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cpp_api/library_root.html">C++ API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">delphi</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../rest_api.html">delphi.apps.rest_api</a> &raquo;</li>
+        
+      <li>delphi.apps.rest_api.utils</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for delphi.apps.rest_api.utils</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">uuid</span> <span class="k">import</span> <span class="n">uuid4</span>
+<span class="kn">from</span> <span class="nn">delphi.apps.rest_api.models</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">Evidence</span><span class="p">,</span>
+    <span class="n">ICMMetadata</span><span class="p">,</span>
+    <span class="n">CausalVariable</span><span class="p">,</span>
+    <span class="n">CausalRelationship</span><span class="p">,</span>
+    <span class="n">DelphiModel</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">delphi.apps.rest_api</span> <span class="k">import</span> <span class="n">create_app</span><span class="p">,</span> <span class="n">db</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">date</span>
+<span class="kn">from</span> <span class="nn">delphi.random_variables</span> <span class="k">import</span> <span class="n">LatentVar</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+
+<div class="viewcode-block" id="write_model_to_database"><a class="viewcode-back" href="../../../../delphi.apps.rest_api.html#delphi.apps.rest_api.utils.write_model_to_database">[docs]</a><span class="k">def</span> <span class="nf">write_model_to_database</span><span class="p">(</span><span class="n">G</span><span class="p">):</span>
+
+    <span class="n">G</span><span class="o">.</span><span class="n">assemble_transition_model_from_gradable_adjectives</span><span class="p">()</span>
+    <span class="n">delphi_model</span> <span class="o">=</span> <span class="n">DelphiModel</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">G</span><span class="p">)</span>
+    <span class="n">icm_metadata</span> <span class="o">=</span> <span class="n">ICMMetadata</span><span class="p">(</span>
+        <span class="nb">id</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="n">created</span><span class="o">=</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+        <span class="n">estimatedNumberOfPrimitives</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">),</span>
+        <span class="n">createdByUser_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">lastAccessedByUser_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">lastUpdatedByUser_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">today</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+    <span class="n">default_latent_var_value</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">causal_primitives</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">n</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;rv&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">LatentVar</span><span class="p">(</span><span class="n">n</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">n</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;update_function&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">default_update_function</span>
+        <span class="n">rv</span> <span class="o">=</span> <span class="n">n</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;rv&quot;</span><span class="p">]</span>
+        <span class="n">rv</span><span class="o">.</span><span class="n">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="n">default_latent_var_value</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">res</span><span class="p">)]</span>
+
+        <span class="n">causal_variable</span> <span class="o">=</span> <span class="n">CausalVariable</span><span class="p">(</span>
+            <span class="nb">id</span><span class="o">=</span><span class="n">n</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">],</span>
+            <span class="n">model_id</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="n">units</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="n">namespaces</span><span class="o">=</span><span class="p">{},</span>
+            <span class="n">auxiliaryProperties</span><span class="o">=</span><span class="p">[],</span>
+            <span class="n">label</span><span class="o">=</span><span class="n">n</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">description</span><span class="o">=</span><span class="n">f</span><span class="s2">&quot;Long description of </span><span class="si">{n[0]}</span><span class="s2">.&quot;</span><span class="p">,</span>
+            <span class="n">lastUpdated</span><span class="o">=</span><span class="n">today</span><span class="p">,</span>
+            <span class="n">confidence</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+            <span class="n">lastKnownValue</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;active&quot;</span><span class="p">:</span> <span class="s2">&quot;ACTIVE&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;trend&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">today</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;baseType&quot;</span><span class="p">:</span> <span class="s2">&quot;FloatValue&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">n</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;rv&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="p">},</span>
+            <span class="p">},</span>
+            <span class="nb">range</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;baseType&quot;</span><span class="p">:</span> <span class="s2">&quot;FloatRange&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;range&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;step&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">},</span>
+            <span class="p">},</span>
+        <span class="p">)</span>
+        <span class="n">causal_primitives</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">causal_variable</span><span class="p">)</span>
+
+    <span class="n">max_evidences</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="nb">sum</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">evidence</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">e</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s2">&quot;InfluenceStatements&quot;</span><span class="p">]])</span>
+            <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">max_median_betas</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
+        <span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s2">&quot;betas&quot;</span><span class="p">]))</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">)]</span>
+    <span class="p">)</span>
+    <span class="n">evidences</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">causal_relationship</span> <span class="o">=</span> <span class="n">CausalRelationship</span><span class="p">(</span>
+            <span class="nb">id</span><span class="o">=</span><span class="n">e</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">],</span>
+            <span class="n">namespaces</span><span class="o">=</span><span class="p">{},</span>
+            <span class="n">source</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="s2">&quot;id&quot;</span><span class="p">],</span> <span class="s2">&quot;baseType&quot;</span><span class="p">:</span> <span class="s2">&quot;CausalVariable&quot;</span><span class="p">},</span>
+            <span class="n">target</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="s2">&quot;id&quot;</span><span class="p">],</span> <span class="s2">&quot;baseType&quot;</span><span class="p">:</span> <span class="s2">&quot;CausalVariable&quot;</span><span class="p">},</span>
+            <span class="n">model_id</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="n">auxiliaryProperties</span><span class="o">=</span><span class="p">[],</span>
+            <span class="n">lastUpdated</span><span class="o">=</span><span class="n">today</span><span class="p">,</span>
+            <span class="n">types</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;causal&quot;</span><span class="p">],</span>
+            <span class="n">description</span><span class="o">=</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{e[0]}</span><span class="s2"> influences </span><span class="si">{e[1]}</span><span class="s2">.&quot;</span><span class="p">,</span>
+            <span class="n">confidence</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
+                <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">belief</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">e</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s2">&quot;InfluenceStatements&quot;</span><span class="p">]]</span>
+            <span class="p">),</span>
+            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;influences&quot;</span><span class="p">,</span>
+            <span class="n">strength</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s2">&quot;betas&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="n">max_median_betas</span><span class="p">),</span>
+            <span class="n">reinforcement</span><span class="o">=</span><span class="p">(</span>
+                <span class="kc">True</span>
+                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">stmt</span><span class="o">.</span><span class="n">subj_delta</span><span class="p">[</span><span class="s2">&quot;polarity&quot;</span><span class="p">]</span>
+                        <span class="o">*</span> <span class="n">stmt</span><span class="o">.</span><span class="n">obj_delta</span><span class="p">[</span><span class="s2">&quot;polarity&quot;</span><span class="p">]</span>
+                        <span class="k">for</span> <span class="n">stmt</span> <span class="ow">in</span> <span class="n">e</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s2">&quot;InfluenceStatements&quot;</span><span class="p">]</span>
+                    <span class="p">]</span>
+                <span class="p">)</span>
+                <span class="o">&gt;</span> <span class="mi">0</span>
+                <span class="k">else</span> <span class="kc">False</span>
+            <span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">causal_primitives</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">causal_relationship</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">stmt</span> <span class="ow">in</span> <span class="n">e</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s2">&quot;InfluenceStatements&quot;</span><span class="p">]:</span>
+            <span class="k">for</span> <span class="n">ev</span> <span class="ow">in</span> <span class="n">stmt</span><span class="o">.</span><span class="n">evidence</span><span class="p">:</span>
+                <span class="n">evidence</span> <span class="o">=</span> <span class="n">Evidence</span><span class="p">(</span>
+                    <span class="nb">id</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">uuid4</span><span class="p">()),</span>
+                    <span class="n">causalrelationship_id</span><span class="o">=</span><span class="n">e</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">],</span>
+                    <span class="n">description</span><span class="o">=</span><span class="n">ev</span><span class="o">.</span><span class="n">text</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="n">evidences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evidence</span><span class="p">)</span>
+
+    <span class="n">app</span> <span class="o">=</span> <span class="n">create_app</span><span class="p">()</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">testing</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;SQLALCHEMY_DATABASE_URI&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;sqlite:///delphi.db&quot;</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;SQLALCHEMY_TRACK_MODIFICATIONS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">with</span> <span class="n">app</span><span class="o">.</span><span class="n">app_context</span><span class="p">():</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">create_all</span><span class="p">()</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">icm_metadata</span><span class="p">)</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">delphi_model</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">causal_primitive</span> <span class="ow">in</span> <span class="n">causal_primitives</span><span class="p">:</span>
+            <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">causal_primitive</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">evidence</span> <span class="ow">in</span> <span class="n">evidences</span><span class="p">:</span>
+            <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">evidence</span><span class="p">)</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Adarsh
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

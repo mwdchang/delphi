@@ -1,0 +1,13 @@
+.. _exhale_function_AnalysisGraph_8hpp_1a4f4df028495ab3894764f5c7713d2cb3:
+
+Function sample_from_normal
+===========================
+
+- Defined in :ref:`file_delphi_cpp_AnalysisGraph.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: sample_from_normal(double, double)

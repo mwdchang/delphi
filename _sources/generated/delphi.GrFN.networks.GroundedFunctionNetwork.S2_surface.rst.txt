@@ -1,0 +1,6 @@
+delphi.GrFN.networks.GroundedFunctionNetwork.S2\_surface
+========================================================
+
+.. currentmodule:: delphi.GrFN.networks
+
+.. automethod:: GroundedFunctionNetwork.S2_surface

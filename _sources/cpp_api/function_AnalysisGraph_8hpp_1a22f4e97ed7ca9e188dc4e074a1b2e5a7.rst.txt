@@ -1,0 +1,13 @@
+.. _exhale_function_AnalysisGraph_8hpp_1a22f4e97ed7ca9e188dc4e074a1b2e5a7:
+
+Function sqr
+============
+
+- Defined in :ref:`file_delphi_cpp_AnalysisGraph.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: sqr(double)

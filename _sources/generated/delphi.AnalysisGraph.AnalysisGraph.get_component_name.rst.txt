@@ -1,0 +1,6 @@
+delphi.AnalysisGraph.AnalysisGraph.get\_component\_name
+=======================================================
+
+.. currentmodule:: delphi.AnalysisGraph
+
+.. automethod:: AnalysisGraph.get_component_name

@@ -1,0 +1,16 @@
+.. _exhale_struct_structCAGEdge:
+
+Struct CAGEdge
+==============
+
+- Defined in :ref:`file_delphi_cpp_AnalysisGraph.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: CAGEdge
+   :members:
+   :protected-members:
+   :undoc-members:

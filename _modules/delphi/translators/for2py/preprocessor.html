@@ -1,0 +1,613 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>delphi.translators.for2py.preprocessor &mdash; delphi  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../../../../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> delphi
+          
+
+          
+            
+            <img src="../../../../_static/delphi_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../model.html">The Delphi model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../AnalysisGraph_API.html">AnalysisGraph API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../GrFN_API.html">GroundedFunctionNetwork API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../grfn_spec.html">Grounded Function Network (GrFN) JSON Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../grfn_spec.html#change-log">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cpp_api/library_root.html">C++ API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">delphi</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../for2py.html">delphi.translators.for2py</a> &raquo;</li>
+        
+      <li>delphi.translators.for2py.preprocessor</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for delphi.translators.for2py.preprocessor</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module implements functions to preprocess Fortran source files prior to</span>
+<span class="sd">parsing to fix up some constructs (such as continuation lines) that are</span>
+<span class="sd">problematic for the OpenFortranParser front end. It can also be run as a script,</span>
+<span class="sd">as seen below.</span>
+<span class="sd">Example:</span>
+<span class="sd">    To invoke this script, do: ::</span>
+<span class="sd">        ./preprocessor.py &lt;infile&gt; &lt;outfile&gt;</span>
+<span class="sd">where `infile` is the name of the input file, and `outfile` is the name of the</span>
+<span class="sd">file to which the preprocessed code will be written.</span>
+<span class="sd">Author:</span>
+<span class="sd">    Saumya Debray</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">delphi.translators.for2py.syntax</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">line_is_comment</span><span class="p">,</span>
+    <span class="n">line_is_continuation</span><span class="p">,</span>
+    <span class="n">line_is_executable</span><span class="p">,</span>
+    <span class="n">line_is_pgm_unit_end</span><span class="p">,</span>
+    <span class="n">line_is_pgm_unit_separator</span><span class="p">,</span>
+    <span class="n">line_is_pgm_unit_start</span><span class="p">,</span>
+    <span class="n">program_unit_name</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="c1"># IGNORE_INTERNAL_COMMENTS: if set to True, internal comments are dropped.</span>
+<span class="n">IGNORE_INTERNAL_COMMENTS</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># INTERNAL_COMMENT_PREFIX is a prefix used for marker variables associated</span>
+<span class="c1"># with comments internal to subprogram bodies.</span>
+<span class="n">INTERNAL_COMMENT_PREFIX</span> <span class="o">=</span> <span class="s2">&quot;i_g_n_o_r_e___m_e_&quot;</span>
+
+
+<div class="viewcode-block" id="separate_trailing_comments"><a class="viewcode-back" href="../../../../delphi.translators.for2py.html#delphi.translators.for2py.preprocessor.separate_trailing_comments">[docs]</a><span class="k">def</span> <span class="nf">separate_trailing_comments</span><span class="p">(</span><span class="n">lines</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
+    <span class="sd">&quot;&quot;&quot;Given a list of numbered Fortran source code lines, i.e., pairs of the</span>
+<span class="sd">       form (n, code_line) where n is a line number and code_line is a line</span>
+<span class="sd">       of code, separate_trailing_comments() behaves as follows: for each</span>
+<span class="sd">       pair (n, code_line) where code_line can be broken into two parts -- a</span>
+<span class="sd">       code portion code_part and a trailing comment portion comment_part, such</span>
+<span class="sd">       that code_part and comment_part are both non-empty, it replaces the</span>
+<span class="sd">       pair (n, code_line) by two pairs (n, comment_part) and (n, code_part).</span>
+<span class="sd">       The return value is the resulting list of numbered lines.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>
+        <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">code_line</span><span class="p">)</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">line_is_comment</span><span class="p">(</span><span class="n">code_line</span><span class="p">):</span>
+            <span class="p">(</span><span class="n">code_part</span><span class="p">,</span> <span class="n">comment_part</span><span class="p">)</span> <span class="o">=</span> <span class="n">split_trailing_comment</span><span class="p">(</span><span class="n">code_line</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">comment_part</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">comment_part</span><span class="p">)</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">code_part</span><span class="p">))</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">lines</span></div>
+
+
+<div class="viewcode-block" id="merge_continued_lines"><a class="viewcode-back" href="../../../../delphi.translators.for2py.html#delphi.translators.for2py.preprocessor.merge_continued_lines">[docs]</a><span class="k">def</span> <span class="nf">merge_continued_lines</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Given a list of numered Fortran source code lines, i.e., pairs of the</span>
+<span class="sd">       form (n, code_line) where n is a line number and code_line is a line</span>
+<span class="sd">       of code, merge_continued_lines() merges sequences of lines that are</span>
+<span class="sd">       indicated to be continuation lines.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Before a continuation line L1 is merged with the line L0 before it (and</span>
+    <span class="c1"># presumably the one L1 is continuing), ensure that L0 is not a comment.</span>
+    <span class="c1"># If L0 is a comment, swap L0 and L1.</span>
+    <span class="n">chg</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">while</span> <span class="n">chg</span><span class="p">:</span>
+        <span class="n">chg</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">ln0</span><span class="p">,</span> <span class="n">ln1</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">lines</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">line_is_comment</span><span class="p">(</span><span class="n">ln0</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="ow">and</span> <span class="n">line_is_continuation</span><span class="p">(</span><span class="n">ln1</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="c1"># swap the code portions of lines[i] and lines[i+1]</span>
+                <span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">lines</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">ln0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ln1</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="n">ln1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ln0</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                <span class="n">chg</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c1"># Merge continuation lines</span>
+    <span class="n">chg</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">while</span> <span class="n">chg</span><span class="p">:</span>
+        <span class="n">chg</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">line_is_continuation</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="k">assert</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span>
+                <span class="p">(</span><span class="n">prev_linenum</span><span class="p">,</span> <span class="n">prev_line_code</span><span class="p">)</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+                <span class="n">curr_line_code</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lstrip</span><span class="p">()[</span>
+                    <span class="mi">1</span><span class="p">:</span>
+                <span class="p">]</span>  <span class="c1"># remove continuation  char</span>
+                <span class="n">merged_code</span> <span class="o">=</span> <span class="n">prev_line_code</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span> <span class="o">+</span> <span class="n">curr_line_code</span><span class="o">.</span><span class="n">lstrip</span><span class="p">()</span>
+
+                <span class="n">lines</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">prev_linenum</span><span class="p">,</span> <span class="n">merged_code</span><span class="p">)</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                <span class="n">chg</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">lines</span></div>
+
+
+<div class="viewcode-block" id="merge_adjacent_comment_lines"><a class="viewcode-back" href="../../../../delphi.translators.for2py.html#delphi.translators.for2py.preprocessor.merge_adjacent_comment_lines">[docs]</a><span class="k">def</span> <span class="nf">merge_adjacent_comment_lines</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Given a list of numered Fortran source code lines, i.e., pairs of the</span>
+<span class="sd">       form (n, code_line) where n is a line number and code_line is a line</span>
+<span class="sd">       of code, merge_adjacent_comment_lines() merges sequences of lines that are</span>
+<span class="sd">       indicated to be comment lines.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">lnum</span><span class="p">,</span> <span class="n">line</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">line_is_comment</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+            <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="ow">and</span> <span class="n">line_is_comment</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="n">line</span> <span class="o">+=</span> <span class="n">lines</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+                <span class="c1"># pop() removes a line so lines[j] now refers to the next line</span>
+
+            <span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">lnum</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">lines</span></div>
+
+
+<span class="c1"># We use a finite-state machine to keep track of where the line currently</span>
+<span class="c1"># being processed sits w.r.t. the structure of the code; this affects how</span>
+<span class="c1"># comments should be handled.  The FSM has the following set of states:</span>
+<span class="c1">#</span>
+<span class="c1">#     { &quot;outside&quot;, &quot;in_neck&quot;, &quot;in_body&quot; }.</span>
+<span class="c1">#</span>
+<span class="c1"># Here, &quot;outside&quot; refers to program points outside any program unit such as</span>
+<span class="c1"># programs, subprograms, or modules; &quot;in_neck&quot; refers to the portion of</span>
+<span class="c1"># code within a subprogram between the subprogram header and the first line</span>
+<span class="c1"># of executable code; and &quot;in_body&quot; refers to the portion of the code between</span>
+<span class="c1"># the first line of executable code and the end of the subprogram.</span>
+<span class="c1">#</span>
+<span class="c1"># State transitions for the FSM are given by the dictionary TRANSITIONS;</span>
+<span class="c1"># here &quot;comment&quot;, &quot;pgm_unit_start&quot;, &quot;exec_stmt&quot;, etc., relate to the nature of</span>
+<span class="c1"># the line being processed.</span>
+
+<span class="n">TRANSITIONS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;outside&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;outside&quot;</span><span class="p">,</span> 
+        <span class="s2">&quot;pgm_unit_start&quot;</span><span class="p">:</span> <span class="s2">&quot;in_neck&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;pgm_unit_end&quot;</span><span class="p">:</span> <span class="s2">&quot;outside&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;in_neck&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;in_neck&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;exec_stmt&quot;</span><span class="p">:</span> <span class="s2">&quot;in_body&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;other&quot;</span><span class="p">:</span> <span class="s2">&quot;in_neck&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;pgm_unit_sep&quot;</span><span class="p">:</span> <span class="s2">&quot;outside&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;pgm_unit_end&quot;</span><span class="p">:</span> <span class="s2">&quot;outside&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;in_body&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;in_body&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;exec_stmt&quot;</span><span class="p">:</span> <span class="s2">&quot;in_body&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;pgm_unit_sep&quot;</span><span class="p">:</span> <span class="s2">&quot;outside&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;pgm_unit_end&quot;</span><span class="p">:</span> <span class="s2">&quot;outside&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="type_of_line"><a class="viewcode-back" href="../../../../delphi.translators.for2py.html#delphi.translators.for2py.preprocessor.type_of_line">[docs]</a><span class="k">def</span> <span class="nf">type_of_line</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Given a line of code, type_of_line() returns a string indicating</span>
+<span class="sd">       what kind of code it is.&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">line_is_comment</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;comment&quot;</span>
+    <span class="k">elif</span> <span class="n">line_is_executable</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;exec_stmt&quot;</span>
+    <span class="k">elif</span> <span class="n">line_is_pgm_unit_end</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;pgm_unit_end&quot;</span>
+    <span class="k">elif</span> <span class="n">line_is_pgm_unit_start</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;pgm_unit_start&quot;</span>
+    <span class="k">elif</span> <span class="n">line_is_pgm_unit_separator</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;pgm_unit_sep&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;other&quot;</span></div>
+
+
+<div class="viewcode-block" id="extract_comments"><a class="viewcode-back" href="../../../../delphi.translators.for2py.html#delphi.translators.for2py.preprocessor.extract_comments">[docs]</a><span class="k">def</span> <span class="nf">extract_comments</span><span class="p">(</span>
+    <span class="n">lines</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]:</span>
+    <span class="sd">&quot;&quot;&quot;Given a list of numbered lines from a Fortran file where comments</span>
+<span class="sd">       internal to subprogram bodies have been moved out into their own lines,</span>
+<span class="sd">       extract_comments() extracts comments into a dictionary and replaces</span>
+<span class="sd">       each comment internal to subprogram bodies with a marker statement.</span>
+<span class="sd">       It returns a pair (code, comments) where code is a list of numbered</span>
+<span class="sd">       lines with comments removed and marker statements (plus corresponding</span>
+<span class="sd">       variable declarations) added; and comments is a dictionary mapping</span>
+<span class="sd">       marker statement variables to the corresponding comments.&quot;&quot;&quot;</span>
+
+    <span class="n">curr_comment</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">curr_fn</span><span class="p">,</span> <span class="n">prev_fn</span><span class="p">,</span> <span class="n">curr_marker</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+    <span class="n">comments</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+
+    <span class="c1"># curr_state refers to the state of the finite-state machine (see above)</span>
+    <span class="n">curr_state</span> <span class="o">=</span> <span class="s2">&quot;outside&quot;</span>
+
+    <span class="n">comments</span><span class="p">[</span><span class="s2">&quot;$file_head&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">comments</span><span class="p">[</span><span class="s2">&quot;$file_foot&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)):</span>
+        <span class="p">(</span><span class="n">linenum</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="c1"># determine what kind of line this is</span>
+        <span class="n">line_type</span> <span class="o">=</span> <span class="n">type_of_line</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+        <span class="c1"># process the line appropriately</span>
+        <span class="k">if</span> <span class="n">curr_state</span> <span class="o">==</span> <span class="s2">&quot;outside&quot;</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">line_type</span> <span class="ow">in</span> <span class="p">(</span>
+                <span class="s2">&quot;comment&quot;</span><span class="p">,</span> 
+                <span class="s2">&quot;pgm_unit_start&quot;</span><span class="p">,</span> 
+                <span class="s2">&quot;pgm_unit_end&quot;</span>
+            <span class="p">),</span> <span class="p">(</span><span class="n">line_type</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">line_type</span> <span class="o">==</span> <span class="s2">&quot;comment&quot;</span><span class="p">:</span>
+                <span class="n">curr_comment</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                <span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">linenum</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># line_type == &quot;pgm_unit_start&quot; </span>
+                <span class="n">pgm_unit_name</span> <span class="o">=</span> <span class="n">program_unit_name</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">curr_state</span> <span class="o">==</span> <span class="s2">&quot;outside&quot;</span><span class="p">:</span>
+                    <span class="n">comments</span><span class="p">[</span><span class="s2">&quot;$file_head&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">curr_comment</span>
+
+                <span class="k">if</span> <span class="n">prev_fn</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">comments</span><span class="p">[</span><span class="n">prev_fn</span><span class="p">][</span><span class="s2">&quot;foot&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">curr_comment</span>
+
+                <span class="n">prev_fn</span> <span class="o">=</span> <span class="n">curr_fn</span>
+                <span class="n">curr_fn</span> <span class="o">=</span> <span class="n">pgm_unit_name</span>
+
+                <span class="n">comments</span><span class="p">[</span><span class="n">curr_fn</span><span class="p">]</span> <span class="o">=</span> <span class="n">init_comment_map</span><span class="p">(</span>
+                    <span class="n">curr_comment</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[],</span> <span class="n">OrderedDict</span><span class="p">()</span>
+                <span class="p">)</span>
+                <span class="n">curr_comment</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">elif</span> <span class="n">curr_state</span> <span class="o">==</span> <span class="s2">&quot;in_neck&quot;</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">line_type</span> <span class="ow">in</span> <span class="p">(</span>
+                <span class="s2">&quot;comment&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;exec_stmt&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;pgm_unit_sep&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;pgm_unit_end&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;other&quot;</span>
+            <span class="p">),</span> <span class="n">f</span><span class="s2">&quot;[Line </span><span class="si">{linenum}</span><span class="s2">]: {line.strip()} (line_type: </span><span class="si">{line_type}</span><span class="s2">)&quot;</span>
+	           
+            <span class="k">if</span> <span class="n">line_type</span> <span class="o">==</span> <span class="s2">&quot;comment&quot;</span><span class="p">:</span>
+                <span class="n">curr_comment</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                <span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">linenum</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">line_type</span> <span class="o">==</span> <span class="s2">&quot;exec_stmt&quot;</span><span class="p">:</span>
+                <span class="n">comments</span><span class="p">[</span><span class="n">curr_fn</span><span class="p">][</span><span class="s2">&quot;neck&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">curr_comment</span>
+                <span class="n">curr_comment</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">pass</span>  <span class="c1"># nothing to do -- continue</span>
+
+        <span class="k">elif</span> <span class="n">curr_state</span> <span class="o">==</span> <span class="s2">&quot;in_body&quot;</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">line_type</span> <span class="ow">in</span> <span class="p">(</span>
+                <span class="s2">&quot;comment&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;exec_stmt&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;pgm_unit_sep&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;pgm_unit_end&quot;</span><span class="p">,</span>
+            <span class="p">),</span> <span class="n">f</span><span class="s2">&quot;[Line </span><span class="si">{linenum}</span><span class="s2">]: {line.strip()} (line_type: </span><span class="si">{line_type}</span><span class="s2">)&quot;</span>
+
+            <span class="k">if</span> <span class="n">line_type</span> <span class="o">==</span> <span class="s2">&quot;comment&quot;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">IGNORE_INTERNAL_COMMENTS</span><span class="p">:</span>
+                    <span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">linenum</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">marker_var</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{INTERNAL_COMMENT_PREFIX}</span><span class="s2">_</span><span class="si">{linenum}</span><span class="s2">&quot;</span>
+                    <span class="n">marker_stmt</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;        </span><span class="si">{marker_var}</span><span class="s2"> = .True.</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="n">comments</span><span class="p">[</span><span class="n">curr_fn</span><span class="p">][</span><span class="s2">&quot;internal&quot;</span><span class="p">][</span><span class="n">marker_var</span><span class="p">]</span> <span class="o">=</span> <span class="n">line</span>
+                    <span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">linenum</span><span class="p">,</span> <span class="n">marker_stmt</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">pass</span>  <span class="c1"># nothing to do -- continue</span>
+
+        <span class="c1"># update the current state</span>
+        <span class="n">curr_state</span> <span class="o">=</span> <span class="n">TRANSITIONS</span><span class="p">[</span><span class="n">curr_state</span><span class="p">][</span><span class="n">line_type</span><span class="p">]</span>
+
+    <span class="c1"># if there&#39;s a comment at the very end of the file, make it the foot</span>
+    <span class="c1"># comment of curr_fn</span>
+    <span class="k">if</span> <span class="n">curr_comment</span> <span class="o">!=</span> <span class="p">[]</span> <span class="ow">and</span> <span class="n">comments</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">curr_fn</span><span class="p">):</span>
+        <span class="n">comments</span><span class="p">[</span><span class="n">curr_fn</span><span class="p">][</span><span class="s2">&quot;foot&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">curr_comment</span>
+        <span class="n">comments</span><span class="p">[</span><span class="s2">&quot;$file_foot&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">curr_comment</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">comments</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="init_comment_map"><a class="viewcode-back" href="../../../../delphi.translators.for2py.html#delphi.translators.for2py.preprocessor.init_comment_map">[docs]</a><span class="k">def</span> <span class="nf">init_comment_map</span><span class="p">(</span><span class="n">head_cmt</span><span class="p">,</span> <span class="n">neck_cmt</span><span class="p">,</span> <span class="n">foot_cmt</span><span class="p">,</span> <span class="n">internal_cmt</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;head&quot;</span><span class="p">:</span> <span class="n">head_cmt</span><span class="p">,</span>
+        <span class="s2">&quot;neck&quot;</span><span class="p">:</span> <span class="n">neck_cmt</span><span class="p">,</span>
+        <span class="s2">&quot;foot&quot;</span><span class="p">:</span> <span class="n">foot_cmt</span><span class="p">,</span>
+        <span class="s2">&quot;internal&quot;</span><span class="p">:</span> <span class="n">internal_cmt</span><span class="p">,</span>
+    <span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="split_trailing_comment"><a class="viewcode-back" href="../../../../delphi.translators.for2py.html#delphi.translators.for2py.preprocessor.split_trailing_comment">[docs]</a><span class="k">def</span> <span class="nf">split_trailing_comment</span><span class="p">(</span><span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Takes a line and splits it into two parts (code_part, comment_part)</span>
+<span class="sd">    where code_part is the line up to but not including any trailing</span>
+<span class="sd">    comment (the &#39;!&#39; comment character and subsequent characters</span>
+<span class="sd">    to the end of the line), while comment_part is the trailing comment.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        line: A line of Fortran source code.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        A pair (code_part, comment_part) where comment_part is the trailing</span>
+<span class="sd">        comment.  If the line does not contain any trailing comment, then</span>
+<span class="sd">        comment_part is None.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;!&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">:</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;WEIRD: unbalanced quote &#39;: line = &quot;</span> <span class="o">+</span> <span class="n">line</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">line</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">i</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">:</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;WEIRD: unbalanced quote &quot;: line = &#39;</span> <span class="o">+</span> <span class="n">line</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">line</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">i</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;!&quot;</span><span class="p">:</span>  <span class="c1"># partial-line comment</span>
+            <span class="n">comment_part</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">:]</span>
+            <span class="n">code_part</span> <span class="o">=</span> <span class="n">line</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">code_part</span><span class="p">,</span> <span class="n">comment_part</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="preprocess"><a class="viewcode-back" href="../../../../delphi.translators.for2py.html#delphi.translators.for2py.preprocessor.preprocess">[docs]</a><span class="k">def</span> <span class="nf">preprocess</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>
+    <span class="n">enum_lines</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+    <span class="c1"># Discard empty lines. While these are technically comments, they provide</span>
+    <span class="c1"># no semantic content.  </span>
+    <span class="n">enum_lines</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">enum_lines</span> <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">]</span>
+
+    <span class="n">enum_lines</span> <span class="o">=</span> <span class="n">separate_trailing_comments</span><span class="p">(</span><span class="n">enum_lines</span><span class="p">)</span>
+    <span class="n">enum_lines</span> <span class="o">=</span> <span class="n">merge_continued_lines</span><span class="p">(</span><span class="n">enum_lines</span><span class="p">)</span>
+    <span class="n">enum_lines</span> <span class="o">=</span> <span class="n">merge_adjacent_comment_lines</span><span class="p">(</span><span class="n">enum_lines</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">extract_comments</span><span class="p">(</span><span class="n">enum_lines</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="process"><a class="viewcode-back" href="../../../../delphi.translators.for2py.html#delphi.translators.for2py.preprocessor.process">[docs]</a><span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="n">inputLines</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;process() provides the interface used by an earlier version of this</span>
+<span class="sd">       preprocessor.&quot;&quot;&quot;</span>
+    <span class="n">lines</span><span class="p">,</span> <span class="n">comments</span> <span class="o">=</span> <span class="n">preprocess</span><span class="p">(</span><span class="n">inputLines</span><span class="p">)</span>
+    <span class="n">actual_lines</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span>
+        <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">INTERNAL_COMMENT_PREFIX</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="p">]</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">actual_lines</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="print_comments"><a class="viewcode-back" href="../../../../delphi.translators.for2py.html#delphi.translators.for2py.preprocessor.print_comments">[docs]</a><span class="k">def</span> <span class="nf">print_comments</span><span class="p">(</span><span class="n">comments</span><span class="p">):</span>
+
+    <span class="k">for</span> <span class="n">fn</span><span class="p">,</span> <span class="n">comment</span> <span class="ow">in</span> <span class="n">comments</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">fn</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;$file_head&quot;</span><span class="p">,</span> <span class="s2">&quot;$file_foot&quot;</span><span class="p">):</span>  <span class="c1"># file-level comments</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">fn</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">comment</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;{line.rstrip()}&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># subprogram comments</span>
+            <span class="k">for</span> <span class="n">ccat</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;head&quot;</span><span class="p">,</span> <span class="s2">&quot;neck&quot;</span><span class="p">,</span> <span class="s2">&quot;foot&quot;</span><span class="p">]:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Function </span><span class="si">{fn}</span><span class="s2"> [</span><span class="si">{ccat}</span><span class="s2">]:&quot;</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">comment</span><span class="p">[</span><span class="n">ccat</span><span class="p">]:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">())</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">comment</span><span class="p">[</span><span class="s2">&quot;internal&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="p">{}:</span>
+                <span class="k">for</span> <span class="n">marker</span> <span class="ow">in</span> <span class="n">comment</span><span class="p">[</span><span class="s2">&quot;internal&quot;</span><span class="p">]:</span>
+                    <span class="n">comment_line_no</span> <span class="o">=</span> <span class="n">marker</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="s2">&quot;i_g_n_o_r_e__m_e___&quot;</span><span class="p">)</span> <span class="p">:]</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Function: </span><span class="si">{fn}</span><span class="s2"> [internal: line </span><span class="si">{comment_line_no}</span><span class="s2">]:&quot;</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">comment</span><span class="p">[</span><span class="s2">&quot;internal&quot;</span><span class="p">][</span><span class="n">marker</span><span class="p">])</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;*** USAGE: preprocessor.py &lt;infile&gt; &lt;outfile&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">infile</span><span class="p">,</span> <span class="n">outfile</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">infile</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;latin-1&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">inputLines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="n">lines</span><span class="p">,</span> <span class="n">comments</span> <span class="o">=</span> <span class="n">preprocess</span><span class="p">(</span><span class="n">inputLines</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">line</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+    <span class="c1"># Temporarily commenting out the printing of comments by the preprocessor.</span>
+    <span class="c1"># To be reinstated later if it seems useful.  --SKD 06/2019</span>
+    <span class="c1">#print_comments(comments)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Adarsh
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

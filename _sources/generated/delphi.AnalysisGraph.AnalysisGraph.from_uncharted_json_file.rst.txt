@@ -1,0 +1,6 @@
+delphi.AnalysisGraph.AnalysisGraph.from\_uncharted\_json\_file
+==============================================================
+
+.. currentmodule:: delphi.AnalysisGraph
+
+.. automethod:: AnalysisGraph.from_uncharted_json_file

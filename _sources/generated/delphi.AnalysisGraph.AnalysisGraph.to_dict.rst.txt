@@ -1,0 +1,6 @@
+delphi.AnalysisGraph.AnalysisGraph.to\_dict
+===========================================
+
+.. currentmodule:: delphi.AnalysisGraph
+
+.. automethod:: AnalysisGraph.to_dict

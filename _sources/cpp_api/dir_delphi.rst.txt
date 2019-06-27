@@ -1,0 +1,16 @@
+.. _dir_delphi:
+
+
+Directory delphi
+================
+
+
+*Directory path:* ``delphi``
+
+Subdirectories
+--------------
+
+- :ref:`dir_delphi_cpp`
+
+
+

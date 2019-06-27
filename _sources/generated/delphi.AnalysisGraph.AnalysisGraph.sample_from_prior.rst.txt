@@ -1,0 +1,6 @@
+delphi.AnalysisGraph.AnalysisGraph.sample\_from\_prior
+======================================================
+
+.. currentmodule:: delphi.AnalysisGraph
+
+.. automethod:: AnalysisGraph.sample_from_prior

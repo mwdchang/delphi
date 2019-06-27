@@ -1,0 +1,6 @@
+delphi.AnalysisGraph.AnalysisGraph.delete\_edges
+================================================
+
+.. currentmodule:: delphi.AnalysisGraph
+
+.. automethod:: AnalysisGraph.delete_edges

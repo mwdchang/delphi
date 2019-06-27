@@ -1,0 +1,6 @@
+delphi.AnalysisGraph.AnalysisGraph.parameterize
+===============================================
+
+.. currentmodule:: delphi.AnalysisGraph
+
+.. automethod:: AnalysisGraph.parameterize

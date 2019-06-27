@@ -1,0 +1,6 @@
+delphi.GrFN.networks.ForwardInfluenceBlanket.S2\_surface
+========================================================
+
+.. currentmodule:: delphi.GrFN.networks
+
+.. automethod:: ForwardInfluenceBlanket.S2_surface

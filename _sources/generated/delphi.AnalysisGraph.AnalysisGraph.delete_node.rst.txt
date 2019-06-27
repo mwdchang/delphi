@@ -1,0 +1,6 @@
+delphi.AnalysisGraph.AnalysisGraph.delete\_node
+===============================================
+
+.. currentmodule:: delphi.AnalysisGraph
+
+.. automethod:: AnalysisGraph.delete_node

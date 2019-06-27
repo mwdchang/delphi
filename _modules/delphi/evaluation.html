@@ -1,0 +1,798 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>delphi.evaluation &mdash; delphi  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> delphi
+          
+
+          
+            
+            <img src="../../_static/delphi_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../model.html">The Delphi model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../AnalysisGraph_API.html">AnalysisGraph API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GrFN_API.html">GroundedFunctionNetwork API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grfn_spec.html">Grounded Function Network (GrFN) JSON Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grfn_spec.html#change-log">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cpp_api/library_root.html">C++ API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">delphi</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>delphi.evaluation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for delphi.evaluation</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">.db</span> <span class="k">import</span> <span class="n">engine</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+
+<div class="viewcode-block" id="get_predictions"><a class="viewcode-back" href="../../delphi.html#delphi.evaluation.get_predictions">[docs]</a><span class="k">def</span> <span class="nf">get_predictions</span><span class="p">(</span>
+    <span class="n">G</span><span class="p">,</span>
+    <span class="n">target_node</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">intervened_node</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">deltas</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
+    <span class="n">n_timesteps</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Get predicted values for each timestep for a target node&#39;s indicator</span>
+<span class="sd">    variable given a intervened node and a set of deltas.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        G: A completely parameterized and quantified CAG with indicators,</span>
+<span class="sd">        estimated transition matrx, and indicator values.</span>
+
+<span class="sd">        target_node: The full name of the node in which we</span>
+<span class="sd">        wish to predict values for its attached indicator variable.</span>
+
+<span class="sd">        intervened_node: The full name of the node in which we</span>
+<span class="sd">        are intervening on.</span>
+
+<span class="sd">        deltas: 1D array-like, contains rate of change (deltas) for each</span>
+<span class="sd">        time step. Its length must match equal n_timesteps.</span>
+
+<span class="sd">        n_timesteps: Number of time steps.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Pandas Dataframe containing predictions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="p">(</span>
+        <span class="nb">len</span><span class="p">(</span><span class="n">deltas</span><span class="p">)</span> <span class="o">==</span> <span class="n">n_timesteps</span>
+    <span class="p">),</span> <span class="s2">&quot;The length of deltas must be equal to n_timesteps.&quot;</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">create_bmi_config_file</span><span class="p">()</span>
+    <span class="n">s0</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+        <span class="s2">&quot;bmi_config.txt&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">error_bad_lines</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">s0</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">f</span><span class="s2">&quot;∂(</span><span class="si">{intervened_node}</span><span class="s2">)/∂t&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">deltas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">s0</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;bmi_config.txt&quot;</span><span class="p">,</span> <span class="n">index_label</span><span class="o">=</span><span class="s2">&quot;variable&quot;</span><span class="p">)</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
+
+    <span class="n">pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_timesteps</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">target_indicator</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="n">target_node</span><span class="p">][</span><span class="s2">&quot;indicators&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+    <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_timesteps</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">G</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">dampen</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">G</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">dampen</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">set_delta</span><span class="o">=</span><span class="n">deltas</span><span class="p">[</span><span class="n">t</span><span class="p">])</span>
+        <span class="n">pred</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span>
+            <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="n">target_node</span><span class="p">][</span><span class="s2">&quot;indicators&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span>
+                <span class="mi">0</span>
+            <span class="p">]</span><span class="o">.</span><span class="n">samples</span>
+        <span class="p">)</span>
+
+    <span class="n">pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">pred</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="n">target_node</span><span class="p">][</span><span class="s2">&quot;indicators&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span>
+        <span class="mi">0</span>
+    <span class="p">]</span><span class="o">.</span><span class="n">mean</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">target_indicator</span> <span class="o">+</span> <span class="s2">&quot;(Predictions)&quot;</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="get_true_values"><a class="viewcode-back" href="../../delphi.html#delphi.evaluation.get_true_values">[docs]</a><span class="k">def</span> <span class="nf">get_true_values</span><span class="p">(</span>
+    <span class="n">G</span><span class="p">,</span>
+    <span class="n">target_node</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">n_timesteps</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">start_year</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">start_month</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">country</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;South Sudan&quot;</span><span class="p">,</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Get the true values of the indicator variable attached to the given</span>
+<span class="sd">    target node.</span>
+
+<span class="sd">    If multiple data entries exist for one time point then the mean is used</span>
+<span class="sd">    for those time points. If there are no data entries for a given year,</span>
+<span class="sd">    then the mean over all data values is used. If there are no data entries</span>
+<span class="sd">    for a given month (but there are data entries for that year), then the</span>
+<span class="sd">    overall value for the year is used (the mean for that year is used if there</span>
+<span class="sd">    are multiple values for that year). This will use the units that the CAG</span>
+<span class="sd">    was parameterized with. WARNING: The state and country should be same as what was</span>
+<span class="sd">    passed to G.parameterize() or else you could get mismatched data.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        G: A completely parameterized and quantified CAG with indicators,</span>
+<span class="sd">        estimated transition matrx, and indicator values.</span>
+
+<span class="sd">        target_node: The full name of the node in which we</span>
+<span class="sd">        wish to predict values for its attached indicator variable.</span>
+
+<span class="sd">        n_timesteps: Number of time steps.</span>
+
+<span class="sd">        start_year: The starting year in which to obtain</span>
+<span class="sd">        values.</span>
+
+<span class="sd">        start_month: The starting month (1-12).</span>
+
+<span class="sd">        country: Specified Country to get values for.</span>
+
+<span class="sd">        state: Specified State to get values for.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Pandas Dataframe containing true values for target node&#39;s indicator</span>
+<span class="sd">        variable. The values are indexed by date.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">target_indicator</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="n">target_node</span><span class="p">][</span><span class="s2">&quot;indicators&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+    <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">query_base</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">f</span><span class="s2">&quot;select * from indicator&quot;</span><span class="p">,</span>
+            <span class="n">f</span><span class="s2">&quot;where `Variable` like &#39;</span><span class="si">{target_indicator}</span><span class="s2">&#39;&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">query_parts</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;base&quot;</span><span class="p">:</span> <span class="n">query_base</span><span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">country</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">check_q</span> <span class="o">=</span> <span class="n">query_parts</span><span class="p">[</span><span class="s2">&quot;base&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">f</span><span class="s2">&quot;and `Country` is &#39;</span><span class="si">{country}</span><span class="s2">&#39;&quot;</span>
+        <span class="n">check_r</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">check_q</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">check_r</span> <span class="o">==</span> <span class="p">[]:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="n">f</span><span class="s2">&quot;Selected Country not found for </span><span class="si">{target_indicator}</span><span class="s2">! Using default settings (South Sudan)!&quot;</span>
+            <span class="p">)</span>
+            <span class="n">query_parts</span><span class="p">[</span><span class="s2">&quot;country&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;and `Country` is &#39;South Sudan&#39;&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">query_parts</span><span class="p">[</span><span class="s2">&quot;country&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;and `Country` is &#39;</span><span class="si">{country}</span><span class="s2">&#39;&quot;</span>
+    <span class="k">if</span> <span class="n">state</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">check_q</span> <span class="o">=</span> <span class="n">query_parts</span><span class="p">[</span><span class="s2">&quot;base&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">f</span><span class="s2">&quot;and `State` is &#39;</span><span class="si">{state}</span><span class="s2">&#39;&quot;</span>
+        <span class="n">check_r</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">check_q</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">check_r</span> <span class="o">==</span> <span class="p">[]:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="n">f</span><span class="s2">&quot;Selected State not found for </span><span class="si">{target_indicator}</span><span class="s2">! Using default settings (Aggregration over all States)&quot;</span>
+            <span class="p">)</span>
+            <span class="n">query_parts</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">query_parts</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;and `State` is &#39;</span><span class="si">{state}</span><span class="s2">&#39;&quot;</span>
+
+    <span class="n">unit</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="n">target_node</span><span class="p">][</span><span class="s2">&quot;indicators&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span>
+
+    <span class="n">true_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_timesteps</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">true_vals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="n">target_node</span><span class="p">][</span><span class="s2">&quot;indicators&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+    <span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="n">start_year</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="n">start_month</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">date</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{start_year}</span><span class="s2">-</span><span class="si">{start_month}</span><span class="s2">&quot;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_timesteps</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">query_parts</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;and `Year` is &#39;</span><span class="si">{year}</span><span class="s2">&#39;&quot;</span>
+        <span class="n">query_parts</span><span class="p">[</span><span class="s2">&quot;month&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;and `Month` is &#39;</span><span class="si">{month}</span><span class="s2">&#39;&quot;</span>
+
+        <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">query_parts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">results</span> <span class="o">!=</span> <span class="p">[]:</span>
+            <span class="n">true_vals</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
+                <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;Value&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span> <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;Unit&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">unit</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="n">date</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{year}</span><span class="s2">-</span><span class="si">{month}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">month</span> <span class="o">==</span> <span class="mi">12</span><span class="p">:</span>
+                <span class="n">year</span> <span class="o">=</span> <span class="n">year</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="n">month</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">month</span> <span class="o">=</span> <span class="n">month</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">continue</span>
+
+        <span class="n">query_parts</span><span class="p">[</span><span class="s2">&quot;month&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">query_parts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">results</span> <span class="o">!=</span> <span class="p">[]:</span>
+            <span class="n">true_vals</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
+                <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;Value&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span> <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;Unit&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">unit</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="n">date</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{year}</span><span class="s2">-</span><span class="si">{month}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">month</span> <span class="o">==</span> <span class="mi">12</span><span class="p">:</span>
+                <span class="n">year</span> <span class="o">=</span> <span class="n">year</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="n">month</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">month</span> <span class="o">=</span> <span class="n">month</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">continue</span>
+
+        <span class="n">query_parts</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">query_parts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">results</span> <span class="o">!=</span> <span class="p">[]:</span>
+            <span class="n">true_vals</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
+                <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;Value&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span> <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;Unit&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">unit</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="n">date</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{year}</span><span class="s2">-</span><span class="si">{month}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">month</span> <span class="o">==</span> <span class="mi">12</span><span class="p">:</span>
+                <span class="n">year</span> <span class="o">=</span> <span class="n">year</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="n">month</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">month</span> <span class="o">=</span> <span class="n">month</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">continue</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">true_vals</span><span class="p">,</span> <span class="n">date</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">target_indicator</span> <span class="o">+</span> <span class="s2">&quot;(True)&quot;</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="calculate_timestep"><a class="viewcode-back" href="../../delphi.html#delphi.evaluation.calculate_timestep">[docs]</a><span class="k">def</span> <span class="nf">calculate_timestep</span><span class="p">(</span>
+    <span class="n">start_year</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">start_month</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">end_year</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">end_month</span><span class="p">:</span> <span class="nb">int</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Utility function that converts a time range given a start date and end</span>
+<span class="sd">    date into a integer value.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        start_year: The starting year (ex: 2012)</span>
+
+<span class="sd">        start_month: Starting month (1-12)</span>
+
+<span class="sd">        end_year: Ending year</span>
+
+<span class="sd">        end_month: Ending month</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The computed time step.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">assert</span> <span class="n">start_year</span> <span class="o">&lt;=</span> <span class="n">end_year</span><span class="p">,</span> <span class="s2">&quot;Starting date cannot exceed ending date.&quot;</span>
+    <span class="k">if</span> <span class="n">start_year</span> <span class="o">==</span> <span class="n">end_year</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="n">start_month</span> <span class="o">&lt;=</span> <span class="n">end_month</span>
+        <span class="p">),</span> <span class="s2">&quot;Starting date cannot exceed ending date.&quot;</span>
+
+    <span class="n">diff_year</span> <span class="o">=</span> <span class="n">end_year</span> <span class="o">-</span> <span class="n">start_year</span>
+    <span class="n">year_to_month</span> <span class="o">=</span> <span class="n">diff_year</span> <span class="o">*</span> <span class="mi">12</span>
+    <span class="k">return</span> <span class="n">year_to_month</span> <span class="o">-</span> <span class="p">(</span><span class="n">start_month</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">end_month</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="estimate_deltas"><a class="viewcode-back" href="../../delphi.html#delphi.evaluation.estimate_deltas">[docs]</a><span class="k">def</span> <span class="nf">estimate_deltas</span><span class="p">(</span>
+    <span class="n">G</span><span class="p">,</span>
+    <span class="n">intervened_node</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">n_timesteps</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">start_year</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">start_month</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">country</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;South Sudan&quot;</span><span class="p">,</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Utility function that estimates Rate of Change (deltas) for the</span>
+<span class="sd">    intervened node per timestep. This will use the units that the CAG</span>
+<span class="sd">    was parameterized with. WARNING: The state and country should be same as what was</span>
+<span class="sd">    passed to G.parameterize() or else you could get mismatched data.</span>
+
+<span class="sd">    Deltas are estimated by percent change between each time step. (i.e,</span>
+<span class="sd">    (current - next)/current). Heuristics are in place to handle NAN and INF</span>
+<span class="sd">    values. If changed from 0 to 0 (NAN case), then delta = 0. If increasing</span>
+<span class="sd">    from 0 (+INF case), then delta = positive absolute mean of all finite</span>
+<span class="sd">    deltas. If decreasing from 0 (-INF case), then delta = negative absolute</span>
+<span class="sd">    mean of all finite deltas.</span>
+
+<span class="sd">    See function get_true_values to see how the data is aggregated to fill in</span>
+<span class="sd">    values for missing time points which calculating the deltas.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        G: A completely parameterized and quantified CAG with indicators,</span>
+<span class="sd">        estimated transition matrx, and indicator values.</span>
+
+<span class="sd">        intervened_node: A string of the full name of the node in which we</span>
+<span class="sd">        are intervening on.</span>
+
+<span class="sd">        n_timesteps: Number of time steps.</span>
+
+<span class="sd">        start_year: The starting year (e.g, 2012).</span>
+
+<span class="sd">        start_month: The starting month (1-12).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        1D numpy array of deltas.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">intervener_indicator</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="n">intervened_node</span><span class="p">][</span><span class="s2">&quot;indicators&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+    <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">query_base</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">f</span><span class="s2">&quot;select * from indicator&quot;</span><span class="p">,</span>
+            <span class="n">f</span><span class="s2">&quot;where `Variable` like &#39;</span><span class="si">{intervener_indicator}</span><span class="s2">&#39;&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">query_parts</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;base&quot;</span><span class="p">:</span> <span class="n">query_base</span><span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">country</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">check_q</span> <span class="o">=</span> <span class="n">query_parts</span><span class="p">[</span><span class="s2">&quot;base&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">f</span><span class="s2">&quot;and `Country` is &#39;</span><span class="si">{country}</span><span class="s2">&#39;&quot;</span>
+        <span class="n">check_r</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">check_q</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">check_r</span> <span class="o">==</span> <span class="p">[]:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="n">f</span><span class="s2">&quot;Selected Country not found for </span><span class="si">{intervener_indicator}</span><span class="s2">! Using default settings (South Sudan)&quot;</span>
+            <span class="p">)</span>
+            <span class="n">query_parts</span><span class="p">[</span><span class="s2">&quot;country&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;and `Country` is &#39;South Sudan&#39;&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">query_parts</span><span class="p">[</span><span class="s2">&quot;country&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;and `Country` is &#39;</span><span class="si">{country}</span><span class="s2">&#39;&quot;</span>
+    <span class="k">if</span> <span class="n">state</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">check_q</span> <span class="o">=</span> <span class="n">query_parts</span><span class="p">[</span><span class="s2">&quot;base&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">f</span><span class="s2">&quot;and `State` is &#39;</span><span class="si">{state}</span><span class="s2">&#39;&quot;</span>
+        <span class="n">check_r</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">check_q</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">check_r</span> <span class="o">==</span> <span class="p">[]:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="n">f</span><span class="s2">&quot;Selected State not found for </span><span class="si">{intervener_indicator}</span><span class="s2">! Using default settings (Aggregration over all States)&quot;</span>
+            <span class="p">)</span>
+            <span class="n">query_parts</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">query_parts</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;and `State` is &#39;</span><span class="si">{state}</span><span class="s2">&#39;&quot;</span>
+
+    <span class="n">unit</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="n">intervened_node</span><span class="p">][</span><span class="s2">&quot;indicators&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span>
+        <span class="mi">0</span>
+    <span class="p">]</span><span class="o">.</span><span class="n">unit</span>
+
+    <span class="n">int_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_timesteps</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">int_vals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="n">intervened_node</span><span class="p">][</span><span class="s2">&quot;indicators&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+    <span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="n">start_year</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="n">start_month</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_timesteps</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">query_parts</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;and `Year` is &#39;</span><span class="si">{year}</span><span class="s2">&#39;&quot;</span>
+        <span class="n">query_parts</span><span class="p">[</span><span class="s2">&quot;month&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;and `Month` is &#39;</span><span class="si">{month}</span><span class="s2">&#39;&quot;</span>
+
+        <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">query_parts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">results</span> <span class="o">!=</span> <span class="p">[]:</span>
+            <span class="n">int_vals</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
+                <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;Value&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span> <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;Unit&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">unit</span><span class="p">]</span>
+            <span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">month</span> <span class="o">==</span> <span class="mi">12</span><span class="p">:</span>
+                <span class="n">year</span> <span class="o">=</span> <span class="n">year</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="n">month</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">month</span> <span class="o">=</span> <span class="n">month</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">continue</span>
+
+        <span class="n">query_parts</span><span class="p">[</span><span class="s2">&quot;month&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">query_parts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">results</span> <span class="o">!=</span> <span class="p">[]:</span>
+            <span class="n">int_vals</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
+                <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;Value&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span> <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;Unit&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">unit</span><span class="p">]</span>
+            <span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">month</span> <span class="o">==</span> <span class="mi">12</span><span class="p">:</span>
+                <span class="n">year</span> <span class="o">=</span> <span class="n">year</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="n">month</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">month</span> <span class="o">=</span> <span class="n">month</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">continue</span>
+
+        <span class="n">query_parts</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">query_parts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">results</span> <span class="o">!=</span> <span class="p">[]:</span>
+            <span class="n">int_vals</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
+                <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;Value&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span> <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;Unit&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">unit</span><span class="p">]</span>
+            <span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">month</span> <span class="o">==</span> <span class="mi">12</span><span class="p">:</span>
+                <span class="n">year</span> <span class="o">=</span> <span class="n">year</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="n">month</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">month</span> <span class="o">=</span> <span class="n">month</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">continue</span>
+
+    <span class="n">per_ch</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">int_vals</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">int_vals</span>
+
+    <span class="n">per_ch</span> <span class="o">=</span> <span class="n">per_ch</span> <span class="o">/</span> <span class="n">int_vals</span>
+
+    <span class="n">per_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">per_ch</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">per_ch</span><span class="p">)]))</span>
+
+    <span class="n">per_ch</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">per_ch</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">per_ch</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isposinf</span><span class="p">(</span><span class="n">per_ch</span><span class="p">)]</span> <span class="o">=</span> <span class="n">per_mean</span>
+    <span class="n">per_ch</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isneginf</span><span class="p">(</span><span class="n">per_ch</span><span class="p">)]</span> <span class="o">=</span> <span class="o">-</span><span class="n">per_mean</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">per_ch</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="setup_evaluate"><a class="viewcode-back" href="../../delphi.html#delphi.evaluation.setup_evaluate">[docs]</a><span class="k">def</span> <span class="nf">setup_evaluate</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">res</span><span class="o">=</span><span class="mi">200</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Optional Utility function that takes a CAG and assembles the transition</span>
+<span class="sd">    model.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        G: A CAG. It Must have indicators variables mapped to nodes.</span>
+
+<span class="sd">        input: This allows you to upload a CAG from a pickle file, instead of</span>
+<span class="sd">        passing it directly as an argument. The CAG must have mapped</span>
+<span class="sd">        indicators.</span>
+
+<span class="sd">        res: Sampling resolution. Default is 200 samples.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Returns CAG.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="nb">input</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">G</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;The CAG passed to G will be suppressed by the CAG loaded from &quot;</span>
+                <span class="s2">&quot;the pickle file.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">G</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">G</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="p">(</span>
+        <span class="s2">&quot;A CAG must be passed to G or a pickle file containing a CAG must be &quot;</span>
+        <span class="s2">&quot;passed to input.&quot;</span>
+    <span class="p">)</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">res</span> <span class="o">=</span> <span class="n">res</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">sample_from_prior</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">G</span></div>
+
+
+<div class="viewcode-block" id="evaluate"><a class="viewcode-back" href="../../delphi.html#delphi.evaluation.evaluate">[docs]</a><span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span>
+    <span class="n">target_node</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">intervened_node</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">G</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">start_year</span><span class="o">=</span><span class="mi">2012</span><span class="p">,</span>
+    <span class="n">start_month</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">end_year</span><span class="o">=</span><span class="mi">2017</span><span class="p">,</span>
+    <span class="n">end_month</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">plot_type</span><span class="o">=</span><span class="s2">&quot;Compare&quot;</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; This is the main function of this module. This parameterizes a given</span>
+<span class="sd">    CAG (see requirements in Args) and calls other functions within this module</span>
+<span class="sd">    to predict values for a specified target node&#39;s indicator variable given a</span>
+<span class="sd">    start date and end date. Returns pandas dataframe containing predicted</span>
+<span class="sd">    values, true values, and error.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        target_node: A string of the full name of the node in which we</span>
+<span class="sd">        wish to predict values for its attached indicator variable.</span>
+
+<span class="sd">        intervened_node: A string of the full name of the node upon which we</span>
+<span class="sd">        are intervening.</span>
+
+<span class="sd">        G: A CAG. It must have mapped indicator values and estimated transition</span>
+<span class="sd">        matrix.</span>
+
+<span class="sd">        input: This allows you to upload a CAG from a pickle file, instead of</span>
+<span class="sd">        passing it directly as an argument. The CAG must have mapped</span>
+<span class="sd">        indicators and an estimated transition matrix.</span>
+
+<span class="sd">        start_year: An integer, designates the starting year (ex: 2012).</span>
+
+<span class="sd">        start_month: An integer, starting month (1-12).</span>
+
+<span class="sd">        end_year: An integer, ending year.</span>
+
+<span class="sd">        end_month: An integer, ending month.</span>
+
+<span class="sd">        plot: Set to true to display a plot according to the plot type.</span>
+
+<span class="sd">        plot_type: By default setting plot to true displays the &quot;Compare&quot; type</span>
+<span class="sd">        plot which plots the predictions and true values of the target node&#39;s</span>
+<span class="sd">        indicator variable on one plot labeled by time steps (Year-Month).</span>
+<span class="sd">        There is also &quot;Error&quot; type, which plots the errors or residuals, with a</span>
+<span class="sd">        reference line at 0.</span>
+
+<span class="sd">        **kwargs: These are options for parameterize() which specify</span>
+<span class="sd">        country, state, units, fallback aggregation axes, and aggregation</span>
+<span class="sd">        function. Country and State also get passed into estimate_deltas()</span>
+<span class="sd">        and get_true_values(). The appropriate arguments are country, state,</span>
+<span class="sd">        units, fallback_aggaxes, and aggfunc.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Returns a pandas dataframe.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="nb">input</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">G</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;The CAG passed to G will be suppressed by the CAG loaded from &quot;</span>
+                <span class="s2">&quot;the pickle file.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">G</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">G</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="p">(</span>
+        <span class="s2">&quot;A CAG must be passed to G or a pickle file containing a CAG must be &quot;</span>
+        <span class="s2">&quot;passed to input.&quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="s2">&quot;country&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">country</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;country&quot;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">country</span> <span class="o">=</span> <span class="s2">&quot;South Sudan&quot;</span>
+    <span class="k">if</span> <span class="s2">&quot;state&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="s2">&quot;units&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">units</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">units</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="s2">&quot;fallback_aggaxes&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">fallback_aggaxes</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;fallback_aggaxes&quot;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">fallback_aggaxes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;month&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="s2">&quot;aggfunc&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">aggfunc</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;aggfunc&quot;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">aggfunc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span>
+
+    <span class="n">G</span><span class="o">.</span><span class="n">parameterize</span><span class="p">(</span>
+        <span class="n">country</span><span class="o">=</span><span class="n">country</span><span class="p">,</span>
+        <span class="n">state</span><span class="o">=</span><span class="n">state</span><span class="p">,</span>
+        <span class="n">year</span><span class="o">=</span><span class="n">start_year</span><span class="p">,</span>
+        <span class="n">month</span><span class="o">=</span><span class="n">start_month</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="n">units</span><span class="p">,</span>
+        <span class="n">fallback_aggaxes</span><span class="o">=</span><span class="n">fallback_aggaxes</span><span class="p">,</span>
+        <span class="n">aggfunc</span><span class="o">=</span><span class="n">aggfunc</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">get_timeseries_values_for_indicators</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">start_month</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">start_month</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">end_month</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">end_month</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="n">n_timesteps</span> <span class="o">=</span> <span class="n">calculate_timestep</span><span class="p">(</span>
+        <span class="n">start_year</span><span class="p">,</span> <span class="n">start_month</span><span class="p">,</span> <span class="n">end_year</span><span class="p">,</span> <span class="n">end_month</span>
+    <span class="p">)</span>
+
+    <span class="n">true_vals_df</span> <span class="o">=</span> <span class="n">get_true_values</span><span class="p">(</span>
+        <span class="n">G</span><span class="p">,</span> <span class="n">target_node</span><span class="p">,</span> <span class="n">n_timesteps</span><span class="p">,</span> <span class="n">start_year</span><span class="p">,</span> <span class="n">start_month</span><span class="p">,</span> <span class="n">country</span><span class="p">,</span> <span class="n">state</span>
+    <span class="p">)</span>
+
+    <span class="n">true_vals</span> <span class="o">=</span> <span class="n">true_vals_df</span><span class="o">.</span><span class="n">values</span>
+
+    <span class="n">deltas</span> <span class="o">=</span> <span class="n">estimate_deltas</span><span class="p">(</span>
+        <span class="n">G</span><span class="p">,</span>
+        <span class="n">intervened_node</span><span class="p">,</span>
+        <span class="n">n_timesteps</span><span class="p">,</span>
+        <span class="n">start_year</span><span class="p">,</span>
+        <span class="n">start_month</span><span class="p">,</span>
+        <span class="n">country</span><span class="p">,</span>
+        <span class="n">state</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">preds_df</span> <span class="o">=</span> <span class="n">get_predictions</span><span class="p">(</span>
+        <span class="n">G</span><span class="p">,</span> <span class="n">target_node</span><span class="p">,</span> <span class="n">intervened_node</span><span class="p">,</span> <span class="n">deltas</span><span class="p">,</span> <span class="n">n_timesteps</span>
+    <span class="p">)</span>
+
+    <span class="n">preds_df</span> <span class="o">=</span> <span class="n">preds_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">true_vals_df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">preds_df</span><span class="o">.</span><span class="n">values</span>
+
+    <span class="n">error</span> <span class="o">=</span> <span class="n">preds</span> <span class="o">-</span> <span class="n">true_vals</span>
+
+    <span class="n">error_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Errors&quot;</span><span class="p">])</span>
+
+    <span class="n">error_df</span> <span class="o">=</span> <span class="n">error_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">true_vals_df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+    <span class="n">compare_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">true_vals_df</span><span class="p">,</span> <span class="n">preds_df</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">join_axes</span><span class="o">=</span><span class="p">[</span><span class="n">true_vals_df</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">plot_type</span> <span class="o">==</span> <span class="s2">&quot;Error&quot;</span><span class="p">:</span>
+            <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">rc</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">)},</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">)</span>
+            <span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">error_df</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span>
+                <span class="n">error_df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span>
+            <span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">rc</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">)},</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">)</span>
+            <span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">compare_df</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span>
+                <span class="n">compare_df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span>
+            <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">compare_df</span><span class="p">,</span> <span class="n">error_df</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">join_axes</span><span class="o">=</span><span class="p">[</span><span class="n">true_vals_df</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+    <span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Adarsh
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

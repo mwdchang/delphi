@@ -1,0 +1,6 @@
+delphi.AnalysisGraph.AnalysisGraph.merge\_nodes
+===============================================
+
+.. currentmodule:: delphi.AnalysisGraph
+
+.. automethod:: AnalysisGraph.merge_nodes

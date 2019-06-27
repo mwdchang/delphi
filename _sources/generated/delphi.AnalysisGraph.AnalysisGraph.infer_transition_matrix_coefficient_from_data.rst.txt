@@ -1,0 +1,6 @@
+delphi.AnalysisGraph.AnalysisGraph.infer\_transition\_matrix\_coefficient\_from\_data
+=====================================================================================
+
+.. currentmodule:: delphi.AnalysisGraph
+
+.. automethod:: AnalysisGraph.infer_transition_matrix_coefficient_from_data
