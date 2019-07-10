@@ -51,6 +51,28 @@ def listAllModels():
 def createNewModel():
     """ Create a new Delphi model. """
     data = json.loads(request.data)
+
+    # Daniel hack to remove existing data
+    oldId = data["id"]
+    print("Daniel hack starts", oldId)
+    _metadata = ICMMetadata.query.filter_by(id=oldId).first()
+    G = DelphiModel.query.filter_by(id=oldId).first()
+    for primitive in CausalPrimitive.query.filter_by(model_id=oldId).all():
+        db.session.delete(primitive)
+
+    if _metadata is not None:
+        print("\tAbout to delete", _metadata)
+        db.session.delete(_metadata)
+
+    if G is not None:
+        print("\tAbout to delete", G)
+        db.session.delete(G)
+
+    print("\tCommiting change")
+    db.session.commit()
+    print("Daniel hack end")
+    # End Daniel hack
+
     G = AnalysisGraph.from_uncharted_json_serialized_dict(data)
     G.sample_from_prior()
     G.id = data["id"]
