@@ -29,7 +29,6 @@ bp = Blueprint("rest_api", __name__)
 # CauseMos API
 # ============
 
-
 PLACEHOLDER_UNIT = "No units specified."
 
 
