@@ -183,7 +183,7 @@ def text_search():
     geolocation = args.get("geolocation")
     match = args.get("match")
 
-    sql = "SELECT DISTINCT `Variable` from indicator WHERE 1 = 1"
+    sql = "SELECT DISTINCT `Variable`, `Source` from indicator WHERE 1 = 1"
     if match is not None:
         sql = sql + f" AND (`Variable` LIKE '{match}%' OR `Variable` LIKE '% {match}%')" # trying to match prefix
     if start is not None:
@@ -191,12 +191,14 @@ def text_search():
     if end is not None:
         sql = sql + f" AND `Year` < {end}"
 
-    print("Running SQL: ", sql)
     records = list(engine.execute(sql))
 
     result = []
     for r in records:
-        result.append(r["Variable"])
+        result.append({
+            "name": r["Variable"],
+            "source": r["Source"]
+        })
     return jsonify(result)
 
 
